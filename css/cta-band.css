@@ -1,0 +1,11 @@
+.cta-band {
+  background: var(--signal);
+  color: var(--ink);
+  padding: 68px 0;
+  text-align: center
+}
+
+.cta-band h2 {
+  font-size: clamp(32px, 5vw, 54px);
+  margin-bottom: 22px
+}

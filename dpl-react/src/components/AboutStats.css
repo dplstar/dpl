@@ -1,0 +1,33 @@
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--steel-line);
+  margin-top: 40px
+}
+
+@media(max-width:700px) {
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr)
+  }
+}
+
+.about-stat {
+  padding: 22px 0;
+  border-right: 1px solid var(--steel-line)
+}
+
+.about-stat:last-child {
+  border-right: none
+}
+
+.about-stat .stat-n {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  color: var(--signal)
+}
+
+.about-stat .stat-l {
+  font-size: 12px;
+  color: var(--muted-dark);
+  margin-top: 3px
+}

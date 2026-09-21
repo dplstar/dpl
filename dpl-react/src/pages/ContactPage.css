@@ -1,0 +1,11 @@
+.ct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px
+}
+
+@media(max-width:860px) {
+  .ct-grid {
+    grid-template-columns: 1fr
+  }
+}

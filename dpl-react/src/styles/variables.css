@@ -1,0 +1,15 @@
+:root {
+  --ink: #0c1017;
+  --steel: #1a2230;
+  --steel-line: #283240;
+  --zinc: #c3cbd1;
+  --zinc-bright: #eef1f3;
+  --paper: #f0ede5;
+  --paper-line: #d9d5c9;
+  --signal: #e8a33d;
+  --signal-dim: #7a5820;
+  --on-dark: #e8ecf0;
+  --muted-dark: #8b96a3;
+  --on-light: #14181d;
+  --muted-light: #5b6570;
+}

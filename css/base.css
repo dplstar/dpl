@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+
+html {
+  scroll-behavior: auto
+}
+
+body {
+  font-family: 'Inter';
+  color: var(--on-light);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Playfair display;
+  font-weight: 600;
+  line-height: 1.05
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', monospace
+}
+
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none
+}
+
+img {
+  display: block;
+  max-width: 100%
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--ink)
+}
+
+.shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px
+}
+
+@media(max-width:640px) {
+  .shell {
+    padding: 0 20px
+  }
+}
+
+/* ── buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px 26px;
+  transition: transform .15s ease, box-shadow .15s ease
+}
+
+.btn:active {
+  transform: scale(.97)
+}
+
+.btn-p {
+  background: var(--signal);
+  color: var(--ink)
+}
+
+.btn-p:hover {
+  box-shadow: 0 2px 18px rgba(232, 163, 61, .35)
+}
+
+.btn-g {
+  background: transparent;
+  color: var(--zinc-bright);
+  border: 1px solid var(--steel-line)
+}
+
+.btn-g:hover {
+  border-color: var(--zinc)
+}
+
+.btn-dark {
+  background: var(--ink);
+  color: var(--zinc-bright)
+}
+
+/* ── generic section chrome (shared by many sections) ── */
+.sec {
+  padding: 88px 0;
+  border-bottom: 1px solid var(--paper-line)
+}
+
+.sec-d {
+  background: var(--ink);
+  color: var(--on-dark);
+  border-bottom: 1px solid var(--steel-line)
+}
+
+.sec-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.sec-headd {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  padding: 0px 110px 0px 110px !important;
+}
+
+.sec-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  color: var(--signal);
+  letter-spacing: .04em;
+  margin-bottom: 10px
+}
+
+.sec h2 {
+  font-size: clamp(30px, 4vw, 46px)
+}
+
+.sec-note {
+  max-width: 40ch;
+  font-size: 14.5px;
+  color: var(--muted-light)
+}
+
+.sec-d .sec-note {
+  color: var(--muted-dark)
+}
+
+.foure {
+  font-size: 46px;
+}

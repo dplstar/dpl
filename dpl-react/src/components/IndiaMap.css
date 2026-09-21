@@ -1,0 +1,164 @@
+/* IndiaMap — plain CSS, no framework.
+   Override any of these custom properties on .india-map or a parent. */
+
+.india-map {
+  --map-land: #e8edf4;
+  --map-stroke: #ffffff;
+  --map-stroke-width: 0.8;
+  --map-hover: #cbd5e1;
+  --map-selected: #1d4ed8;
+  --map-focus: #f59e0b;
+  --map-label: #334155;
+  --map-tooltip-bg: #0f172a;
+  --map-tooltip-fg: #f8fafc;
+
+  position: relative;
+  width: 100%;
+  color: var(--map-label);
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.india-map__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.india-map--zoomable .india-map__svg {
+  cursor: grab;
+  touch-action: none;
+}
+
+.india-map--zoomable .india-map__svg:active {
+  cursor: grabbing;
+}
+
+/* ---------- states ---------- */
+
+.india-map__state {
+  fill: var(--map-land);
+  stroke: var(--map-stroke);
+  stroke-width: var(--map-stroke-width);
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  outline: none;
+  transition: fill 140ms ease, filter 140ms ease;
+}
+
+.india-map__state:hover,
+.india-map__state.is-hovered {
+  filter: brightness(0.92) saturate(1.08);
+}
+
+.india-map__state.is-selected {
+  stroke: var(--map-selected);
+  stroke-width: calc(var(--map-stroke-width) * 2.5);
+  filter: brightness(0.9) saturate(1.15);
+}
+
+/* Keyboard focus only — pointer users don't get the ring. */
+.india-map__state:focus-visible {
+  stroke: var(--map-focus);
+  stroke-width: calc(var(--map-stroke-width) * 3);
+}
+
+/* Raise the hovered/selected/focused shape above its neighbours so the
+   thicker stroke isn't clipped by the next path in document order. */
+.india-map__state.is-hovered,
+.india-map__state.is-selected,
+.india-map__state:focus-visible {
+  paint-order: stroke fill;
+}
+
+/* ---------- labels ---------- */
+
+.india-map__labels {
+  pointer-events: none;
+}
+
+.india-map__label {
+  fill: var(--map-label);
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.85);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+/* ---------- tooltip ---------- */
+
+.india-map__tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px 0 0 14px;
+  padding: 7px 10px;
+  max-width: 220px;
+  border-radius: 8px;
+  background: var(--map-tooltip-bg);
+  color: var(--map-tooltip-fg);
+  font-size: 13px;
+  line-height: 1.35;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+  z-index: 2;
+}
+
+.india-map__tooltip strong {
+  display: block;
+  font-weight: 600;
+}
+
+.india-map__tooltip-meta {
+  display: block;
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- legend ---------- */
+
+.india-map__legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+
+.india-map__legend-ramp {
+  flex: 1;
+  height: 8px;
+  max-width: 220px;
+  border-radius: 999px;
+}
+
+/* ---------- dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  .india-map {
+    --map-land: #1e293b;
+    --map-stroke: #0f172a;
+    --map-hover: #334155;
+    --map-label: #e2e8f0;
+    --map-tooltip-bg: #e2e8f0;
+    --map-tooltip-fg: #0f172a;
+  }
+
+  .india-map__label {
+    stroke: rgba(15, 23, 42, 0.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .india-map__state {
+    transition: none;
+  }
+}

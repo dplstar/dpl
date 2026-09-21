@@ -1,0 +1,42 @@
+.ptable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px
+}
+
+.ptable th {
+  text-align: left;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #9aa5b1;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--steel-line);
+  font-weight: 500
+}
+
+.ptable td {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--steel-line);
+  font-size: 14px
+}
+
+.ptable td:first-child {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--zinc-bright)
+}
+
+.fit-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px
+}
+
+.fit-tag {
+  border: 1px solid var(--steel-line);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--muted-dark)
+}

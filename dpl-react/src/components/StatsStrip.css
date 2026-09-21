@@ -1,0 +1,29 @@
+.stats {
+  background: var(--ink);
+  border-top: 1px solid var(--steel-line)
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 28px 0
+}
+
+@media(max-width:700px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px
+  }
+}
+
+.stat-n {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 21px;
+  color: var(--zinc-bright)
+}
+
+.stat-l {
+  font-size: 12px;
+  color: var(--muted-dark);
+  margin-top: 3px
+}

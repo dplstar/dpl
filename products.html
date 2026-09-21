@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Products — DPL Star</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/page-hero.css" />
+  <link rel="stylesheet" href="css/product-card.css" />
+  <link rel="stylesheet" href="css/pipe-table.css" />
+  <link rel="stylesheet" href="css/cta-band.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+</head>
+
+<body data-page="products">
+
+  <!-- ════════════════════ NAV ════════════════════ -->
+  <nav class="nav">
+    <div class="shell nav-row">
+      <a href="index.html"><img src="img/DPL-Star-Logo.png" class="colorLogo" width="100px" height="50px" /></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-a" data-page="home">Home</a>
+        <a href="about.html" class="nav-a" data-page="about">About</a>
+        <a href="products.html" class="nav-a" data-page="products">Products</a>
+        <a href="contact.html" class="btn btn-p nav-cta">Get a quote<svg viewBox="0 0 24 24" width="13" height="13"
+            fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7" />
+            <polyline points="7 7 17 7 17 17" />
+          </svg></a>
+      </div>
+      <button class="nav-burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24" width="22" height="22"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg></button>
+    </div>
+    <div id="mob-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Get a quote</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="pg-hero">
+      <div class="shell">
+        <div class="hero-tag">Product range</div>
+        <h1>Storage tanks, pipes and well fittings.</h1>
+        <p>Four tank constructions for liquid storage, plus the pipe and tube-well hardware that goes around them.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="shell">
+        <div class="sec-head">
+          <div>
+            <div class="sec-tag">Storage tanks</div>
+            <h2>Match the coating to the liquid</h2>
+          </div>
+        </div>
+        <div class="prod-grid" id="prod-full"></div>
+      </div>
+    </section>
+
+    <section class="sec sec-d">
+      <div class="shell">
+        <div class="sec-head">
+          <div>
+            <div class="sec-tag">Pipes, tubewell &amp; pump fittings</div>
+            <h2>The hardware that supports every tank</h2>
+          </div>
+        </div>
+        <table class="ptable">
+          <thead>
+            <tr>
+              <th>Standard</th>
+              <th>Application</th>
+            </tr>
+          </thead>
+          <tbody id="pipe-tb"></tbody>
+        </table>
+        <div class="fit-tags" id="fit-tags"></div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="shell">
+        <h2>Not sure which tank fits your site?</h2>
+        <a href="contact.html" class="btn btn-dark">Ask engineering<svg viewBox="0 0 24 24" width="14" height="14"
+            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7" />
+            <polyline points="7 7 17 7 17 17" />
+          </svg></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════════════ FOOTER ════════════════════ -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="foot-grid">
+        <div class="foot-col">
+          <a href="index.html"><img src="img/DPL-Star-Logo.png" class="colorLogo" width="100px" height="50px" /></a>
+          <p style="max-width:30ch">DPL Global Private Limited — liquid storage tanks, pipes and tube-well fittings,
+            manufactured in Sikandrabad, Uttar Pradesh.</p>
+        </div>
+        <div class="foot-col">
+          <h5>Storage Tanks</h5>
+          <div id="foot-prod"></div>
+        </div>
+        <div class="foot-col">
+          <h5>Company</h5>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h5>Reach us</h5>
+          <div class="foot-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg><span>A-58, Sikandrabad, UP – 203205</span></div>
+          <div class="foot-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg><span>+91 92056 00125</span></div>
+          <div class="foot-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+              <polyline points="22 6 12 13 2 6" />
+            </svg><span>info@dplstar.com</span></div>
+        </div>
+      </div>
+      <div class="foot-bar">
+        <span>&copy; 2026 DPL Star. Design concept — specifications shown are indicative.</span>
+        <span>Incorporated 2008 · Manufacturing since 2019</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+.proc-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--paper-line);
+  border-left: 1px solid var(--paper-line)
+}
+
+@media(max-width:760px) {
+  .proc-row {
+    grid-template-columns: 1fr 1fr
+  }
+}
+
+.proc-item {
+  padding: 26px;
+  border-right: 1px solid var(--paper-line);
+  border-bottom: 1px solid var(--paper-line)
+}
+
+.proc-n {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--signal);
+  font-size: 12px;
+  margin-bottom: 10px
+}
+
+.proc-item h4 {
+  font-size: 17px;
+  margin-bottom: 5px
+}
+
+.proc-item p {
+  font-size: 13px;
+  color: var(--muted-light)
+}

@@ -1,0 +1,3892 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>DPL Star — Liquid Storage Tanks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════════
+   CLIENT LOGO TICKER
+═══════════════════════════════════════════ */
+
+    #clients {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      gap: 70px;
+      animation: clientLogoTicker 35s linear infinite;
+      will-change: transform;
+    }
+
+    .client-logo {
+      width: 180px;
+      height: 90px;
+      flex: 0 0 180px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+
+
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .client-logo img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+
+
+
+      object-fit: contain;
+
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    .client-logo:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .client-logo:hover img {
+      transform: scale(1.06);
+    }
+
+    @keyframes clientLogoTicker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+
+    /* Pause on hover */
+    .clients-section:hover #clients {
+      animation-play-state: paused;
+    }
+
+
+    /* ═══════════════════════════════════════════
+   MOBILE
+═══════════════════════════════════════════ */
+
+    @media (max-width: 768px) {
+      #clients {
+        gap: 35px;
+        animation-duration: 28s;
+      }
+
+      .client-logo {
+        width: 145px;
+        height: 75px;
+        flex-basis: 145px;
+        padding: 14px 18px;
+        border-radius: 9px;
+      }
+
+      .client-logo img {
+        max-width: 115px;
+        max-height: 48px;
+      }
+    }
+
+
+    @media (max-width: 480px) {
+      #clients {
+        gap: 25px;
+        animation-duration: 24s;
+      }
+
+      .client-logo {
+        width: 125px;
+        height: 68px;
+        flex-basis: 125px;
+        padding: 12px 15px;
+      }
+
+      .client-logo img {
+        max-width: 100px;
+        max-height: 42px;
+      }
+    }
+
+    :root {
+      --ink: #0c1017;
+      --steel: #1a2230;
+      --steel-line: #283240;
+      --zinc: #c3cbd1;
+      --zinc-bright: #eef1f3;
+      --paper: #f0ede5;
+      --paper-line: #d9d5c9;
+      --signal: #e8a33d;
+      --signal-dim: #7a5820;
+      --on-dark: #e8ecf0;
+      --muted-dark: #8b96a3;
+      --on-light: #14181d;
+      --muted-light: #5b6570;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: auto
+    }
+
+    body {
+      font-family: 'Inter';
+      color: var(--on-light);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.55
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: Playfair display;
+      font-weight: 600;
+      line-height: 1.05
+    }
+
+    .mono {
+      font-family: 'IBM Plex Mono', monospace
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none
+    }
+
+    img {
+      display: block;
+      max-width: 100%
+    }
+
+    ::selection {
+      background: var(--signal);
+      color: var(--ink)
+    }
+
+    .shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px
+    }
+
+    @media(max-width:640px) {
+      .shell {
+        padding: 0 20px
+      }
+    }
+
+    .page {
+      display: none
+    }
+
+    .page.active {
+      display: block
+    }
+
+    /* ── buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 14px 26px;
+      transition: transform .15s ease, box-shadow .15s ease
+    }
+
+    .btn:active {
+      transform: scale(.97)
+    }
+
+    .btn-p {
+      background: var(--signal);
+      color: var(--ink)
+    }
+
+    .btn-p:hover {
+      box-shadow: 0 2px 18px rgba(232, 163, 61, .35)
+    }
+
+    .btn-g {
+      background: transparent;
+      color: var(--zinc-bright);
+      border: 1px solid var(--steel-line)
+    }
+
+    .btn-g:hover {
+      border-color: var(--zinc)
+    }
+
+    .btn-dark {
+      background: var(--ink);
+      color: var(--zinc-bright)
+    }
+
+    /* ── nav ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(12, 16, 23, .94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--steel-line)
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px
+    }
+
+    .nav-mark {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      color: var(--zinc-bright)
+    }
+
+    .nav-mark b {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 21px;
+      letter-spacing: .02em
+    }
+
+    .nav-mark small {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--signal);
+      letter-spacing: .06em
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px
+    }
+
+    .nav-a {
+      padding: 7px 15px;
+      font-size: 13.5px;
+      color: var(--muted-dark);
+      border-bottom: 2px solid transparent;
+      transition: color .15s ease
+    }
+
+    .nav-a:hover {
+      color: var(--zinc-bright)
+    }
+
+    .nav-a.on {
+      color: var(--zinc-bright);
+      border-bottom-color: var(--signal)
+    }
+
+    .nav-cta {
+      margin-left: 8px;
+      font-size: 12.5px;
+      padding: 8px 16px
+    }
+
+    .nav-burger {
+      display: none;
+      background: 0;
+      color: var(--zinc-bright);
+      padding: 4px
+    }
+
+    @media(max-width:860px) {
+      .nav-links {
+        display: none
+      }
+
+      .nav-burger {
+        display: flex
+      }
+    }
+
+    #mob-nav {
+      display: none;
+      flex-direction: column;
+      background: var(--ink);
+      border-bottom: 1px solid var(--steel-line)
+    }
+
+    #mob-nav.open {
+      display: flex
+    }
+
+    #mob-nav a,
+    #mob-nav button {
+      padding: 16px 20px;
+      border-top: 1px solid var(--steel-line);
+      color: var(--zinc-bright);
+      font-size: 15px;
+      background: 0;
+      text-align: left
+    }
+
+    /* ── scroll story ── */
+    .story {
+      position: relative;
+      height: 580vh;
+      background: var(--ink)
+    }
+
+    .story-pin {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(195, 203, 209, .04) 0 1px, transparent 1px 72px),
+        repeating-linear-gradient(90deg, rgba(195, 203, 209, .04) 0 1px, transparent 1px 72px);
+    }
+
+    .story-pin::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 50% 58%, transparent 36%, rgba(12, 16, 23, .8)100%)
+    }
+
+    #gl {
+      position: absolute;
+      inset: 0
+    }
+
+    #gl canvas {
+      display: block
+    }
+
+    .cap {
+      position: absolute;
+      z-index: 2;
+      opacity: 0;
+      color: var(--on-dark);
+      will-change: opacity;
+      pointer-events: none
+    }
+
+    .cap-in {
+      will-change: transform
+    }
+
+    .cap-hero {
+      left: 0;
+      right: 0;
+      top: 9vh;
+      text-align: center;
+      padding: 0 20px
+    }
+
+    .cap-hero h1 {
+      font-size: clamp(54px, 9vw, 120px);
+      line-height: .9;
+      letter-spacing: -.01em
+    }
+
+    .cap-hero p {
+      max-width: 46ch;
+      margin: 20px auto 0;
+      color: var(--muted-dark);
+      font-size: 17px
+    }
+
+    .cap-l {
+      left: max(32px, calc(50% - 560px));
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 420px
+    }
+
+    .cap-r {
+      right: max(32px, calc(50% - 560px));
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 420px
+    }
+
+    .cap-end {
+      left: 0;
+      right: 0;
+      bottom: 10vh;
+      text-align: center;
+      padding: 0 20px
+    }
+
+    .cap h2 {
+      font-size: clamp(36px, 5vw, 68px);
+      margin-bottom: 14px
+    }
+
+    .cap-end h2 {
+      font-size: clamp(42px, 7vw, 96px)
+    }
+
+    .cap p {
+      color: var(--muted-dark);
+      font-size: 15.5px;
+      max-width: 38ch;
+      margin: 0
+    }
+
+    .cap-end p {
+      margin: 0 auto 28px
+    }
+
+    .cap-tag {
+      color: var(--signal);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: .05em;
+      margin-bottom: 14px
+    }
+
+    .cap-specs {
+      display: flex;
+      gap: 26px;
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--steel-line)
+    }
+
+    .cap-specs dt {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 17px;
+      color: var(--zinc-bright)
+    }
+
+    .cap-specs dd {
+      font-size: 11px;
+      color: var(--muted-dark);
+      margin: 2px 0 0
+    }
+
+    .scroll-cue {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: .14em;
+      color: var(--muted-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px
+    }
+
+    .scroll-cue::after {
+      content: "";
+      width: 1px;
+      height: 30px;
+      background: linear-gradient(var(--signal), transparent);
+      animation: pulse 1.6s ease-in-out infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: translateY(0)
+      }
+
+      50% {
+        opacity: .35;
+        transform: translateY(7px)
+      }
+    }
+
+    .dot-nav {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .dot-nav i {
+      display: block;
+      width: 2px;
+      height: 24px;
+      background: var(--steel-line);
+      transition: background .3s ease
+    }
+
+    .dot-nav i.on {
+      background: var(--signal)
+    }
+
+    @media(max-width:760px) {
+      .story {
+        height: 640vh
+      }
+
+      .cap-l,
+      .cap-r {
+        left: 20px;
+        right: 20px;
+        top: auto;
+        bottom: 7vh;
+        transform: none;
+        max-width: none
+      }
+
+      .cap-hero {
+        top: 6vh
+      }
+
+      .dot-nav {
+        right: 10px
+      }
+
+      .scroll-cue {
+        display: none
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .scroll-cue::after {
+        animation: none
+      }
+    }
+
+    /* ── stats strip ── */
+    .stats {
+      background: var(--ink);
+      border-top: 1px solid var(--steel-line)
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 28px 0
+    }
+
+    @media(max-width:700px) {
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px
+      }
+    }
+
+    .stat-n {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 21px;
+      color: var(--zinc-bright)
+    }
+
+    .stat-l {
+      font-size: 12px;
+      color: var(--muted-dark);
+      margin-top: 3px
+    }
+
+    /* ── section ── */
+    .sec {
+      padding: 88px 0;
+      border-bottom: 1px solid var(--paper-line)
+    }
+
+    .sec-d {
+      background: var(--ink);
+      color: var(--on-dark);
+      border-bottom: 1px solid var(--steel-line)
+    }
+
+    .sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+          
+    }
+.sec-headd {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+          padding: 0px 110px 0px 110px !important;
+    }
+    .sec-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--signal);
+      letter-spacing: .04em;
+      margin-bottom: 10px
+    }
+
+    .sec h2 {
+      font-size: clamp(30px, 4vw, 46px)
+    }
+
+    .sec-note {
+      max-width: 40ch;
+      font-size: 14.5px;
+      color: var(--muted-light)
+    }
+
+    .sec-d .sec-note {
+      color: var(--muted-dark)
+    }
+
+    /* ── industries ── */
+    .ind-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--steel-line)
+    }
+
+    @media(max-width:760px) {
+      .ind-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .ind-row {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--steel-line)
+    }
+
+    .ind-row:nth-child(odd) {
+      padding-right: 24px
+    }
+
+    .ind-row:nth-child(even) {
+      padding-left: 24px
+    }
+
+    @media(max-width:760px) {
+
+      .ind-row:nth-child(odd),
+      .ind-row:nth-child(even) {
+        padding: 18px 0
+      }
+    }
+
+    .ind-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--zinc-bright)
+    }
+
+    .ind-copy {
+      font-size: 13.5px;
+      color: var(--muted-dark)
+    }
+
+    /* ── product cards ── */
+    .prod-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--paper-line);
+      border: 1px solid var(--paper-line)
+    }
+
+    @media(max-width:760px) {
+      .prod-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .prod-card {
+
+      padding: 32px
+    }
+
+    .prod-card h3 {
+      font-size: 25px;
+      margin: 16px 0 4px
+    }
+
+    .prod-tl {
+      font-size: 13.5px;
+      color: var(--muted-light);
+      margin-bottom: 14px
+    }
+
+    .prod-body {
+      font-size: 13.5px;
+      color: var(--muted-light);
+      margin-bottom: 18px;
+      max-width: 44ch
+    }
+
+    .prod-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+      border-top: 1px solid var(--paper-line);
+      padding-top: 14px;
+      margin-bottom: 18px
+    }
+
+    .spec-l {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #9a9384;
+      margin-bottom: 2px
+    }
+
+    .spec-v {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px
+    }
+
+    .prod-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px
+    }
+
+    /* ── strengths ── */
+    .str-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--paper-line);
+      border-left: 1px solid var(--paper-line)
+    }
+
+    @media(max-width:760px) {
+      .str-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .str-item {
+      padding: 26px 28px;
+      border-right: 1px solid var(--paper-line);
+      border-bottom: 1px solid var(--paper-line)
+    }
+
+    .str-idx {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--signal);
+      margin-bottom: 10px
+    }
+
+    .str-item h4 {
+      font-size: 18px;
+      margin-bottom: 6px
+    }
+
+    .str-item p {
+      font-size: 13px;
+      color: var(--muted-light)
+    }
+
+    .sec-d .str-grid {
+      border-color: var(--steel-line)
+    }
+
+    .sec-d .str-item {
+      border-color: var(--steel-line)
+    }
+
+    .sec-d .str-item h4 {
+      color: var(--zinc-bright)
+    }
+
+    .sec-d .str-item p {
+      color: var(--muted-dark)
+    }
+
+    /* ── client marquee ── */
+    .marquee {
+      overflow: hidden;
+      border-top: 1px solid var(--paper-line);
+      border-bottom: 1px solid var(--paper-line);
+      padding: 24px 0
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 52px;
+      width: max-content;
+      animation: slide 36s linear infinite
+    }
+
+    .marquee-track span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px;
+      color: #7a756a;
+      white-space: nowrap
+    }
+
+    @keyframes slide {
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .marquee-track {
+        animation: none
+      }
+    }
+
+    /* ── cta band ── */
+    .cta-band {
+      background: var(--signal);
+      color: var(--ink);
+      padding: 68px 0;
+      text-align: center
+    }
+
+    .cta-band h2 {
+      font-size: clamp(32px, 5vw, 54px);
+      margin-bottom: 22px
+    }
+
+    /* ── footer ── */
+    .footer {
+      background: var(--ink);
+      color: var(--muted-dark);
+      padding: 64px 0 28px
+    }
+
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .7fr 1fr;
+      gap: 40px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid var(--steel-line)
+    }
+
+    @media(max-width:760px) {
+      .foot-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    .foot-col h5 {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--zinc-bright);
+      margin-bottom: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600
+    }
+
+    .foot-col a,
+    .foot-col p {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 10px
+    }
+
+    .foot-col a:hover {
+      color: var(--zinc-bright)
+    }
+
+    .foot-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      font-size: 13px
+    }
+
+    .foot-row svg {
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .foot-bar {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 22px;
+      font-size: 11.5px;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    /* ── inner page hero ── */
+    .pg-hero {
+      background: var(--ink);
+      color: var(--zinc-bright);
+      padding: 72px 0 64px
+    }
+
+    .pg-hero .hero-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--signal);
+      letter-spacing: .04em;
+      margin-bottom: 16px
+    }
+
+    .pg-hero h1 {
+      font-size: clamp(36px, 5vw, 58px);
+      max-width: 18ch
+    }
+
+    .pg-hero>div>p {
+      max-width: 52ch;
+      color: var(--muted-dark);
+      margin-top: 16px;
+      font-size: 15.5px
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--steel-line);
+      margin-top: 40px
+    }
+
+    @media(max-width:700px) {
+      .about-stats {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    .about-stat {
+      padding: 22px 0;
+      border-right: 1px solid var(--steel-line)
+    }
+
+    .about-stat:last-child {
+      border-right: none
+    }
+
+    .about-stat .stat-n {
+      font-size: 28px;
+      color: var(--signal)
+    }
+
+    /* ── process ── */
+    .proc-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--paper-line);
+      border-left: 1px solid var(--paper-line)
+    }
+
+    @media(max-width:760px) {
+      .proc-row {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    .proc-item {
+      padding: 26px;
+      border-right: 1px solid var(--paper-line);
+      border-bottom: 1px solid var(--paper-line)
+    }
+
+    .proc-n {
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--signal);
+      font-size: 12px;
+      margin-bottom: 10px
+    }
+
+    .proc-item h4 {
+      font-size: 17px;
+      margin-bottom: 5px
+    }
+
+    .proc-item p {
+      font-size: 13px;
+      color: var(--muted-light)
+    }
+
+    /* ── pipe table ── */
+    .ptable {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px
+    }
+
+    .ptable th {
+      text-align: left;
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #9aa5b1;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--steel-line);
+      font-weight: 500
+    }
+
+    .ptable td {
+      padding: 13px 0;
+      border-bottom: 1px solid var(--steel-line);
+      font-size: 14px
+    }
+
+    .ptable td:first-child {
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--zinc-bright)
+    }
+
+    .fit-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px
+    }
+
+    .fit-tag {
+      border: 1px solid var(--steel-line);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--muted-dark)
+    }
+
+    /* ── contact ── */
+    .ct-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px
+    }
+
+    @media(max-width:860px) {
+      .ct-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .field {
+      margin-bottom: 16px
+    }
+
+    .field label {
+      display: block;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #857f6f;
+      margin-bottom: 6px
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--paper-line);
+      background: #fff;
+      padding: 12px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--on-light);
+      transition: border .15s ease
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--signal)
+    }
+
+    .ct-block {
+      margin-bottom: 26px
+    }
+
+    .ct-block h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted-light);
+      margin-bottom: 10px;
+      font-weight: 600
+    }
+
+    .map-fr {
+      border: 1px solid var(--paper-line);
+      width: 100%;
+      height: 220px;
+      margin-top: 8px
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--muted-light);
+      margin-top: 6px
+    }
+
+    #ct-ok {
+      display: none
+    }
+
+    .signature-products {
+      width: 100%;
+      padding: 100px 0;
+    }
+
+    .signature-container {
+      width: min(1300px, 90%);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* ========================= PRODUCT CARD ========================= */
+    .product-card {
+      position: sticky;
+      top: 30px;
+      width: 100%;
+      min-height: 430px;
+      padding: 55px;
+      border-radius: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+      background: #ffffff;
+      overflow: hidden;
+      margin-bottom: 40px;
+      /* shadow for stacking effect */
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.10);
+    }
+
+    /* Different sticky position for each card */
+    .product-card:nth-child(1) {
+      top: 30px;
+      z-index: 1;
+    }
+
+    .product-card:nth-child(2) {
+      top: 45px;
+      z-index: 2;
+      background: #F0EDE5;
+    }
+
+    .product-card:nth-child(3) {
+      top: 60px;
+      z-index: 3;
+      background: #ffffff;
+    }
+
+    .product-card:nth-child(4) {
+      top: 75px;
+      z-index: 4;
+      background: #F0EDE5;
+    }
+
+    /* ========================= CONTENT ========================= */
+    .product-content {
+      max-width: 570px;
+    }
+
+    .product-label {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      line-height: 1.1;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #214c6e;
+    }
+
+    .product-title {
+      font-size: 28px;
+      line-height: 1.2;
+      font-weight: 400;
+      margin-bottom: 25px;
+      color: #214c6e;
+    }
+
+    .product-description {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #214c6e;
+      max-width: 570px;
+      margin-bottom: 25px;
+    }
+
+    /* ========================= BUTTON ========================= */
+    .product-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 112px;
+      padding: 11px 25px;
+      border: 1px solid #214c6e;
+      border-radius: 3px;
+      background: transparent;
+      color: #214c6e;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .product-btn:hover {
+      background: #214c6e;
+      color: #ffffff;
+    }
+
+    /* ========================= IMAGE ========================= */
+    .product-image {
+      width: 100%;
+      height: 325px;
+      overflow: hidden;
+      border-radius: 5px;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.04);
+    }
+
+    /* ========================= RESPONSIVE ========================= */
+    @media (max-width: 900px) {
+      .signature-products {
+        padding: 60px 0;
+      }
+
+      .signature-container {
+        width: 92%;
+      }
+
+      .product-card {
+        position: sticky;
+        grid-template-columns: 1fr;
+        padding: 30px;
+        gap: 30px;
+        min-height: auto;
+        margin-bottom: 30px;
+      }
+
+      .product-card:nth-child(1) {
+        top: 20px;
+      }
+
+      .product-card:nth-child(2) {
+        top: 30px;
+      }
+
+      .product-card:nth-child(3) {
+        top: 40px;
+      }
+
+      .product-card:nth-child(4) {
+        top: 50px;
+      }
+
+      .product-image {
+        order: -1;
+        height: 300px;
+      }
+
+      .product-label {
+        font-size: 36px;
+      }
+
+      .product-title {
+        font-size: 25px;
+      }
+
+      .product-description {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .signature-products {
+        padding: 45px 0;
+      }
+
+      .signature-container {
+        width: 92%;
+        gap: 0;
+      }
+
+      .product-card {
+        min-height: auto;
+        padding: 22px;
+        border-radius: 15px;
+        gap: 24px;
+        margin-bottom: 25px;
+        position: sticky;
+      }
+
+      .product-card:nth-child(1) {
+        top: 15px;
+      }
+
+      .product-card:nth-child(2) {
+        top: 25px;
+      }
+
+      .product-card:nth-child(3) {
+        top: 35px;
+      }
+
+      .product-card:nth-child(4) {
+        top: 45px;
+      }
+
+      .product-image {
+        height: 230px;
+        border-radius: 5px;
+      }
+
+      .product-label {
+        font-size: 31px;
+      }
+
+      .product-title {
+        font-size: 22px;
+        margin-bottom: 16px;
+      }
+
+      .product-description {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .product-btn {
+        font-size: 15px;
+        padding: 10px 22px;
+      }
+    }
+
+    .foure{
+          font-size: 46px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ════════════════════ NAV ════════════════════ -->
+  <nav class="nav">
+    <div class="shell nav-row">
+      <a href="">
+        <img src="img/DPL-Star-Logo.png" class="colorLogo" width="100px" height="50px"></a>
+      <div class="nav-links">
+        <a href="#" class="nav-a on" data-go="home">Home</a>
+        <a href="#" class="nav-a" data-go="about">About</a>
+        <a href="#" class="nav-a" data-go="products">Products</a>
+        <a href="#" class="nav-a" data-go="contact">Contact</a>
+        <button class="btn btn-p nav-cta" data-go="contact">Get a quote<svg viewBox="0 0 24 24" width="13" height="13"
+            fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7" />
+            <polyline points="7 7 17 7 17 17" />
+          </svg></button>
+      </div>
+      <button class="nav-burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24" width="22" height="22"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg></button>
+    </div>
+    <div id="mob-nav">
+      <a href="#" data-go="home">Home</a>
+      <a href="#" data-go="about">About</a>
+      <a href="#" data-go="products">Products</a>
+      <button data-go="contact">Get a quote</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ════════════════════ HOME ════════════════════ -->
+    <div class="page active" data-page="home">
+
+      <!-- ── scroll story ── -->
+      <section class="story" id="story">
+        <div class="story-pin">
+          <div id="gl"></div>
+
+          <div class="cap cap-hero" data-s="0" data-e=".13">
+            <div class="cap-in">
+              <div class="cap-tag"></div>
+              <h1>Built to hold.<br>Engineered to last.</h1>
+              <p>A bolted-panel steel tank, drawn, fabricated and installed by one team. Scroll to take it apart.</p>
+            </div>
+          </div>
+
+          <div class="cap cap-l" data-s=".17" data-e=".36">
+            <div class="cap-in">
+              <div class="cap-tag"></div>
+              <h2>Forty-two ridges of coated steel.</h2>
+              <p>Every panel is corrugated for stiffness and coated in AZ150 aluminium-zinc alloy before it ever meets
+                water. The profile carries the hoop load; the coating carries the years.</p>
+              <dl class="cap-specs">
+                <div>
+                  <dt>AZ150</dt>
+                  <dd>Alloy coating class</dd>
+                </div>
+                <div>
+                  <dt>IS 3396</dt>
+                  <dd>Design standard</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="cap cap-r" data-s=".41" data-e=".61">
+            <div class="cap-in">
+              <div class="cap-tag"></div>
+              <h2>Ships flat. Bolts together on site.</h2>
+              <p>Three tiers, eight panels each, one roof. The whole tank leaves the factory on a single truck and goes
+                up without welding — every seam a bolted, gasket-sealed joint that can be inspected and re-torqued.</p>
+              <dl class="cap-specs">
+                <div>
+                  <dt>24</dt>
+                  <dd>Wall panels</dd>
+                </div>
+                <div>
+                  <dt>0</dt>
+                  <dd>Site welds</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="cap cap-l" data-s=".66" data-e=".84">
+            <div class="cap-in">
+              <div class="cap-tag"></div>
+              <h2>Every outlet is a flanged joint.</h2>
+              <p>Nozzles are flanged, gasketed and bolted to the panel, not cut into it after the fact — so a pump swap
+                or a pipe re-route never means a new tank.</p>
+            </div>
+          </div>
+
+          <div class="cap cap-end" data-s=".88" data-e="1.01">
+            <div class="cap-in">
+              <div class="cap-tag"></div>
+              <h2>From 5,000 to<br>5,00,000 litres.</h2>
+              <p>Sized to the site, not the catalogue.</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+                <button class="btn btn-p" data-go="products">View storage tanks<svg viewBox="0 0 24 24" width="14"
+                    height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg></button>
+                <button class="btn btn-g" data-go="contact">Talk to engineering</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="dot-nav"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="scroll-cue">SCROLL</div>
+        </div>
+      </section>
+
+      <!-- ── stats strip ── -->
+      <div class="stats">
+        <div class="shell stats-row">
+          <div>
+            <div class="stat-n">500K+ L</div>
+            <div class="stat-l">Max single-tank capacity</div>
+          </div>
+          <div>
+            <div class="stat-n">28</div>
+            <div class="stat-l">States &amp; UTs served</div>
+          </div>
+          <div>
+            <div class="stat-n">4</div>
+            <div class="stat-l">Tank systems in range</div>
+          </div>
+          <div>
+            <div class="stat-n">2008</div>
+            <div class="stat-l">Incorporated</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── industries ── -->
+      <section class="sec sec-d">
+        <div class="shell">
+          <div class="sec-head">
+            <div>
+              <div class="sec-tag">Where these tanks go</div>
+              <h2>Ten sectors, one storage problem</h2>
+            </div>
+            <p class="sec-note">Every sector stores a different liquid under different rules. The tank changes to match
+              — the engineering discipline doesn't.</p>
+          </div>
+          <div class="ind-grid" id="ind-list"></div>
+        </div>
+      </section>
+      <section class="signature-products">
+        
+        <div class="sec-headd">
+            <div>
+              <div class="sec-tag">Storage systems</div>
+              <h2 class="foure">Four constructions, one design team</h2>
+            </div>
+            <p class="sec-note">Material and coating decide what the tank can hold and for how long — pick by the
+              liquid, not the price tag.</p>
+          </div>
+        <div class="signature-container">
+
+          <!-- CARD 01 -->
+          <div class="product-card">
+
+            <div class="prod-card">
+              <h3>Zincalume Tanks</h3>
+              <p class="prod-tl">The everyday workhorse for large-volume storage</p>
+              <div class="prod-specs">
+                <div>
+                  <div class="spec-l">Capacity range</div>
+                  <div class="spec-v">5,000 – 5,00,000 L</div>
+                </div>
+                <div>
+                  <div class="spec-l">Standard</div>
+                  <div class="spec-v">IS 3396 / AWWA D103</div>
+                </div>
+              </div><a href="#" class="prod-link" data-go="products">Explore spec <svg viewBox="0 0 24 24" width="13"
+                  height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg></a>
+            </div>
+
+            <div class="product-image">
+              <img src="img/Zincalume.png" alt="Slot Pipes Manufacturers" />
+            </div>
+
+          </div>
+
+
+          <!-- CARD 02 -->
+          <div class="product-card">
+
+            <div class="prod-card">
+              <h3>GI Tanks</h3>
+              <p class="prod-tl">A liner does the sealing, the panel does the holding</p>
+              <div class="prod-specs">
+                <div>
+                  <div class="spec-l">Capacity range</div>
+                  <div class="spec-v">5,000 – 4,00,000 L</div>
+                </div>
+                <div>
+                  <div class="spec-l">Standard</div>
+                  <div class="spec-v">IS 3396</div>
+                </div>
+              </div><a href="#" class="prod-link" data-go="products">Explore spec <svg viewBox="0 0 24 24" width="13"
+                  height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg></a>
+            </div>
+
+            <div class="product-image">
+              <img src="img/Product Creatives DPL website.jpg" alt="Agni Rakshak Pipes" />
+            </div>
+
+          </div>
+
+
+          <!-- CARD 03 -->
+          <div class="product-card">
+
+            <div class="prod-card">
+              <h3>Fusion Bond Epoxy Tanks</h3>
+              <p class="prod-tl">A modular system for chemically demanding sites</p>
+              <div class="prod-specs">
+                <div>
+                  <div class="spec-l">Capacity range</div>
+                  <div class="spec-v">10,000 – 10,00,000 L</div>
+                </div>
+                <div>
+                  <div class="spec-l">Standard</div>
+                  <div class="spec-v">AWWA D103</div>
+                </div>
+              </div><a href="#" class="prod-link" data-go="products">Explore spec <svg viewBox="0 0 24 24" width="13"
+                  height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg></a>
+            </div>
+
+            <div class="product-image">
+              <img src="img/Fusion-Tank.png" alt="Zincalume Tanks" />
+            </div>
+
+          </div>
+
+
+          <!-- CARD 04 -->
+          <div class="product-card">
+
+            <div class="prod-card">
+              <h3>Glass Fused Steel Tanks</h3>
+              <p class="prod-tl">Glass Fused Steel Tanks</p>
+              <div class="prod-specs">
+                <div>
+                  <div class="spec-l">Capacity range</div>
+                  <div class="spec-v">50,000 – 50,00,000 L</div>
+                </div>
+                <div>
+                  <div class="spec-l">Standard</div>
+                  <div class="spec-v">EN ISO 28765</div>
+                </div>
+              </div><a href="#" class="prod-link" data-go="products">Explore spec <svg viewBox="0 0 24 24" width="13"
+                  height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg></a>
+            </div>
+            <div class="product-image">
+              <img src="img/Glass-Tank.png" alt="HDPE Pipes" />
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+      <!-- ── products overview ── -->
+      <!-- <section class="sec">
+        <div class="shell">
+          <div class="sec-head">
+            <div>
+              <div class="sec-tag">Storage systems</div>
+              <h2>Four constructions, one design team</h2>
+            </div>
+            <p class="sec-note">Material and coating decide what the tank can hold and for how long — pick by the
+              liquid, not the price tag.</p>
+          </div>
+          <div class="prod-grid" id="prod-home"></div>
+        </div>
+      </section> -->
+
+      <!-- ── strengths ── -->
+      <section class="sec sec-d">
+        <div class="shell">
+          <div class="sec-head">
+            <div>
+              <div class="sec-tag">Why DPL Star</div>
+              <h2>Seven things we don't compromise on</h2>
+            </div>
+          </div>
+          <div class="str-grid" id="str-home"></div>
+        </div>
+      </section>
+
+      <!-- ── clients ── -->
+      <div class="marquee">
+        <div class="marquee-track" id="clients"></div>
+      </div>
+
+      <!-- ── cta ── -->
+      <section class="cta-band">
+        <div class="shell">
+          <h2>Tell us what you need to store.</h2>
+          <button class="btn btn-dark" data-go="contact">Start a conversation<svg viewBox="0 0 24 24" width="14"
+              height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg></button>
+        </div>
+      </section>
+    </div>
+
+    <!-- ════════════════════ ABOUT ════════════════════ -->
+    <div class="page" data-page="about">
+      <section class="pg-hero">
+        <div class="shell">
+          <div class="hero-tag">About DPL Star</div>
+          <h1>A tank manufacturer that keeps its engineering in-house.</h1>
+          <p>DPL Star is the brand name of DPL Global Private Limited, incorporated on 20 June 2008 and active in liquid
+            storage manufacturing since 30 December 2019. We design, fabricate and install storage systems for clients
+            who can't treat a tank as an afterthought.</p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="stat-n">17+</div>
+              <div class="stat-l">Years incorporated</div>
+            </div>
+            <div class="about-stat">
+              <div class="stat-n">4</div>
+              <div class="stat-l">Tank systems manufactured</div>
+            </div>
+            <div class="about-stat">
+              <div class="stat-n">28</div>
+              <div class="stat-l">States &amp; UTs served</div>
+            </div>
+            <div class="about-stat">
+              <div class="stat-n">20+</div>
+              <div class="stat-l">Marquee clients on record</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="shell">
+          <div class="sec-head">
+            <div>
+              <div class="sec-tag">How a tank gets built</div>
+              <h2>From drawing to commissioned asset</h2>
+            </div>
+          </div>
+          <div class="proc-row" id="proc"></div>
+        </div>
+      </section>
+
+      <section class="sec sec-d">
+        <div class="shell">
+          <div class="sec-head">
+            <div>
+              <div class="sec-tag">Standards &amp; quality</div>
+              <h2>ISO-certified processes, audited end to end</h2>
+            </div>
+            <p class="sec-note">Certification isn't a badge on the homepage — it's the management system that governs
+              every batch that leaves the factory.</p>
+          </div>
+          <div class="str-grid" id="str-about"></div>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="shell">
+          <h2>Want the full capability deck?</h2>
+          <button class="btn btn-dark" data-go="contact">Request the brochure<svg viewBox="0 0 24 24" width="14"
+              height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg></button>
+        </div>
+      </section>
+    </div>
+
+    <!-- ════════════════════ PRODUCTS ════════════════════ -->
+    <div class="page" data-page="products">
+      <section class="pg-hero">
+        <div class="shell">
+          <div class="hero-tag">Product range</div>
+          <h1>Storage tanks, pipes and well fittings.</h1>
+          <p>Four tank constructions for liquid storage, plus the pipe and tube-well hardware that goes around them.</p>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="shell">
+          <div class="sec-head">
+            <div>
+              <div class="sec-tag">Storage tanks</div>
+              <h2>Match the coating to the liquid</h2>
+            </div>
+          </div>
+          <div class="prod-grid" id="prod-full"></div>
+        </div>
+      </section>
+
+      <section class="sec sec-d">
+        <div class="shell">
+          <div class="sec-head">
+            <div>
+              <div class="sec-tag">Pipes, tubewell &amp; pump fittings</div>
+              <h2>The hardware that supports every tank</h2>
+            </div>
+          </div>
+          <table class="ptable">
+            <thead>
+              <tr>
+                <th>Standard</th>
+                <th>Application</th>
+              </tr>
+            </thead>
+            <tbody id="pipe-tb"></tbody>
+          </table>
+          <div class="fit-tags" id="fit-tags"></div>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="shell">
+          <h2>Not sure which tank fits your site?</h2>
+          <button class="btn btn-dark" data-go="contact">Ask engineering<svg viewBox="0 0 24 24" width="14" height="14"
+              fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg></button>
+        </div>
+      </section>
+    </div>
+
+    <!-- ════════════════════ CONTACT ════════════════════ -->
+    <div class="page" data-page="contact">
+      <section class="pg-hero">
+        <div class="shell">
+          <div class="hero-tag">Contact</div>
+          <h1>Build a better tomorrow, today.</h1>
+          <p>Send site details and rough capacity — our engineering team responds with a tank recommendation, not a
+            sales script.</p>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="shell">
+          <div class="ct-grid">
+            <div>
+              <form id="ct-form"
+                onsubmit="event.preventDefault();this.style.display='none';document.getElementById('ct-ok').style.display='block'">
+                <div class="field"><label>Name</label><input type="text" required placeholder="Your full name" /></div>
+                <div class="field"><label>Email</label><input type="email" required placeholder="you@company.com" />
+                </div>
+                <div class="field"><label>Phone</label><input type="tel" placeholder="+91" /></div>
+                <div class="field"><label>What are you storing, and how much?</label><textarea rows="5"
+                    placeholder="e.g. 1,00,000 L raw water for a municipal project in Bihar"></textarea></div>
+                <button class="btn btn-p" type="submit">Submit enquiry</button>
+                <p class="form-note">This form is a design prototype and doesn't send data yet.</p>
+              </form>
+              <div id="ct-ok">
+                <h3 style="margin-bottom:10px">Message received.</h3>
+                <p style="color:var(--muted-light)">Our team will get back to you shortly.</p>
+              </div>
+            </div>
+            <div>
+              <div class="ct-block">
+                <h4>Registered office</h4>
+                <div class="foot-row"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg><span>DPL Global Private Limited, A-58, Industrial Area, Sikandrabad, Bulandshahar, Uttar
+                    Pradesh – 203205</span></div>
+                <div class="foot-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg><span>+91 92056 00125</span></div>
+                <div class="foot-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+                    <polyline points="22 6 12 13 2 6" />
+                  </svg><span>info@dplstar.com</span></div>
+              </div>
+              <div class="ct-block">
+                <h4>Factory location</h4>
+                <iframe class="map-fr" title="DPL Star factory" loading="lazy"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.1137156403233!2d77.66366757346228!3d28.476121837593162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cbd506a008249%3A0xe4cac1f93ce74d4d!2sA-58%20DPL%20GLOBAL%20PVT.%20LIMITED!5e0!3m2!1sen!2sin!4v1703922593707!5m2!1sen!2sin"></iframe>
+              </div>
+              <div class="ct-block">
+                <h4>What happens next</h4>
+                <div class="foot-row"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--signal)"
+                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg><span>Engineering reviews your capacity and site inputs</span></div>
+                <div class="foot-row"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--signal)"
+                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg><span>You get a tank type and rough spec within 2 working days</span></div>
+                <div class="foot-row"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--signal)"
+                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg><span>Site survey scheduled once the spec is confirmed</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ════════════════════ FOOTER ════════════════════ -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="foot-grid">
+        <div class="foot-col">
+          <a href="">
+            <img src="img/DPL-Star-Logo.png" class="colorLogo" width="100px" height="50px"></a>
+          <p style="max-width:30ch">DPL Global Private Limited — liquid storage tanks, pipes and tube-well fittings,
+            manufactured in Sikandrabad, Uttar Pradesh.</p>
+        </div>
+        <div class="foot-col">
+          <h5>Storage Tanks</h5>
+          <div id="foot-prod"></div>
+        </div>
+        <div class="foot-col">
+          <h5>Company</h5>
+          <a href="#" data-go="home">Home</a>
+          <a href="#" data-go="about">About</a>
+          <a href="#" data-go="contact">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h5>Reach us</h5>
+          <div class="foot-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg><span>A-58, Sikandrabad, UP – 203205</span></div>
+          <div class="foot-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg><span>+91 92056 00125</span></div>
+          <div class="foot-row"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+              <polyline points="22 6 12 13 2 6" />
+            </svg><span>info@dplstar.com</span></div>
+        </div>
+      </div>
+      <div class="foot-bar">
+        <span>&copy; 2026 DPL Star. Design concept — specifications shown are indicative.</span>
+        <span>Incorporated 2008 · Manufacturing since 2019</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    /* ═══════════════════ DATA ═══════════════════ */
+
+    const PRODS = [
+      {
+        id: "za",
+        v: "za",
+        name: "Zincalume Tanks",
+        tl: "The everyday workhorse for large-volume storage",
+        body: "Bolted panels in aluminium-zinc alloy coated steel, built for sites that need capacity without a long lead time.",
+        mat: "Corrugated Zincalume® steel panel",
+        coat: "AZ150 aluminium–zinc alloy",
+        cap: "5,000 – 5,00,000 L",
+        std: "IS 3396 / AWWA D103"
+      },
+      {
+        id: "gi",
+        v: "gi",
+        name: "GI Tanks",
+        tl: "A liner does the sealing, the panel does the holding",
+        body: "Galvanised steel panels paired with a PVC or EPDM liner, so the structure and the watertightness are two separate, serviceable jobs.",
+        mat: "Galvanised iron panel + liner",
+        coat: "Hot-dip galvanised, 275 g/m²",
+        cap: "5,000 – 4,00,000 L",
+        std: "IS 3396"
+      },
+      {
+        id: "fbe",
+        v: "fbe",
+        name: "Fusion Bond Epoxy Tanks",
+        tl: "A modular system for chemically demanding sites",
+        body: "Steel panels coated in fusion-bonded epoxy before assembly, giving corrosion resistance that survives the bolting and handling.",
+        mat: "FBE-coated steel panel",
+        coat: "Fusion-bonded epoxy, 250 µm",
+        cap: "10,000 – 10,00,000 L",
+        std: "AWWA D103"
+      },
+      {
+        id: "gfs",
+        v: "gfs",
+        name: "Glass Fused Steel Tanks",
+        tl: "Built for decades, not just a warranty period",
+        body: "Vitreous enamel fused to steel at high temperature on both faces — the closest thing to a maintenance-free tank in the range.",
+        mat: "Glass-fused-to-steel panel",
+        coat: "Dual-sided vitreous enamel",
+        cap: "50,000 – 50,00,000 L",
+        std: "EN ISO 28765"
+      }
+    ];
+
+    const INDS = [
+      {
+        n: "Agriculture & Irrigation",
+        c: "Water and fertiliser storage sized for field-level demand."
+      },
+      {
+        n: "Food Processing",
+        c: "Hygienic tanks built to hold food-safety compliance."
+      },
+      {
+        n: "Oil & Gas",
+        c: "Containment rated for petroleum products and process chemicals."
+      },
+      {
+        n: "Chemical & Pharma",
+        c: "Corrosion-resistant linings for sensitive compounds."
+      },
+      {
+        n: "Municipal Water Storage",
+        c: "City-scale supply reserves for utilities and boards."
+      },
+      {
+        n: "Fire Water Storage",
+        c: "Standby capacity built for rapid draw-down when it matters."
+      },
+      {
+        n: "Grain Storage",
+        c: "Sealed silos that keep out moisture, pests and spoilage."
+      },
+      {
+        n: "Waste Water Treatment",
+        c: "Process and containment tanks for treatment trains."
+      },
+      {
+        n: "Industrial Utilities",
+        c: "Compressed air, steam and process water vessels."
+      },
+      {
+        n: "Infrastructure & EPC",
+        c: "Storage scoped into larger EPC and infrastructure builds."
+      }
+    ];
+
+    const STRS = [
+      {
+        n: "In-house Design & Engineering",
+        c: "One team owns the drawing from concept to fabrication, so nothing is lost in translation."
+      },
+      {
+        n: "High-Precision Manufacturing",
+        c: "Panels are cut and formed to tolerances that make assembly predictable on site."
+      },
+      {
+        n: "Stringent Quality Inspection",
+        c: "Checks run at every stage, not just before the tank leaves the factory."
+      },
+      {
+        n: "Installation Teams Across India",
+        c: "Certified crews on the ground, so timelines don’t depend on a single base location."
+      },
+      {
+        n: "Long Service Life & Guaranteed Performance",
+        c: "Engineered for a service life backed by a stated performance guarantee."
+      },
+      {
+        n: "Best-in-Class Material Selection",
+        c: "Sourcing decisions made for corrosion resistance first, cost second."
+      },
+      {
+        n: "ISO Certified Processes",
+        c: "Management systems audited against recognised international benchmarks."
+      }
+    ];
+
+    const PIPES = [
+      {
+        code: "IS 1239",
+        use: "Pipes for water and gas applications"
+      },
+      {
+        code: "IS 4270",
+        use: "Water well and casing pipes"
+      },
+      {
+        code: "IS 2713",
+        use: "Steel tubular poles"
+      },
+      {
+        code: "IS 4923",
+        use: "Structural tubes for infrastructure"
+      }
+    ];
+
+    const FITS = [
+      "MS Ring",
+      "MS Reducer",
+      "MS Clamp",
+      "MS Well Cap",
+      "MS Centre Guide",
+      "MS Bail Plug-Hook",
+      "MS Tube Well Assembly Support",
+      "MS Nipple",
+      "MS Enlarger",
+      "MS Ringa",
+      "MS Dum Dum",
+      "DI Elbow",
+      "DI Equal Tee",
+      "Rubber Gasket",
+      "HDG Fasteners",
+      "GI Interlocking Strip",
+      "MS Spool Pipe — Double Flanged"
+    ];
+
+    /*
+     * ═══════════════════════════════════════════════
+     * CLIENT LOGOS
+     * ═══════════════════════════════════════════════
+     *
+     * Put all WebP logos inside:
+     *
+     * public/clients/
+     *
+     * Example:
+     * public/clients/voltas.webp
+     * public/clients/reliance.webp
+     */
+
+    const CLIENTS = [
+      {
+        name: "Voltas — Tata Enterprise",
+        logo: "clients/Voltas-Logo.png"
+      },
+      {
+        name: "Reliance Industries",
+        logo: "clients/Reliance-Logo.png"
+      },
+      {
+        name: "Punjab Agro",
+        logo: "clients/Punjab Agro.png"
+      },
+      {
+        name: "Powergrid",
+        logo: "clients/Power-Grid-Logo.png"
+      },
+      {
+        name: "PNC Infratech",
+        logo: "clients/PNC-Logo.png"
+      },
+      {
+        name: "NTPC",
+        logo: "clients/NTPC-Logo.png"
+      },
+      {
+        name: "NCC Limited",
+        logo: "clients/NCC-Logo.png"
+      },
+      {
+        name: "NBCC",
+        logo: "clients/NBCC-Logo.png"
+      },
+      {
+        name: "Larsen & Toubro",
+        logo: "clients/Larsen-Toubro-Logo.png"
+      },
+      {
+        name: "MP Jal Nigam",
+        logo: "clients/Jal_Nigam_Logo.png"
+      },
+      {
+        name: "HP Jal Shakti",
+        logo: "clients/Jal-Logo.png"
+      },
+      {
+        name: "UP Jal Nigam",
+        logo: "clients/Jal-Jivan.png"
+      },
+      {
+        name: "Indian Railways",
+        logo: "clients/India-Railways.png"
+      },
+      {
+        name: "Indian Oil",
+        logo: "clients/Indian-Oil.png"
+      },
+      {
+        name: "Delhi Metro",
+        logo: "clients/Delhi-Metro.png"
+      },
+      {
+        name: "BHEL",
+        logo: "clients/Bhel.png"
+      },
+      {
+        name: "Airports Authority of India",
+        logo: "clients/Airports-India.png"
+      },
+      {
+        name: "Adani",
+        logo: "clients/Adani-Logo.png"
+        
+      },
+      {
+        name: "NKG Infrastructure",
+        logo: "clients/pic5-1.png"
+      },
+      {
+        name: "NCRTC",
+        logo: "clients/pic3-1.png"
+      }
+    ];
+
+    const PROC = [
+      {
+        n: "Design & Engineering",
+        c: "Site load, capacity and standards drawn up in-house before a panel is cut."
+      },
+      {
+        n: "Precision Fabrication",
+        c: "Panels formed and coated to the tolerances the design calls for."
+      },
+      {
+        n: "Quality Inspection",
+        c: "Multi-stage checks through the production run, not just at dispatch."
+      },
+      {
+        n: "Installation",
+        c: "Certified crews assemble and commission the tank on your site."
+      }
+    ];
+
+    const ARR =
+      '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>';
+
+
+    /* ═══════════════════ TANK SVG ═══════════════════ */
+
+    function tankSVG(v) {
+      const P = {
+        za: [6, 12, 18, 24, 30, 36, 42]
+          .map(
+            x =>
+              '<path d="M' +
+              x +
+              ' 10 v28" stroke-dasharray="2 2"/>'
+          )
+          .join(""),
+
+        gi: '<path d="M6 22H42"/><path d="M6 30H42"/>',
+
+        fbe: [10, 18, 26, 34]
+          .flatMap(x =>
+            [14, 22, 30].map(
+              y =>
+                '<circle cx="' +
+                x +
+                '" cy="' +
+                y +
+                '" r="1"/>'
+            )
+          )
+          .join(""),
+
+        gfs: '<path d="M6 10L42 38M6 38L42 10M6 24L42 24"/>'
+      };
+
+      const stroke =
+        v === "fbe"
+          ? 'fill="currentColor"'
+          : 'stroke="currentColor" stroke-width="' +
+          (v === "gfs" ? ".75" : "1") +
+          '"';
+
+      return (
+        '<svg width="48" height="48" viewBox="0 0 48 48" fill="none">' +
+        '<defs>' +
+        '<clipPath id="c-' +
+        v +
+        '">' +
+        '<path d="M8 10L24 4L40 10V38L24 44L8 38Z"/>' +
+        "</clipPath>" +
+        "</defs>" +
+        '<path d="M8 10L24 4L40 10V38L24 44L8 38Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>' +
+        '<g clip-path="url(#c-' +
+        v +
+        ')" ' +
+        stroke +
+        ">" +
+        P[v] +
+        "</g>" +
+        "</svg>"
+      );
+    }
+
+
+    /* ═══════════════════ PRODUCT CARD ═══════════════════ */
+
+    function prodCard(p, full, cta, go) {
+      return (
+        '<div class="prod-card">' +
+        tankSVG(p.v) +
+        "<h3>" +
+        p.name +
+        "</h3>" +
+        '<p class="prod-tl">' +
+        p.tl +
+        "</p>" +
+
+        (full
+          ? '<p class="prod-body">' +
+          p.body +
+          "</p>"
+          : "") +
+
+        '<div class="prod-specs">' +
+
+        (full
+          ? '<div>' +
+          '<div class="spec-l">Material</div>' +
+          '<div class="spec-v">' +
+          p.mat +
+          "</div>" +
+          "</div>" +
+
+          "<div>" +
+          '<div class="spec-l">Coating</div>' +
+          '<div class="spec-v">' +
+          p.coat +
+          "</div>" +
+          "</div>"
+          : "") +
+
+        "<div>" +
+        '<div class="spec-l">Capacity range</div>' +
+        '<div class="spec-v">' +
+        p.cap +
+        "</div>" +
+        "</div>" +
+
+        "<div>" +
+        '<div class="spec-l">Standard</div>' +
+        '<div class="spec-v">' +
+        p.std +
+        "</div>" +
+        "</div>" +
+
+        "</div>" +
+
+        '<a href="#" class="prod-link" data-go="' +
+        go +
+        '">' +
+        (cta || "Explore spec") +
+        " " +
+        ARR +
+        "</a>" +
+
+        "</div>"
+      );
+    }
+
+
+    /* ═══════════════════ RENDER ═══════════════════ */
+
+    (function render() {
+      var $ = id => document.getElementById(id);
+
+      if ($("ind-list")) {
+        $("ind-list").innerHTML = INDS.map(
+          i =>
+            '<div class="ind-row">' +
+            '<div class="ind-name">' +
+            i.n +
+            "</div>" +
+            '<div class="ind-copy">' +
+            i.c +
+            "</div>" +
+            "</div>"
+        ).join("");
+      }
+
+      if ($("prod-home")) {
+        $("prod-home").innerHTML = PRODS.map(
+          p => prodCard(p, false, "Explore spec", "products")
+        ).join("");
+      }
+
+      if ($("prod-full")) {
+        $("prod-full").innerHTML = PRODS.map(
+          p => prodCard(p, true, "Request a quote", "contact")
+        ).join("");
+      }
+
+      if ($("str-home")) {
+        $("str-home").innerHTML = STRS.map(
+          (s, i) =>
+            '<div class="str-item">' +
+            '<div class="str-idx mono">' +
+            String(i + 1).padStart(2, "0") +
+            "</div>" +
+            "<h4>" +
+            s.n +
+            "</h4>" +
+            "<p>" +
+            s.c +
+            "</p>" +
+            "</div>"
+        ).join("");
+      }
+
+      if ($("str-about")) {
+        $("str-about").innerHTML = STRS.slice(0, 4)
+          .map(
+            (s, i) =>
+              '<div class="str-item">' +
+              '<div class="str-idx mono">' +
+              String(i + 1).padStart(2, "0") +
+              "</div>" +
+              "<h4>" +
+              s.n +
+              "</h4>" +
+              "<p>" +
+              s.c +
+              "</p>" +
+              "</div>"
+          )
+          .join("");
+      }
+
+      if ($("proc")) {
+        $("proc").innerHTML = PROC.map(
+          (s, i) =>
+            '<div class="proc-item">' +
+            '<div class="proc-n">' +
+            String(i + 1).padStart(2, "0") +
+            " /04</div>" +
+            "<h4>" +
+            s.n +
+            "</h4>" +
+            "<p>" +
+            s.c +
+            "</p>" +
+            "</div>"
+        ).join("");
+      }
+
+
+      /*
+       * ═══════════════════════════════════════
+       * CLIENT LOGO TICKER
+       * ═══════════════════════════════════════
+       */
+
+      if ($("clients")) {
+        const clientHTML = CLIENTS.map(
+          client =>
+            `
+          <div class="client-logo">
+            <img
+              src="${client.logo}"
+              alt="${client.name}"
+              loading="lazy"
+            />
+          </div>
+          `
+        ).join("");
+
+        /*
+         * Duplicate the logos so the ticker
+         * can continuously move from right to left.
+         */
+        $("clients").innerHTML =
+          clientHTML + clientHTML;
+      }
+
+
+      if ($("pipe-tb")) {
+        $("pipe-tb").innerHTML = PIPES.map(
+          r =>
+            "<tr>" +
+            "<td>" +
+            r.code +
+            "</td>" +
+            "<td>" +
+            r.use +
+            "</td>" +
+            "</tr>"
+        ).join("");
+      }
+
+      if ($("fit-tags")) {
+        $("fit-tags").innerHTML = FITS.map(
+          f =>
+            '<span class="fit-tag">' +
+            f +
+            "</span>"
+        ).join("");
+      }
+
+      if ($("foot-prod")) {
+        $("foot-prod").innerHTML = PRODS.map(
+          p =>
+            '<a href="#" data-go="products">' +
+            p.name +
+            "</a>"
+        ).join("");
+      }
+    })();
+
+
+    /* ═══════════════════ NAV ═══════════════════ */
+
+    function goTo(id) {
+      document
+        .querySelectorAll(".page")
+        .forEach(p =>
+          p.classList.toggle(
+            "active",
+            p.dataset.page === id
+          )
+        );
+
+      document
+        .querySelectorAll(".nav-a")
+        .forEach(a =>
+          a.classList.toggle(
+            "on",
+            a.dataset.go === id
+          )
+        );
+
+      const mobileNav =
+        document.getElementById("mob-nav");
+
+      if (mobileNav) {
+        mobileNav.classList.remove("open");
+      }
+
+      window.scrollTo({
+        top: 0,
+        behavior: "auto"
+      });
+    }
+
+
+    document.addEventListener("click", e => {
+      const t = e.target.closest("[data-go]");
+
+      if (!t) return;
+
+      e.preventDefault();
+
+      goTo(t.dataset.go);
+    });
+
+
+    const burger =
+      document.getElementById("burger");
+
+    if (burger) {
+      burger.addEventListener(
+        "click",
+        function () {
+          const m =
+            document.getElementById("mob-nav");
+
+          if (!m) return;
+
+          const o =
+            m.classList.toggle("open");
+
+          this.innerHTML = o
+            ? '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>'
+
+            : '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+        }
+      );
+    }
+
+
+    /* ═══════════════════ 3D STORY ═══════════════════ */
+
+    (function () {
+      const stage =
+        document.getElementById("story");
+
+      const wrap =
+        document.getElementById("gl");
+
+      if (
+        !stage ||
+        !wrap ||
+        typeof THREE === "undefined"
+      ) {
+        return;
+      }
+
+
+      /* ─── helpers ─── */
+
+      const cl = v =>
+        Math.max(0, Math.min(1, v));
+
+      const sm = t =>
+        t * t * (3 - 2 * t);
+
+      const rp = (p, a, b) =>
+        sm(cl((p - a) / (b - a)));
+
+
+      /* ─── env map ─── */
+
+      const faces = [];
+
+      for (let i = 0; i < 6; i++) {
+        const c =
+          document.createElement("canvas");
+
+        c.width = c.height = 128;
+
+        const g = c.getContext("2d");
+
+        if (i === 2) {
+          g.fillStyle = "#f2f4f6";
+          g.fillRect(0, 0, 128, 128);
+        } else if (i === 3) {
+          g.fillStyle = "#0b0e11";
+          g.fillRect(0, 0, 128, 128);
+        } else {
+          const gr =
+            g.createLinearGradient(
+              0,
+              0,
+              0,
+              128
+            );
+
+          gr.addColorStop(
+            0,
+            "#e6eaed"
+          );
+
+          gr.addColorStop(
+            0.42,
+            "#5d666e"
+          );
+
+          gr.addColorStop(
+            0.5,
+            "#d7dde2"
+          );
+
+          gr.addColorStop(
+            0.58,
+            "#2e363e"
+          );
+
+          gr.addColorStop(
+            1,
+            "#0b0e11"
+          );
+
+          g.fillStyle = gr;
+
+          g.fillRect(
+            0,
+            0,
+            128,
+            128
+          );
+
+          if (i === 0) {
+            g.fillStyle =
+              "rgba(232,163,61,0.55)";
+
+            g.fillRect(
+              0,
+              60,
+              128,
+              6
+            );
+          }
+        }
+
+        faces.push(c);
+      }
+
+
+      const env =
+        new THREE.CubeTexture(faces);
+
+      env.encoding =
+        THREE.sRGBEncoding;
+
+      env.needsUpdate = true;
+
+
+      /* ─── renderer ─── */
+
+      let W =
+        wrap.clientWidth ||
+        window.innerWidth;
+
+      let H =
+        wrap.clientHeight ||
+        window.innerHeight;
+
+      const scene =
+        new THREE.Scene();
+
+      const cam =
+        new THREE.PerspectiveCamera(
+          30,
+          W / H,
+          0.1,
+          100
+        );
+
+      const ren =
+        new THREE.WebGLRenderer({
+          antialias: true,
+          alpha: true
+        });
+
+      ren.setPixelRatio(
+        Math.min(
+          devicePixelRatio || 1,
+          2
+        )
+      );
+
+      ren.setSize(W, H);
+
+      ren.outputEncoding =
+        THREE.sRGBEncoding;
+
+      ren.toneMapping =
+        THREE.ACESFilmicToneMapping;
+
+      ren.toneMappingExposure =
+        1.05;
+
+      wrap.appendChild(
+        ren.domElement
+      );
+
+
+      /* ─── lights ─── */
+
+      scene.add(
+        new THREE.HemisphereLight(
+          0xe9eef2,
+          0x12161b,
+          0.55
+        )
+      );
+
+      const kl =
+        new THREE.DirectionalLight(
+          0xffffff,
+          1.1
+        );
+
+      kl.position.set(
+        5,
+        7,
+        4
+      );
+
+      scene.add(kl);
+
+      const fl =
+        new THREE.DirectionalLight(
+          0x9fb4c9,
+          0.45
+        );
+
+      fl.position.set(
+        -6,
+        2,
+        -3
+      );
+
+      scene.add(fl);
+
+      const rl =
+        new THREE.DirectionalLight(
+          0xe8a33d,
+          0.7
+        );
+
+      rl.position.set(
+        -3,
+        -1,
+        -5
+      );
+
+      scene.add(rl);
+
+
+      /* ─── materials ─── */
+
+      const E = {
+        envMap: env
+      };
+
+      const mZ =
+        new THREE.MeshStandardMaterial({
+          color: 0xcfd6db,
+          metalness: 0.92,
+          roughness: 0.3,
+          envMapIntensity: 1.15,
+          ...E
+        });
+
+      const mR =
+        new THREE.MeshStandardMaterial({
+          color: 0xb4bcc2,
+          metalness: 0.85,
+          roughness: 0.38,
+          envMapIntensity: 1,
+          ...E
+        });
+
+      const mD =
+        new THREE.MeshStandardMaterial({
+          color: 0x3a424a,
+          metalness: 0.7,
+          roughness: 0.45,
+          envMapIntensity: 0.6,
+          ...E
+        });
+
+      const mB =
+        new THREE.MeshStandardMaterial({
+          color: 0x8e979e,
+          metalness: 0.95,
+          roughness: 0.25,
+          envMapIntensity: 1.2,
+          ...E
+        });
+
+      const mN =
+        new THREE.MeshStandardMaterial({
+          color: 0x5a636b,
+          metalness: 0.8,
+          roughness: 0.35,
+          envMapIntensity: 0.9,
+          ...E,
+          emissive: 0xe8a33d,
+          emissiveIntensity: 0
+        });
+
+
+      /* ─── corrugate helper ─── */
+
+      function corr(geo, n, d) {
+        const pos =
+          geo.attributes.position;
+
+        for (
+          let i = 0;
+          i < pos.count;
+          i++
+        ) {
+          const x =
+            pos.getX(i);
+
+          const z =
+            pos.getZ(i);
+
+          const a =
+            Math.atan2(z, x);
+
+          const w =
+            Math.sin(a * n) * d;
+
+          pos.setX(
+            i,
+            x + Math.cos(a) * w
+          );
+
+          pos.setZ(
+            i,
+            z + Math.sin(a) * w
+          );
+        }
+
+        geo.computeVertexNormals();
+
+        return geo;
+      }
+
+
+      /* ─── tank geometry ─── */
+
+      const tank =
+        new THREE.Group();
+
+      scene.add(tank);
+
+      const R = 1.15;
+      const WH = 2.4;
+      const RH = 0.55;
+      const tiers = 3;
+      const ppt = 8;
+      const tH = WH / tiers;
+      const gT = 0.035;
+      const gY = 0.03;
+
+      const bG =
+        new THREE.SphereGeometry(
+          0.022,
+          8,
+          8
+        );
+
+      const panels = [];
+
+
+      for (
+        let t = 0;
+        t < tiers;
+        t++
+      ) {
+        for (
+          let s = 0;
+          s < ppt;
+          s++
+        ) {
+          const tL =
+            (Math.PI * 2) / ppt;
+
+          const tS =
+            s * tL;
+
+          const geo =
+            corr(
+              new THREE.CylinderGeometry(
+                R,
+                R,
+                tH - gY,
+                28,
+                1,
+                true,
+                tS + gT / 2,
+                tL - gT
+              ),
+              42,
+              0.045
+            );
+
+          const mesh =
+            new THREE.Mesh(
+              geo,
+              mZ
+            );
+
+          const g =
+            new THREE.Group();
+
+          g.add(mesh);
+
+
+          /* bolts */
+
+          const sT =
+            tS +
+            gT / 2 +
+            0.04;
+
+          for (
+            let k = 0;
+            k < 4;
+            k++
+          ) {
+            const b =
+              new THREE.Mesh(
+                bG,
+                mB
+              );
+
+            const y =
+              -tH / 2 +
+              0.12 +
+              k *
+              ((tH - 0.24) /
+                3);
+
+            b.position.set(
+              Math.sin(sT) *
+              (R + 0.03),
+              y,
+              Math.cos(sT) *
+              (R + 0.03)
+            );
+
+            g.add(b);
+          }
+
+
+          for (
+            let k = 0;
+            k < 3;
+            k++
+          ) {
+            const th =
+              tS +
+              gT / 2 +
+              0.12 +
+              k *
+              ((tL -
+                gT -
+                0.24) /
+                2);
+
+            const b =
+              new THREE.Mesh(
+                bG,
+                mB
+              );
+
+            b.position.set(
+              Math.sin(th) *
+              (R + 0.03),
+              -tH / 2 +
+              0.06,
+              Math.cos(th) *
+              (R + 0.03)
+            );
+
+            g.add(b);
+          }
+
+
+          const bY =
+            -WH / 2 +
+            tH *
+            (t + 0.5);
+
+          g.position.y =
+            bY;
+
+          const mid =
+            tS +
+            tL / 2;
+
+          g.userData = {
+            bY,
+            dir:
+              new THREE.Vector3(
+                Math.sin(mid),
+                0,
+                Math.cos(mid)
+              ),
+            tier: t
+          };
+
+          tank.add(g);
+
+          panels.push(g);
+        }
+      }
+
+
+      /* ─── roof ─── */
+
+      const roof =
+        new THREE.Group();
+
+      roof.add(
+        new THREE.Mesh(
+          new THREE.ConeGeometry(
+            R * 1.06,
+            RH,
+            64
+          ),
+          mR
+        )
+      );
+
+      const mh =
+        new THREE.Mesh(
+          new THREE.CylinderGeometry(
+            0.17,
+            0.17,
+            0.13,
+            24
+          ),
+          mD
+        );
+
+      mh.position.set(
+        0.32,
+        0.2,
+        0.1
+      );
+
+      roof.add(mh);
+
+      const rBY =
+        WH / 2 +
+        RH / 2 -
+        0.02;
+
+      roof.position.y =
+        rBY;
+
+      tank.add(roof);
+
+
+      /* ─── base band ─── */
+
+      const band =
+        new THREE.Mesh(
+          new THREE.CylinderGeometry(
+            R * 1.04,
+            R * 1.04,
+            0.12,
+            64
+          ),
+          mD
+        );
+
+      const bBY =
+        -WH / 2 + 0.06;
+
+      band.position.y =
+        bBY;
+
+      tank.add(band);
+
+
+      /* ─── nozzle ─── */
+
+      const nzG =
+        new THREE.Group();
+
+      const nz =
+        new THREE.Mesh(
+          new THREE.CylinderGeometry(
+            0.09,
+            0.09,
+            0.36,
+            20
+          ),
+          mN
+        );
+
+      nz.rotation.z =
+        Math.PI / 2;
+
+      nz.position.x =
+        0.18;
+
+      nzG.add(nz);
+
+      const fg =
+        new THREE.Mesh(
+          new THREE.TorusGeometry(
+            0.11,
+            0.024,
+            12,
+            24
+          ),
+          mN
+        );
+
+      fg.rotation.y =
+        Math.PI / 2;
+
+      fg.position.x =
+        0.36;
+
+      nzG.add(fg);
+
+
+      for (
+        let k = 0;
+        k < 6;
+        k++
+      ) {
+        const b =
+          new THREE.Mesh(
+            bG,
+            mB
+          );
+
+        const a =
+          (k / 6) *
+          Math.PI *
+          2;
+
+        b.position.set(
+          0.37,
+          Math.cos(a) *
+          0.11,
+          Math.sin(a) *
+          0.11
+        );
+
+        nzG.add(b);
+      }
+
+
+      const nzB =
+        new THREE.Vector3(
+          R * 1.02,
+          -WH / 2 +
+          0.34,
+          0.3
+        );
+
+      nzG.position.copy(
+        nzB
+      );
+
+      tank.add(nzG);
+
+
+      /* ─── ladder ─── */
+
+      const ldr =
+        new THREE.Group();
+
+      const lG =
+        new THREE.BoxGeometry(
+          0.03,
+          WH * 0.88,
+          0.03
+        );
+
+      const lL =
+        new THREE.Mesh(
+          lG,
+          mD
+        );
+
+      lL.position.set(
+        -0.14,
+        0,
+        R * 1.03
+      );
+
+      const lR =
+        lL.clone();
+
+      lR.position.x =
+        0.14;
+
+      ldr.add(
+        lL,
+        lR
+      );
+
+
+      for (
+        let i = 0;
+        i < 8;
+        i++
+      ) {
+        const rung =
+          new THREE.Mesh(
+            new THREE.BoxGeometry(
+              0.28,
+              0.025,
+              0.03
+            ),
+            mD
+          );
+
+        rung.position.set(
+          0,
+          -WH * 0.38 +
+          i *
+          ((WH * 0.78) /
+            7),
+          R * 1.03
+        );
+
+        ldr.add(rung);
+      }
+
+      tank.add(ldr);
+
+
+      /* ─── shadow ─── */
+
+      const shC =
+        document.createElement(
+          "canvas"
+        );
+
+      shC.width =
+        shC.height =
+        256;
+
+      const shG =
+        shC.getContext("2d");
+
+      const shGr =
+        shG.createRadialGradient(
+          128,
+          128,
+          10,
+          128,
+          128,
+          128
+        );
+
+      shGr.addColorStop(
+        0,
+        "rgba(0,0,0,.75)"
+      );
+
+      shGr.addColorStop(
+        0.55,
+        "rgba(0,0,0,.25)"
+      );
+
+      shGr.addColorStop(
+        1,
+        "rgba(0,0,0,0)"
+      );
+
+      shG.fillStyle =
+        shGr;
+
+      shG.fillRect(
+        0,
+        0,
+        256,
+        256
+      );
+
+      const shadow =
+        new THREE.Mesh(
+          new THREE.PlaneGeometry(
+            4.6,
+            4.6
+          ),
+          new THREE.MeshBasicMaterial(
+            {
+              map:
+                new THREE.CanvasTexture(
+                  shC
+                ),
+              transparent: true,
+              depthWrite: false
+            }
+          )
+        );
+
+      shadow.rotation.x =
+        -Math.PI / 2;
+
+      shadow.position.y =
+        -WH / 2 -
+        0.12;
+
+      scene.add(shadow);
+
+      tank.position.y =
+        -0.1;
+
+
+      /* ─── camera keyframes ─── */
+
+      const KF = [
+        {
+          p: 0,
+          pos: [0, 1.1, 8.6],
+          lk: [0, 0.1, 0]
+        },
+        {
+          p: 0.14,
+          pos: [0, 1, 7.8],
+          lk: [0, 0.1, 0]
+        },
+        {
+          p: 0.28,
+          pos: [2.9, 0.5, 4],
+          lk: [0.7, 0.1, 0]
+        },
+        {
+          p: 0.46,
+          pos: [0, 2, 9.6],
+          lk: [0, 0.3, 0]
+        },
+        {
+          p: 0.62,
+          pos: [-1.6, 1.4, 8.4],
+          lk: [0, 0.3, 0]
+        },
+        {
+          p: 0.74,
+          pos: [3.2, -0.5, 3.4],
+          lk: [1.1, -1.05, 0.3]
+        },
+        {
+          p: 0.9,
+          pos: [0, 1, 7.6],
+          lk: [0, 0.1, 0]
+        },
+        {
+          p: 1,
+          pos: [0, 0.9, 7.2],
+          lk: [0, 0.1, 0]
+        }
+      ];
+
+      const tP =
+        new THREE.Vector3();
+
+      const tL =
+        new THREE.Vector3();
+
+      const a3 =
+        new THREE.Vector3();
+
+      const b3 =
+        new THREE.Vector3();
+
+
+      function sCam(p) {
+        let i = 0;
+
+        while (
+          i <
+          KF.length - 2 &&
+          p >
+          KF[i + 1].p
+        ) {
+          i++;
+        }
+
+        const A =
+          KF[i];
+
+        const B =
+          KF[i + 1];
+
+        const t =
+          sm(
+            cl(
+              (p - A.p) /
+              (B.p - A.p)
+            )
+          );
+
+        tP
+          .copy(
+            a3.fromArray(
+              A.pos
+            )
+          )
+          .lerp(
+            b3.fromArray(
+              B.pos
+            ),
+            t
+          );
+
+        tL
+          .copy(
+            a3.fromArray(
+              A.lk
+            )
+          )
+          .lerp(
+            b3.fromArray(
+              B.lk
+            ),
+            t
+          );
+
+        const asp =
+          W / H;
+
+        const sc =
+          asp < 0.8
+            ? 1.45
+            : asp < 1.1
+              ? 1.2
+              : 1;
+
+        tP
+          .sub(tL)
+          .multiplyScalar(sc)
+          .add(tL);
+      }
+
+
+      /* ─── pose ─── */
+
+      const expl =
+        p =>
+          rp(p, 0.34, 0.5) *
+          (1 -
+            rp(p, 0.64, 0.82));
+
+      const glow =
+        p =>
+          rp(p, 0.66, 0.74) *
+          (1 -
+            rp(p, 0.8, 0.88));
+
+
+      function pose(
+        p,
+        idle
+      ) {
+        const e =
+          expl(p);
+
+        tank.rotation.y =
+          0.55 +
+          p *
+          Math.PI *
+          2.15 +
+          idle;
+
+        panels.forEach(
+          g => {
+            const {
+              bY,
+              dir,
+              tier
+            } =
+              g.userData;
+
+            g.position.x =
+              dir.x *
+              0.62 *
+              e;
+
+            g.position.z =
+              dir.z *
+              0.62 *
+              e;
+
+            g.position.y =
+              bY +
+              (tier - 1) *
+              0.42 *
+              e;
+          }
+        );
+
+        roof.position.y =
+          rBY +
+          1.35 * e;
+
+        band.position.y =
+          bBY -
+          0.38 * e;
+
+        nzG.position.x =
+          nzB.x +
+          0.62 * e;
+
+        ldr.position.z =
+          0.62 * e;
+
+        mN.emissiveIntensity =
+          0.65 *
+          glow(p);
+
+        sCam(p);
+
+        cam.position.copy(
+          tP
+        );
+
+        cam.lookAt(tL);
+      }
+
+
+      /* ─── captions ─── */
+
+      const caps =
+        Array.from(
+          stage.querySelectorAll(
+            ".cap"
+          )
+        ).map(el => ({
+          el,
+          inner:
+            el.querySelector(
+              ".cap-in"
+            ) || el,
+          s:
+            +el.dataset.s,
+          e:
+            +el.dataset.e
+        }));
+
+      const dots =
+        Array.from(
+          stage.querySelectorAll(
+            ".dot-nav i"
+          )
+        );
+
+
+      function capO(
+        p,
+        s,
+        e
+      ) {
+        const f =
+          0.045;
+
+        if (
+          p < s ||
+          p > e
+        ) {
+          return 0;
+        }
+
+        if (
+          p <
+          s + f
+        ) {
+          return sm(
+            (p - s) /
+            f
+          );
+        }
+
+        if (
+          p >
+          e - f
+        ) {
+          return sm(
+            (e - p) /
+            f
+          );
+        }
+
+        return 1;
+      }
+
+
+      function applyCaps(p) {
+        caps.forEach(
+          c => {
+            const o =
+              capO(
+                p,
+                c.s,
+                c.e
+              );
+
+            c.el.style.opacity =
+              o.toFixed(3);
+
+            c.el.style.pointerEvents =
+              o > 0.5
+                ? "auto"
+                : "none";
+
+            c.inner.style.transform =
+              "translateY(" +
+              (
+                (1 - o) *
+                18
+              ).toFixed(1) +
+              "px)";
+          }
+        );
+
+        dots.forEach(
+          (d, i) => {
+            const c =
+              caps[i];
+
+            d.classList.toggle(
+              "on",
+              c
+                ? p >=
+                c.s -
+                0.01
+                : false
+            );
+          }
+        );
+      }
+
+
+      /* ─── scroll loop ─── */
+
+      let target = 0;
+      let current = 0;
+      let idle = 0;
+
+
+      function readS() {
+        const r =
+          stage.getBoundingClientRect();
+
+        const t =
+          stage.offsetHeight -
+          window.innerHeight;
+
+        target =
+          t > 0
+            ? cl(
+              -r.top /
+              t
+            )
+            : 0;
+      }
+
+
+      window.addEventListener(
+        "scroll",
+        readS,
+        {
+          passive: true
+        }
+      );
+
+      readS();
+
+
+      function vis() {
+        if (
+          stage.offsetParent ===
+          null
+        ) {
+          return false;
+        }
+
+        const r =
+          stage.getBoundingClientRect();
+
+        return (
+          r.bottom > 0 &&
+          r.top <
+          window.innerHeight
+        );
+      }
+
+
+      function frame() {
+        requestAnimationFrame(
+          frame
+        );
+
+        if (!vis()) {
+          return;
+        }
+
+        readS();
+
+        current +=
+          (target -
+            current) *
+          0.085;
+
+        idle +=
+          0.0016 *
+          (
+            1 -
+            rp(
+              current,
+              0,
+              0.08
+            )
+          );
+
+        pose(
+          current,
+          idle
+        );
+
+        applyCaps(
+          current
+        );
+
+        ren.render(
+          scene,
+          cam
+        );
+      }
+
+
+      pose(0, 0);
+
+      applyCaps(0);
+
+      ren.render(
+        scene,
+        cam
+      );
+
+      frame();
+
+
+      new ResizeObserver(
+        () => {
+          W =
+            wrap.clientWidth;
+
+          H =
+            wrap.clientHeight;
+
+          if (
+            !W ||
+            !H
+          ) {
+            return;
+          }
+
+          ren.setSize(
+            W,
+            H
+          );
+
+          cam.aspect =
+            W / H;
+
+          cam.updateProjectionMatrix();
+        }
+      ).observe(wrap);
+    })();
+    
+  </script>
+
+  <section class="clients-section">
+    <div class="clients-track-wrapper">
+      <div id="clients"></div>
+    </div>
+  </section>
+
+</body>
+
+</html>
