@@ -1,4 +1,5 @@
 import { useNavigation } from '../NavigationContext.jsx'
+import FBTank from '../components/FBTank.jsx'
 import './ZincalumePage.css'
 
 const BENEFITS = [
@@ -28,9 +29,9 @@ const SPECIFICATIONS = [
   ['Primary Usage', 'ETP, STP, chemical storage, aggressive liquid containment'],
   ['Temperature Resistance', 'Up to 120°C (248°F) continuous service'],
   ['pH Resistance Range', '1–14 (full acidic to alkaline spectrum)'],
-  ['Adhesion Strength', '> 3,500 psi (ASTM D4541)'],
-  ['Impact Resistance', '> 160 cm·kg (ASTM G14)'],
-  ['Abrasion Resistance', '< 100 mg loss (CS-17 wheel, 1000 cycles)'],
+  ['Adhesion Strength', '3,500 psi (ASTM D4541)'],
+  ['Impact Resistance', ' 160 cm·kg (ASTM G14)'],
+  ['Abrasion Resistance', ' 100 mg loss (CS-17 wheel, 1000 cycles)'],
   ['Certifications', 'ISO 9001, ISO 14001, AWWA, NSF/ANSI 61 compliant'],
 ]
 
@@ -47,7 +48,9 @@ export default function FusionBondEpoxyTanksPage({ active }) {
             <p>Fusion Bond Epoxy tanks utilize electrostatically applied proprietary epoxy coating in environmentally controlled factory conditions. This premium coating provides exceptional chemical resistance and durability for demanding industrial applications.</p>
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
-          <img src="/img/Fusion-Tank.png" alt="Fusion Bond Epoxy storage tank" />
+          <div className="za-hero__tank" aria-label="Interactive 3D Fusion Bond Epoxy storage tank">
+            <FBTank diameter={12} courses={5} color="#23457a" />
+          </div>
         </div>
       </section>
 

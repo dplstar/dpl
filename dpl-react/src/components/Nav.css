@@ -4,7 +4,18 @@
   z-index: 50;
   background: rgba(12, 16, 23, .94);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--steel-line)
+  border-bottom: 1px solid var(--steel-line);
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease
+}
+
+.nav.is-scrolled {
+  background: rgba(255, 255, 255, .98);
+  border-bottom-color: var(--paper-line);
+  box-shadow: 0 4px 16px rgba(12, 16, 23, .08)
+}
+
+.nav-logo {
+  transition: filter .2s ease
 }
 
 .nav-row {
@@ -58,6 +69,15 @@
   border-bottom-color: var(--signal)
 }
 
+.nav.is-scrolled .nav-a {
+  color: var(--muted-light)
+}
+
+.nav.is-scrolled .nav-a:hover,
+.nav.is-scrolled .nav-a.on {
+  color: var(--on-light)
+}
+
 .nav-dropdown { position: relative; }
 
 .nav-dropdown__toggle {
@@ -79,6 +99,11 @@
   box-shadow: 0 14px 28px rgba(0, 0, 0, .22);
 }
 
+.nav.is-scrolled .nav-dropdown__menu {
+  background: #fff;
+  border-color: var(--paper-line)
+}
+
 .nav-dropdown__menu button,
 .nav-dropdown__menu span {
   display: block;
@@ -94,6 +119,15 @@
 .nav-dropdown__menu button:hover { color: var(--signal); }
 .nav-dropdown__menu span { color: var(--muted-dark); cursor: default; }
 
+.nav.is-scrolled .nav-dropdown__menu button,
+.nav.is-scrolled .nav-dropdown__menu span {
+  color: var(--on-light)
+}
+
+.nav.is-scrolled .nav-dropdown__menu button:hover {
+  color: var(--signal)
+}
+
 .nav-cta {
   margin-left: 8px;
   font-size: 12.5px;
@@ -105,6 +139,10 @@
   background: 0;
   color: var(--zinc-bright);
   padding: 4px
+}
+
+.nav.is-scrolled .nav-burger {
+  color: var(--on-light)
 }
 
 @media(max-width:860px) {
@@ -128,6 +166,11 @@
   display: flex
 }
 
+.nav.is-scrolled #mob-nav {
+  background: #fff;
+  border-bottom-color: var(--paper-line)
+}
+
 #mob-nav a,
 #mob-nav button {
   padding: 16px 20px;
@@ -138,8 +181,15 @@
   text-align: left
 }
 
+.nav.is-scrolled #mob-nav a,
+.nav.is-scrolled #mob-nav button {
+  color: var(--on-light);
+  border-top-color: var(--paper-line)
+}
+
 .mob-tanks > button { width: 100%; }
 .mob-tanks__menu { background: var(--steel); padding: 4px 0; }
+.nav.is-scrolled .mob-tanks__menu { background: #f7f7f7; }
 .mob-tanks__menu button,
 .mob-tanks__menu span { display: block; width: 100%; padding: 12px 36px; color: var(--zinc-bright); font-size: 14px; text-align: left; }
 .mob-tanks__menu button { background: transparent; cursor: pointer; }

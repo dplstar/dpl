@@ -1,4 +1,5 @@
 import { useNavigation } from '../NavigationContext.jsx'
+import ZincalumeTank from '../components/ZincalumeTank.jsx'
 import './ZincalumePage.css'
 
 const BENEFITS = [
@@ -44,7 +45,9 @@ export default function ZincalumePage({ active }) {
             <div className="za-composition">43.5% zinc <span>+</span> 55% aluminium <span>+</span> 1.5% silicon</div>
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
-          <img src="/img/Zincalume.png" alt="Zincalume storage tank" />
+          <div className="za-hero__tank" aria-label="Interactive 3D Zincalume storage tank">
+            <ZincalumeTank diameter={9} rings={4} />
+          </div>
         </div>
       </section>
 

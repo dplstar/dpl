@@ -1,4 +1,5 @@
 import { useNavigation } from '../NavigationContext.jsx'
+import GFSTank from '../components/GFSTank.jsx'
 import './ZincalumePage.css'
 
 const BENEFITS = [
@@ -44,7 +45,9 @@ export default function GlassFusedSteelTanksPage({ active }) {
             <p>Glass-Fused-to-Steel technology combines the strength of steel with the corrosion resistance of glass through a high-temperature fusion process (820°C-930°C). This creates an inorganic, inert glaze layer that provides decades of maintenance-free service.</p>
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
-          <img src="/img/Glass-Tank.png" alt="Glass Fused Steel storage tank" />
+          <div className="za-hero__tank" aria-label="Interactive 3D Glass Fused Steel storage tank">
+            {active && <GFSTank diameter={12} courses={6} roof="membrane" color="#1f5c3f" />}
+          </div>
         </div>
       </section>
 

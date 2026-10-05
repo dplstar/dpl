@@ -1,4 +1,5 @@
 import { useNavigation } from '../NavigationContext.jsx'
+import GITank from '../components/GITank.jsx'
 import './ZincalumePage.css'
 
 const BENEFITS = [
@@ -43,7 +44,9 @@ export default function GITanksPage({ active }) {
             <p>Hot-dip galvanized tanks offer proven performance for general water storage applications. The metallurgically bonded zinc coating provides excellent corrosion protection at an economical cost.</p>
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
-          <img src="/img/Product Creatives DPL website.jpg" alt="GI storage tank" />
+          <div className="za-hero__tank" aria-label="Interactive 3D GI storage tank">
+            <GITank diameter={10} courses={6} />
+          </div>
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigation } from '../NavigationContext.jsx'
 import './Nav.css'
 
@@ -34,6 +34,14 @@ export default function Nav() {
   const { page, goTo } = useNavigation()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [tanksOpen, setTanksOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const updateScrolled = () => setScrolled(window.scrollY > 24)
+    updateScrolled()
+    window.addEventListener('scroll', updateScrolled, { passive: true })
+    return () => window.removeEventListener('scroll', updateScrolled)
+  }, [])
 
   function handleGo(id) {
     setMobileOpen(false)
@@ -42,10 +50,16 @@ export default function Nav() {
   }
 
   return (
-    <nav className="nav">
+    <nav className={`nav${scrolled ? ' is-scrolled' : ''}`}>
       <div className="shell nav-row">
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('home') }}>
-          <img src="/img/DPL-Star-Logo.png" className="colorLogo" width="100px" height="50px" alt="DPL Star" />
+          <img
+            src={scrolled ? '/img/DPL%20Star%20Private%20Limited.png' : '/img/DPL-Star-Logo.png'}
+            className="nav-logo"
+            width="100px"
+            height="50px"
+            alt="DPL Star"
+          />
         </a>
         <div className="nav-links">
           {LINKS.map((l) => (
