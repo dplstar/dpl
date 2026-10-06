@@ -3,31 +3,52 @@ import './ContactForm.css'
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+    setError('')
+    setIsSubmitting(true)
 
     const form = e.currentTarget
     const formData = new FormData(form)
-    const name = (formData.get('name') || '').toString().trim() || 'N/A'
-    const email = (formData.get('email') || '').toString().trim() || 'N/A'
-    const phone = (formData.get('phone') || '').toString().trim() || 'N/A'
-    const message = (formData.get('message') || '').toString().trim() || 'N/A'
+    const payload = {
+      name: (formData.get('name') || '').toString().trim(),
+      email: (formData.get('email') || '').toString().trim(),
+      phone: (formData.get('phone') || '').toString().trim(),
+      message: (formData.get('message') || '').toString().trim()
+    }
 
-    const subject = encodeURIComponent(`New enquiry from ${name}`)
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nProject details:\n${message}`
-    )
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
 
-    window.location.href = `mailto:info@dplstar.com?subject=${subject}&body=${body}`
-    setSubmitted(true)
+      const data = await response.json()
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Unable to send enquiry.')
+      }
+
+      form.reset()
+      setSubmitted(true)
+    } catch (submitError) {
+      setError(submitError.message || 'Something went wrong. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (submitted) {
     return (
       <div id="ct-ok" style={{ display: 'block' }}>
         <h3 style={{ marginBottom: '10px' }}>Message received.</h3>
-        <p style={{ color: 'var(--muted-light)' }}>Your email client opened to send the enquiry to info@dplstar.com.</p>
+        <p style={{ color: 'var(--muted-light)' }}>Thank you. Your enquiry has been submitted successfully.</p>
       </div>
     )
   }
@@ -48,10 +69,15 @@ export default function ContactForm() {
       </div>
       <div className="field">
         <label>What are you storing, and how much?</label>
-        <textarea name="message" rows="5" placeholder="e.g. 1,00,000 L raw water for a municipal project in Bihar"></textarea>
+        <textarea name="message" rows="5" required placeholder="e.g. 1,00,000 L raw water for a municipal project in Bihar"></textarea>
       </div>
+      {error && (
+        <p style={{ color: '#d32f2f', marginBottom: '12px' }}>{error}</p>
+      )}
       <p className="form-email-note">Or email us directly at <a href="mailto:info@dplstar.com">info@dplstar.com</a>.</p>
-      <button className="btn btn-p" type="submit">Submit enquiry</button>
+      <button className="btn btn-p" type="submit" disabled={isSubmitting}>
+        {isSubmitting ? 'Sending...' : 'Submit enquiry'}
+      </button>
     </form>
   )
 }
