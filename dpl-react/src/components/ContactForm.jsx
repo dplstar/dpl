@@ -29,7 +29,16 @@ export default function ContactForm() {
         body: JSON.stringify(payload)
       })
 
-      const data = await response.json()
+      const responseText = await response.text()
+      let data
+
+      try {
+        data = JSON.parse(responseText)
+      } catch {
+        throw new Error(
+          `Contact service returned an unexpected response (HTTP ${response.status}). Please try again or email info@dplstar.com.`
+        )
+      }
 
       if (!response.ok || !data.success) {
         throw new Error(data.message || 'Unable to send enquiry.')

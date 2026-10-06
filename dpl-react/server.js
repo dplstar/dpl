@@ -1,8 +1,8 @@
 import { existsSync } from 'node:fs'
 import dotenv from 'dotenv'
 import express from 'express'
-import nodemailer from 'nodemailer'
 import cors from 'cors'
+import { sendContactEmail } from './contact-email.js'
 
 dotenv.config({
   path: ['.env.local', ...(existsSync('.env') ? ['.env'] : [])]
@@ -30,58 +30,21 @@ app.post('/api/contact', async (req, res) => {
     })
   }
 
-  const mailConfig = {
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: Number(process.env.SMTP_PORT || 465),
-    secure: String(process.env.SMTP_SECURE || 'false') === 'true',
-    auth: process.env.SMTP_USER && process.env.SMTP_PASS
-      ? {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS
-        }
-      : undefined
-  }
-
-  const toAddress = process.env.SMTP_TO || 'info@dplstar.com'
-  const fromAddress = process.env.SMTP_FROM || process.env.SMTP_USER || 'noreply@localhost'
-  const ccAddresses = (process.env.SMTP_CC || 'gcaffe.shashank@gmail.com, gcaffe.abhishek@gmail.com')
-    .split(',')
-    .map((item) => item.trim())
-    .filter(Boolean)
-
-  const mailPayload = {
-    from: fromAddress,
-    to: toAddress,
-    cc: ccAddresses,
-    replyTo: email,
-    subject: `New enquiry from ${name}`,
-    text: [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Phone: ${phone || 'N/A'}`,
-      '',
-      'Project details:',
-      message
-    ].join('\n')
-  }
-
-  if (!mailConfig.auth) {
-    return res.status(503).json({
-      success: false,
-      message: 'Email service is not configured. Set SMTP_USER and SMTP_PASS in the local .env file.'
-    })
-  }
-
   try {
-    const transporter = nodemailer.createTransport(mailConfig)
-    await transporter.verify()
-    await transporter.sendMail(mailPayload)
+    await sendContactEmail({ name, email, phone, message })
 
     return res.json({
       success: true,
       message: 'Your enquiry has been sent successfully.'
     })
   } catch (error) {
+    if (error.code === 'EMAIL_NOT_CONFIGURED') {
+      return res.status(503).json({
+        success: false,
+        message: 'Email service is not configured. Set SMTP_USER and SMTP_PASS in the local .env file.'
+      })
+    }
+
     console.error('Email sending failed:', error)
     return res.status(500).json({
       success: false,
