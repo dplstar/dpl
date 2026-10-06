@@ -39,12 +39,12 @@ export default function GITanksPage({ active }) {
       <section className="za-hero">
         <div className="shell za-hero__grid">
           <div>
-            <div className="sec-tag">Storage tanks / GI</div>
-            <h1>GI Tanks</h1>
+            <div className="sec-tag">Storage tanks / Color Coded</div>
+            <h1>Color Coded Tank</h1>
             <p>Hot-dip galvanized tanks offer proven performance for general water storage applications. The metallurgically bonded zinc coating provides excellent corrosion protection at an economical cost.</p>
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
-          <div className="za-hero__tank" aria-label="Interactive 3D GI storage tank">
+          <div className="za-hero__tank" aria-label="Interactive 3D Color Coded Tank model">
             <GITank diameter={10} courses={6} />
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function GITanksPage({ active }) {
       <section className="sec za-intro">
         <div className="shell za-copy">
           <div className="sec-tag">The material</div>
-          <h2>GI Tanks by DPL Star</h2>
+          <h2>Color Coded Tank by DPL Star</h2>
           <p>Hot-dip galvanized tanks offer proven performance for general water storage applications. The metallurgically bonded zinc coating provides excellent corrosion protection at an economical cost.</p>
         </div>
       </section>

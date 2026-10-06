@@ -49,6 +49,7 @@ export default function Footer() {
             {PRODS.map((p) => (
               <a href="#" key={p.id} onClick={(e) => { e.preventDefault(); goTo(PRODUCT_PAGE_MAP[p.id] || 'products') }}>{p.name}</a>
             ))}
+            <a href="/catalogue" onClick={(e) => { e.preventDefault(); goTo('catalogue') }}>Catalogue</a>
           </div>
 
           <div className="foot-col">

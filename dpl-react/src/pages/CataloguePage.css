@@ -1,0 +1,86 @@
+.cat {
+  background: var(--ink);
+  color: var(--on-dark);
+  padding: 56px 0 72px;
+  border-bottom: 1px solid var(--steel-line);
+}
+
+.cat__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px 40px;
+  margin-bottom: 36px;
+}
+
+.cat__head h1 {
+  font-size: clamp(36px, 5vw, 58px);
+  margin: 4px 0 14px;
+}
+
+.cat__head p {
+  max-width: 52ch;
+  color: var(--muted-dark);
+  font-size: 15.5px;
+}
+
+.cat__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cat__size {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: .7;
+}
+
+/* only rendered when there is more than one catalogue */
+.cat__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--steel-line);
+}
+
+.cat__tabs button {
+  padding: 10px 16px;
+  font-size: 13.5px;
+  color: var(--muted-dark);
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.cat__tabs button:hover {
+  color: var(--zinc-bright);
+}
+
+.cat__tabs button.on {
+  color: var(--zinc-bright);
+  border-bottom-color: var(--signal);
+}
+
+@media (max-width: 640px) {
+  .cat {
+    padding: 40px 0 48px;
+  }
+
+  .cat__head {
+    margin-bottom: 28px;
+  }
+
+  .cat__actions {
+    width: 100%;
+  }
+
+  .cat__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 13px 18px;
+  }
+}

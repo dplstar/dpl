@@ -1,0 +1,394 @@
+/* ── Catalogue flipbook ──
+   The book is sized by its wrapper: full container width, at the spread (or
+   single-page) aspect ratio, but never taller than the viewport minus the
+   chrome around it. page-flip then fits the pages inside and centres them. */
+
+.flipbook {
+  /* space taken by the sticky nav, toolbar, hint and breathing room */
+  --fb-chrome: 210px;
+  position: relative;
+  color: var(--on-dark);
+}
+
+.flipbook__viewport {
+  position: relative;
+  min-height: 320px;
+}
+
+.flipbook__stage {
+  width: 100%;
+}
+
+.flipbook__stage .stf__parent {
+  width: 100%;
+}
+
+.flipbook__stage .stf__wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--fb-spread-ratio);
+  max-height: max(320px, calc(100vh - var(--fb-chrome)));
+  max-height: max(320px, calc(100svh - var(--fb-chrome)));
+}
+
+.flipbook__stage[data-orientation="portrait"] .stf__wrapper {
+  aspect-ratio: var(--fb-page-ratio);
+}
+
+/* pages */
+.flipbook__page {
+  background: #f3f5f7;
+  overflow: hidden;
+  box-shadow: 0 22px 40px -18px rgba(0, 0, 0, .65);
+}
+
+.flipbook__page img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* binding shadow along the spine */
+.flipbook__page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.flipbook__page.--left::after {
+  background: linear-gradient(to left, rgba(12, 16, 23, .24), rgba(12, 16, 23, 0) 7%);
+}
+
+.flipbook__page.--right::after {
+  background: linear-gradient(to right, rgba(12, 16, 23, .24), rgba(12, 16, 23, 0) 7%);
+}
+
+.flipbook__page.--hard::after,
+.flipbook__stage[data-orientation="portrait"] .flipbook__page::after {
+  opacity: .45;
+}
+
+.flipbook__loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted-dark);
+}
+
+/* ── toolbar ── */
+.flipbook__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 24px;
+  padding: 10px 12px;
+  background: var(--steel);
+  border: 1px solid var(--steel-line);
+}
+
+.flipbook__nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flipbook__count {
+  min-width: 16ch;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--zinc-bright);
+}
+
+.flipbook__count span {
+  color: var(--muted-dark);
+}
+
+.fb-icon-btn,
+.fb-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background: transparent;
+  color: var(--zinc-bright);
+  border: 1px solid var(--steel-line);
+  font: inherit;
+  font-size: 13px;
+  transition: border-color .15s ease, color .15s ease;
+}
+
+.fb-icon-btn {
+  width: 40px;
+}
+
+.fb-tool {
+  gap: 8px;
+  padding: 0 14px;
+}
+
+.fb-tool svg {
+  color: var(--signal);
+}
+
+.fb-icon-btn:hover:not(:disabled),
+.fb-tool:hover:not(:disabled) {
+  border-color: var(--zinc);
+}
+
+.fb-icon-btn:disabled,
+.fb-tool:disabled {
+  opacity: .35;
+  cursor: default;
+}
+
+.flipbook__jump select {
+  appearance: none;
+  -webkit-appearance: none;
+  min-width: 240px;
+  height: 40px;
+  padding: 0 40px 0 14px;
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--zinc-bright);
+  background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23e8a33d' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 14px center;
+  border: 1px solid var(--steel-line);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.flipbook__jump select:hover:not(:disabled) {
+  border-color: var(--zinc);
+}
+
+.flipbook__tools {
+  display: flex;
+  gap: 6px;
+}
+
+.flipbook :focus-visible,
+.flipbook-reader :focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+.flipbook__hint {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--muted-dark);
+}
+
+.flipbook__hint--touch {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .flipbook__hint--pointer {
+    display: none;
+  }
+
+  .flipbook__hint--touch {
+    display: inline;
+  }
+}
+
+/* visually hidden, still read by screen readers */
+.fb-vh {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── toolbar breakpoints ──
+   > 1080px   one row, labelled tools
+   721–1080   one row, icon-only tools
+   360–720    two rows: page controls / section menu + tools
+   < 360      three rows */
+@media (max-width: 1080px) {
+  .fb-tool {
+    width: 40px;
+    padding: 0;
+  }
+
+  .fb-tool span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .flipbook__jump select {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 720px) {
+  .flipbook {
+    --fb-chrome: 250px;
+  }
+
+  .flipbook__bar {
+    gap: 10px 8px;
+  }
+
+  .flipbook__nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .flipbook__jump {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .flipbook__jump select {
+    width: 100%;
+    min-width: 0;
+    padding: 0 34px 0 12px;
+    background-position: right 12px center;
+  }
+
+  .flipbook__tools {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 359px) {
+  .flipbook {
+    --fb-chrome: 300px;
+  }
+
+  .flipbook__jump,
+  .flipbook__tools {
+    flex: 1 1 100%;
+  }
+
+  .flipbook__tools .fb-tool {
+    flex: 1;
+  }
+}
+
+/* ── full screen ── */
+.flipbook[data-fullscreen] {
+  --fb-chrome: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px clamp(16px, 4vw, 48px);
+  overflow: auto;
+  background: var(--ink);
+}
+
+.flipbook[data-fullscreen] .flipbook__viewport,
+.flipbook[data-fullscreen] .flipbook__bar {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+.flipbook[data-fullscreen] .flipbook__bar {
+  margin-top: 18px;
+}
+
+/* ── zoom reader ── */
+html.flipbook-lock {
+  overflow: hidden;
+}
+
+.flipbook-reader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--zinc-bright);
+  background: rgba(12, 16, 23, .97);
+}
+
+.flipbook-reader[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.flipbook-reader::backdrop {
+  background: rgba(12, 16, 23, .7);
+}
+
+.flipbook-reader__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: max(10px, env(safe-area-inset-top)) clamp(12px, 3vw, 24px) 10px;
+  background: var(--steel);
+  border-bottom: 1px solid var(--steel-line);
+}
+
+.flipbook-reader__label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+}
+
+.flipbook-reader__label span {
+  color: var(--muted-dark);
+}
+
+.flipbook-reader__tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flipbook-reader__zoom {
+  min-width: 5ch;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted-dark);
+}
+
+.flipbook-reader__body {
+  flex: 1;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 24px clamp(12px, 3vw, 32px) max(24px, env(safe-area-inset-bottom));
+}
+
+.flipbook-reader__body img {
+  display: block;
+  width: calc(min(100%, 1000px) * var(--zoom, 1));
+  max-width: none;
+  height: auto;
+  aspect-ratio: var(--fb-page-ratio);
+  margin: 0 auto 20px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .45);
+}

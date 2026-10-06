@@ -15,7 +15,7 @@ export const PRODS = [
   {
     id: "gi",
     v: "gi",
-    name: "GI Tanks",
+    name: "Color Coded Tank",
     tl: "A liner does the sealing, the panel does the holding",
     body: "Galvanised steel panels paired with a PVC or EPDM liner, so the structure and the watertightness are two separate, serviceable jobs.",
     mat: "Galvanised iron panel + liner",
@@ -23,7 +23,7 @@ export const PRODS = [
     cap: "5,000 – 4,00,000 L",
     std: "IS 3396",
     img: "/img/Product Creatives DPL website.jpg",
-    imgAlt: "GI Tanks"
+    imgAlt: "Color Coded Tank"
   },
   {
     id: "fbe",

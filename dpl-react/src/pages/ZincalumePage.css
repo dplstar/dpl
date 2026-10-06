@@ -269,10 +269,15 @@
     }
 
     .za-hero__tank {
+        grid-row: 1;
         justify-self: center;
         width: 100%;
         height: 330px;
         max-width: 330px;
+    }
+
+    .za-hero__grid > div:first-child {
+        grid-row: 2;
     }
 
     .za-alloy,

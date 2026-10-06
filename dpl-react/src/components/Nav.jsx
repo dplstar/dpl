@@ -84,7 +84,7 @@ export default function Nav() {
             {tanksOpen && (
               <div className="nav-dropdown__menu" id="storage-tanks-menu">
                 <button onClick={() => handleGo('zincalume')}>Zincalume Tanks</button>
-                <button onClick={() => handleGo('gi')}>GI Tanks</button>
+                <button onClick={() => handleGo('gi')}>Color Coded Tank</button>
                 <button onClick={() => handleGo('fusion-bond')}>Fusion Bond Epoxy Tanks</button>
                 <button onClick={() => handleGo('glass-fused')}>Glass Fused Steel Tanks</button>
               </div>
@@ -96,6 +96,13 @@ export default function Nav() {
             onClick={(e) => { e.preventDefault(); handleGo('products') }}
           >
             Products
+          </a>
+          <a
+            href="#"
+            className={`nav-a${page === 'catalogue' ? ' on' : ''}`}
+            onClick={(e) => { e.preventDefault(); handleGo('catalogue') }}
+          >
+            Catalogue
           </a>
           <button className="btn btn-p nav-cta" onClick={() => handleGo('contact')}>
             Get a quote <ArrowIcon />
@@ -112,12 +119,13 @@ export default function Nav() {
           <button onClick={() => setTanksOpen((open) => !open)} aria-expanded={tanksOpen}>Storage Tanks <span aria-hidden="true">⌄</span></button>
           {tanksOpen && <div className="mob-tanks__menu">
             <button onClick={() => handleGo('zincalume')}>Zincalume Tanks</button>
-            <button onClick={() => handleGo('gi')}>GI Tanks</button>
+            <button onClick={() => handleGo('gi')}>Color Coded Tank</button>
             <button onClick={() => handleGo('fusion-bond')}>Fusion Bond Epoxy Tanks</button>
             <button onClick={() => handleGo('glass-fused')}>Glass Fused Steel Tanks</button>
           </div>}
         </div>
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('products') }}>Products</a>
+        <a href="#" onClick={(e) => { e.preventDefault(); handleGo('catalogue') }}>Catalogue</a>
         <button onClick={() => handleGo('contact')}>Get a quote</button>
       </div>
     </nav>

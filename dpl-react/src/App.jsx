@@ -4,6 +4,7 @@ import Footer from './components/Footer.jsx'
 import HomePage from './pages/HomePage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import ProductsPage from './pages/ProductsPage.jsx'
+import CataloguePage from './pages/CataloguePage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import ZincalumePage from './pages/ZincalumePage.jsx'
 import GITanksPage from './pages/GITanksPage.jsx'
@@ -20,6 +21,7 @@ function Pages() {
       <HomePage active={page === 'home'} />
       <AboutPage active={page === 'about'} />
       <ProductsPage active={page === 'products'} />
+      <CataloguePage active={page === 'catalogue'} />
       <ZincalumePage active={page === 'zincalume'} />
       <GITanksPage active={page === 'gi'} />
       <FusionBondEpoxyTanksPage active={page === 'fusion-bond'} />
