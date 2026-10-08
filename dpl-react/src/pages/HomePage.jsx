@@ -15,6 +15,7 @@ const HOME_PRODUCT_IMAGES = {
   gfs: '/img/home-product-creative.png'
 }
 
+
 export default function HomePage({ active }) {
   return (
     <div className={`page${active ? ' active' : ''}`} data-page="home">
