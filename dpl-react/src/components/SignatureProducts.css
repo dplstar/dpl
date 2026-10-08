@@ -69,6 +69,21 @@
   transition: transform 0.5s ease;
 }
 
+@media (min-width: 901px) {
+  .product-image--home-updated {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0c1017;
+  }
+
+  .product-image--home-updated img {
+    width: 82%;
+    height: 82%;
+    object-fit: contain;
+  }
+}
+
 .product-card:hover .product-image img {
   transform: scale(1.04);
 }

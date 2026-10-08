@@ -18,7 +18,7 @@ const PRODUCT_PAGE_MAP = {
   gfs: 'glass-fused'
 }
 
-export default function SignatureProducts() {
+export default function SignatureProducts({ homeImages = null }) {
   const { goTo } = useNavigation()
 
   return (
@@ -33,31 +33,35 @@ export default function SignatureProducts() {
       </div>
 
       <div className="signature-container">
-        {PRODS.map((p) => (
-          <div className="product-card" key={p.id}>
-            <div className="prod-card">
-              <h3>{p.name}</h3>
-              <p className="prod-tl">{p.tl}</p>
-              <div className="prod-specs">
-                <div>
-                  <div className="spec-l">Capacity range</div>
-                  <div className="spec-v">{p.cap}</div>
-                </div>
-                <div>
-                  <div className="spec-l">Standard</div>
-                  <div className="spec-v">{p.std}</div>
-                </div>
-              </div>
-              <a href="#" className="prod-link" onClick={(e) => { e.preventDefault(); goTo(PRODUCT_PAGE_MAP[p.id] || 'products') }}>
-                Explore spec <ArrowIcon />
-              </a>
-            </div>
+        {PRODS.map((p) => {
+          const src = homeImages?.[p.id] || p.img
 
-            <div className="product-image">
-              <img src={p.img} alt={p.imgAlt} />
+          return (
+            <div className="product-card" key={p.id}>
+              <div className="prod-card">
+                <h3>{p.name}</h3>
+                <p className="prod-tl">{p.tl}</p>
+                <div className="prod-specs">
+                  <div>
+                    <div className="spec-l">Capacity range</div>
+                    <div className="spec-v">{p.cap}</div>
+                  </div>
+                  <div>
+                    <div className="spec-l">Standard</div>
+                    <div className="spec-v">{p.std}</div>
+                  </div>
+                </div>
+                <a href="#" className="prod-link" onClick={(e) => { e.preventDefault(); goTo(PRODUCT_PAGE_MAP[p.id] || 'products') }}>
+                  Explore spec <ArrowIcon />
+                </a>
+              </div>
+
+              <div className={`product-image${homeImages ? ' product-image--home-updated' : ''}`}>
+                <img src={src} alt={p.imgAlt} />
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </section>
   )
