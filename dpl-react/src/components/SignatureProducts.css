@@ -94,6 +94,19 @@
     padding: 60px 0;
   }
 
+  .product-image--home-updated {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0c1017;
+  }
+
+  .product-image--home-updated img {
+    width: 82%;
+    height: 82%;
+    object-fit: contain;
+  }
+
   .signature-container {
     width: 92%;
   }
@@ -121,6 +134,10 @@
 @media (max-width: 600px) {
   .signature-products {
     padding: 45px 0;
+  }
+
+  .signature-products .sec-headd {
+    padding: 15px !important;
   }
 
   .signature-container {
