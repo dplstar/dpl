@@ -126,8 +126,16 @@
   .product-card:nth-child(4) { top: 50px; }
 
   .product-image {
-    order: 1;
+    order: 0;
     height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-image {
+    order: 0;
+    height: 230px;
+    border-radius: 5px;
   }
 }
 

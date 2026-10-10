@@ -97,7 +97,7 @@
 }
 
 .cap p {
-  color: var(--signal);
+  color: #fff;
   font-size: 15.5px;
   max-width: 38ch;
   margin: 0

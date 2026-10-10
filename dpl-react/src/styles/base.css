@@ -53,12 +53,12 @@ img {
 .shell {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 32px
+  padding: 20px 32px 0
 }
 
 @media(max-width:640px) {
   .shell {
-    padding: 0 20px
+    padding: 20px 20px
   }
 }
 
@@ -111,7 +111,8 @@ img {
 
 /* ── generic section chrome (shared by many sections) ── */
 .sec {
-  padding: 88px 0;
+  padding: 50px 0;
+  background: #fff;
   border-bottom: 1px solid var(--paper-line)
 }
 
