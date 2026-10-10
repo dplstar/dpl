@@ -9,7 +9,7 @@ export const PRODS = [
     coat: "AZ150 aluminium–zinc alloy",
     cap: "5,000 – 5,00,000 L",
     std: "IS 3396 / AWWA D103",
-    img: "/img/Zincalume.png",
+    img: "/img/Zincalume Tanks.png",
     imgAlt: "Zincalume Tanks"
   },
   {
@@ -22,7 +22,7 @@ export const PRODS = [
     coat: "Hot-dip galvanised, 275 g/m²",
     cap: "5,000 – 4,00,000 L",
     std: "IS 3396",
-    img: "/img/Product Creatives DPL website.jpg",
+    img: "/img/Color Coded Tank.png",
     imgAlt: "Color Coded Tank"
   },
   {
@@ -35,7 +35,7 @@ export const PRODS = [
     coat: "Fusion-bonded epoxy, 250 µm",
     cap: "10,000 – 10,00,000 L",
     std: "AWWA D103",
-    img: "/img/Fusion-Tank.png",
+    img: "/img/Fusion Bond Epoxy Tanks.png",
     imgAlt: "Fusion Bond Epoxy Tanks"
   },
   {
@@ -48,7 +48,7 @@ export const PRODS = [
     coat: "Dual-sided vitreous enamel",
     cap: "50,000 – 50,00,000 L",
     std: "EN ISO 28765",
-    img: "/img/Glass-Tank.png",
+    img: "/img/home-product-creative.png",
     imgAlt: "Glass Fused Steel Tanks"
   }
 ];

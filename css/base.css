@@ -157,3 +157,12 @@ img {
 .foure {
   font-size: 46px;
 }
+@media only screen and (min-width: 768px) {.sec-headd {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  padding: 0px 15px 0px 15px !important;
+}}
