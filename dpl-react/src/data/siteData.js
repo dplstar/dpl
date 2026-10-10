@@ -15,7 +15,7 @@ export const PRODS = [
   {
     id: "gi",
     v: "gi",
-    name: "Color Coded Tank",
+    name: "Color-Coated Tanks",
     tl: "A liner does the sealing, the panel does the holding",
     body: "Galvanised steel panels paired with a PVC or EPDM liner, so the structure and the watertightness are two separate, serviceable jobs.",
     mat: "Galvanised iron panel + liner",

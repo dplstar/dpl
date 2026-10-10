@@ -1,6 +1,6 @@
 import { useNavigation } from '../NavigationContext.jsx'
 import GITank from '../components/GITank.jsx'
-import './color.css'
+import './ColorCoatedTanks.css'
 
 const BENEFITS = [
   ['Enhanced Facility Aesthetics', 'Brighten up manufacturing plants, commercial sites, and institutional grounds with sleek, modern color options.'],
@@ -43,7 +43,7 @@ export default function GITanksPage({ active }) {
             <p>Transform industrial water storage into an aesthetic &amp; functional asset.</p>
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
-          <div className="za-hero__tank" aria-label="Interactive 3D Color Coded Tank model">
+          <div className="za-hero__tank" aria-label="Interactive 3D Color-Coated Tank model">
             <GITank diameter={10} courses={6} />
           </div>
         </div>

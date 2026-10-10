@@ -137,17 +137,51 @@
 }
 .za-benefit-grids {
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 40px;
+    background: var(--steel-line);
+    border: 1px solid var(--steel-line);
+}
+.za-benefit-gridss {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1px;
     margin-top: 40px;
     background: var(--steel-line);
     border: 1px solid var(--steel-line);
 }
+.za-benefit-gridss article {
+    background: var(--steel);
+    padding: 25px;
+    min-height: 280px;
+}
 
+.za-benefit-gridss span {
+    color: var(--signal);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+}
+
+.za-benefit-gridss h3 {
+    font-size: 23px;
+    margin: 34px 0 10px;
+}
+
+.za-benefit-gridss p {
+    color: var(--muted-dark);
+    font-size: 14px;
+}
+.za-details {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 70px;
+    align-items: start;
+}
 .za-benefit-grids article {
     background: var(--steel);
     padding: 25px;
-    min-height: 210px;
+    min-height: 280px;
 }
 
 .za-benefit-grids span {
