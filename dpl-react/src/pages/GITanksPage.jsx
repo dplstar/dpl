@@ -62,7 +62,7 @@ export default function GITanksPage({ active }) {
         <div className="shell">
           <div className="sec-tag">Benefits</div>
           <h2>Why Choose Color-Coded Zincalume Tanks?</h2>
-          <div className="za-benefit-grids">
+          <div className="za-benefit-gridss">
             {BENEFITS.map(([title, description], index) => (
               <article key={title}>
                 <span>{String(index + 1).padStart(2, '0')}</span>
