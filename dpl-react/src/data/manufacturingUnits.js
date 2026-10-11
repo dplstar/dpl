@@ -10,7 +10,7 @@ export const MANUFACTURING_UNITS = [
   {
     id: 'dpl-global',
     tag: 'Primary Unit ',
-    name: 'Just write Unit 1',
+    name: 'Unit 1',
     address: ['A-58, Industrial Area', ...AREA],
     note: 'Commissioned in 2008, it is the core unit of where zincalume tanks are made.',
     map: 'https://www.google.com/maps/place/A-58+DPL+GLOBAL+PVT.+LIMITED/@28.4761219,77.6657061,17z/data=!3m1!4b1!4m6!3m5!1s0x390cbd506a008249:0xe4cac1f93ce74d4d!8m2!3d28.4761172!4d77.668281!16s%2Fg%2F11lq77nsx8?entry=ttu'
