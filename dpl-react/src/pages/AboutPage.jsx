@@ -3,6 +3,7 @@ import AboutStats from '../components/AboutStats.jsx'
 import ProcessSection from '../components/ProcessSection.jsx'
 import StrengthsSection from '../components/StrengthsSection.jsx'
 import CtaBand from '../components/CtaBand.jsx'
+import CertificatesSection from '../components/CertificatesSection.jsx'
 import { STRS } from '../data/siteData.js'
 
 export default function AboutPage({ active }) {
@@ -24,6 +25,8 @@ export default function AboutPage({ active }) {
         note="Certification isn't a badge on the homepage — it's the management system that governs every batch that leaves the factory."
         items={STRS.slice(0, 4)}
       />
+
+      <CertificatesSection />
 
       <CtaBand heading="Want the full capability deck?" buttonLabel="Request the brochure" target="contact" />
     </div>
