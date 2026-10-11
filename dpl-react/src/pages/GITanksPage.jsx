@@ -37,8 +37,8 @@ export default function GITanksPage({ active }) {
       <section className="za-hero">
         <div className="shell za-hero__grid">
           <div>
-            <div className="sec-tag">Storage tanks / Color Coated</div>
-            <h1>Color-Coated Tanks</h1>
+            <div className="sec-tag">Storage tanks / Colour Coated</div>
+            <h1>Colour Coated Tank</h1>
             <p><strong>Engineered for Strength. Styled for Your Infrastructure.</strong></p>
             <p>Transform industrial water storage into an aesthetic &amp; functional asset.</p>
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
