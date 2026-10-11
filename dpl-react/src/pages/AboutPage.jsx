@@ -4,6 +4,7 @@ import ProcessSection from '../components/ProcessSection.jsx'
 import StrengthsSection from '../components/StrengthsSection.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import CertificatesSection from '../components/CertificatesSection.jsx'
+import LeadershipSection from '../components/LeadershipSection.jsx'
 import { STRS } from '../data/siteData.js'
 
 export default function AboutPage({ active }) {
@@ -29,6 +30,8 @@ export default function AboutPage({ active }) {
       <CertificatesSection />
 
       <CtaBand heading="Want the full capability deck?" buttonLabel="Request the brochure" target="contact" />
+
+      <LeadershipSection />
     </div>
   )
 }

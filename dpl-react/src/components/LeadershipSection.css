@@ -1,0 +1,139 @@
+.leadership {
+  background: #eee9df;
+}
+
+.leadership__head {
+  justify-content: flex-start;
+  margin-bottom: 40px;
+}
+
+.leadership .sec-tag {
+  display: none;
+}
+
+.leadership__head h2 {
+  color: var(--ink);
+}
+
+.leadership__intro {
+  max-width: 62ch;
+  margin-top: 12px;
+  color: #25466b;
+  font-size: 17px;
+}
+
+.leadership__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.leader-card {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: 9px;
+}
+
+.leader-card__portrait {
+  width: 50%;
+  min-width: 210px;
+  height: 250px;
+  object-fit: cover;
+  object-position: center 35%;
+  background: #e7e4dd;
+}
+
+.leader-card__portrait--placeholder {
+  display: grid;
+  place-items: center;
+  color: #284260;
+  background: linear-gradient(145deg, #e7e4dd, #d4d9dc);
+}
+
+.leader-card__portrait--placeholder span {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 54px;
+  letter-spacing: .04em;
+  opacity: .65;
+}
+
+.leader-card__body {
+  padding: 24px;
+}
+
+.leader-card__role {
+  margin-bottom: 3px;
+  color: #25466b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.leader-card h3 {
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: clamp(25px, 2.5vw, 32px);
+}
+
+.leader-card__description {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #25466b;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+.leader-card__description.is-expanded {
+  display: block;
+  overflow: visible;
+}
+
+.leader-card__toggle {
+  margin-top: 12px;
+  padding: 0;
+  color: #25466b;
+  background: transparent;
+  border-bottom: 1px solid currentColor;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.leader-card__toggle:hover {
+  color: var(--ink);
+}
+
+.leader-card__toggle:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+}
+
+@media (max-width: 800px) {
+  .leadership__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .leadership__head {
+    margin-bottom: 28px;
+  }
+
+  .leadership__intro {
+    font-size: 15px;
+  }
+
+  .leader-card__portrait {
+    width: 60%;
+    min-width: 180px;
+    height: 210px;
+  }
+
+  .leader-card__body {
+    padding: 20px;
+  }
+}
