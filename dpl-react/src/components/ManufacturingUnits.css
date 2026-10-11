@@ -1,0 +1,131 @@
+/* ── Manufacturing units ── */
+
+.mfg-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.mfg-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 22px;
+  background: #e8e4da;
+  border: 1px solid var(--paper-line);
+}
+
+.mfg-card__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.mfg-card__n {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--signal);
+}
+
+.mfg-card__tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted-light);
+  text-align: right;
+}
+
+.mfg-card h3 {
+  font-size: clamp(19px, 1.6vw, 23px);
+  margin-bottom: 12px;
+}
+
+.mfg-card address {
+  display: grid;
+  gap: 2px;
+  margin-bottom: 14px;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--on-light);
+}
+
+.mfg-card p {
+  font-size: 13.5px;
+  color: var(--muted-light);
+  margin-bottom: 18px;
+}
+
+.mfg-card__map,
+.mfg-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-bottom: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--on-light);
+  border-bottom: 1px solid var(--signal);
+}
+
+.mfg-card__map:hover,
+.mfg-list a:hover {
+  color: var(--signal);
+}
+
+.mfg-card__map:focus-visible,
+.mfg-list a:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+}
+
+/* compact list (Contact page) */
+.mfg-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mfg-list li {
+  display: grid;
+  gap: 3px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--paper-line);
+  font-size: 14px;
+}
+
+.mfg-list li:first-child {
+  padding-top: 0;
+}
+
+.mfg-list strong {
+  color: var(--on-light);
+}
+
+.mfg-list span {
+  color: var(--muted-light);
+}
+
+.mfg-list a {
+  margin-top: 4px;
+}
+
+@media (max-width: 1000px) {
+  .mfg-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .mfg-grid {
+    grid-template-columns: 1fr;
+    margin-top: 40px;
+  }
+}
