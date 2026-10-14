@@ -43,7 +43,10 @@ export default function ZincalumePage({ active }) {
             <h1>Zincalume Tanks</h1>
             <p>Alloy-coated storage tanks engineered for corrosion resistance, durability and efficient installation.</p>
             <div className="za-composition">43.5% zinc <span>+</span> 55% aluminium <span>+</span> 1.5% silicon</div>
-            <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
+            <div className="za-hero__actions">
+              <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
+              <button className="btn btn-g" onClick={() => goTo('catalogue')}>View catalogue</button>
+            </div>
           </div>
           <div className="za-hero__tank" aria-label="Interactive 3D Zincalume storage tank">
             <ZincalumeTank diameter={9} rings={4} />

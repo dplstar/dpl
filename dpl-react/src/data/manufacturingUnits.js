@@ -9,7 +9,7 @@ const AREA = ['Sikandrabad, Dist. Bulandshahar', 'Uttar Pradesh 203205']
 export const MANUFACTURING_UNITS = [
   {
     id: 'dpl-global',
-    tag: 'Primary Unit ',
+    tag: 'Primary Unit',
     name: 'Unit 1',
     address: ['A-58, Industrial Area', ...AREA],
     note: 'Commissioned in 2008, it is the core unit of where zincalume tanks are made.',
@@ -36,8 +36,7 @@ export const MANUFACTURING_UNITS = [
     tag: 'Flagship Unit',
     name: 'Unit 4',
     address: ['Khasra No. 414, Industrial Area', ...AREA],
-    note: "Upcoming unit with modern machinery for manufacturing tanks & silos",
-    map: "https://google.com/maps/search/Khasra+No+414+Industrial+Area+Sikandrabad+Dist+Bulandshahar+Uttar+Pradesh+203205/@28.4421289,77.6959991,11z?entry=s&sa=X&ved=1t%3A199789"
-    
+    note: "Upcoming unit with modern machinery for manufacturing tanks & silos.",
+    map: 'https://google.com/maps/search/Khasra+No+414+Industrial+Area+Sikandrabad+Dist+Bulandshahar+Uttar+Pradesh+203205/@28.4421289,77.6959991,11z?entry=s&sa=X&ved=1t%3A199789'
   }
 ]

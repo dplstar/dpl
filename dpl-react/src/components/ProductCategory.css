@@ -1,0 +1,192 @@
+/* Pipes / fittings sections on the Products page.
+   Secondary to the storage-tank cards above: smaller cards, no per-item
+   buttons, one catalogue + quote call to action per category. */
+
+.pcat__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pcat__card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: #e8e4da;
+  border: 1px solid var(--paper-line);
+}
+
+.pcat--dark .pcat__card {
+  background: var(--steel);
+  border-color: var(--steel-line);
+}
+
+.pcat__img {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--zinc-bright);
+}
+
+.pcat__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+
+.pcat__card:hover .pcat__img img {
+  transform: scale(1.04);
+}
+
+/* shown only if an image is missing */
+.pcat__img-fallback {
+  padding: 12px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--muted-light);
+}
+
+.pcat__body {
+  padding: 16px 18px 20px;
+}
+
+.pcat__body h3 {
+  margin-bottom: 6px;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.25;
+}
+
+.pcat--dark .pcat__body h3 {
+  color: var(--zinc-bright);
+}
+
+.pcat__body h3.pcat__code {
+  font-variant-numeric: lining-nums;
+}
+
+.pcat__body p {
+  font-size: 13.5px;
+  color: var(--muted-light);
+}
+
+.pcat--dark .pcat__body p {
+  color: var(--muted-dark);
+}
+
+/* catalogue + quote strip */
+.pcat__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 40px;
+  margin-top: 40px;
+  padding: 28px 32px;
+  background: #e8e4da;
+  border: 1px solid var(--paper-line);
+}
+
+.pcat--dark .pcat__cta {
+  background: var(--steel);
+  border-color: var(--steel-line);
+}
+
+.pcat__cta h3 {
+  margin-bottom: 6px;
+  font-size: clamp(20px, 2vw, 26px);
+}
+
+.pcat--dark .pcat__cta h3 {
+  color: var(--zinc-bright);
+}
+
+.pcat__cta p {
+  max-width: 62ch;
+  font-size: 14.5px;
+  color: var(--muted-light);
+}
+
+.pcat--dark .pcat__cta p {
+  color: var(--muted-dark);
+}
+
+.pcat__cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 1000px) {
+  .pcat__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .pcat__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .pcat__cta {
+    padding: 22px 20px;
+  }
+
+  .pcat__cta-actions {
+    width: 100%;
+  }
+
+  .pcat__cta-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .pcat {
+    padding: 60px 0;
+  }
+
+  .pcat .sec-head {
+    margin-bottom: 32px;
+  }
+
+  .pcat__body {
+    padding: 12px 12px 14px;
+  }
+
+  .pcat__body h3 {
+    font-size: 15.5px;
+  }
+
+  .pcat__body p {
+    font-size: 12.5px;
+  }
+}
+
+/* items that have their own page (pipes) */
+.pcat__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pcat__explore {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+.pcat__body p:not(:last-child) {
+  margin-bottom: 14px;
+}
+
+.pcat--light .pcat__explore {
+  color: var(--ink);
+  border-color: var(--paper-line);
+}

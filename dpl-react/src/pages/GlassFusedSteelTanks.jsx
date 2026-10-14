@@ -46,7 +46,7 @@ export default function GlassFusedSteelTanksPage({ active }) {
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
           <div className="za-hero__tank" aria-label="Interactive 3D Glass Fused Steel storage tank">
-            {active && <GFSTank diameter={12} courses={6} roof="membrane" color="#1f5c3f" />}
+            <GFSTank diameter={12} courses={6} roof="membrane" color="#1f5c3f" />
           </div>
         </div>
       </section>

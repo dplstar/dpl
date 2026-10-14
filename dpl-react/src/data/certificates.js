@@ -1,3 +1,11 @@
+/*
+ * Certificates shown in the Certificates section (About page).
+ *
+ * To add one: export the certificate as two images (600px and 1600px wide)
+ * plus the PDF into public/certificates/, then add an entry below.
+ * `details` rows appear in the order given; leave out any you don't need.
+ */
+
 export const CERTIFICATES = [
   {
     id: 'zed-pledge',
@@ -16,6 +24,7 @@ export const CERTIFICATES = [
     image: '/certificates/zed-pledge-1600.webp',
     pdf: '/certificates/DPL-Global-ZED-Pledge.pdf',
     pdfSize: '1.8 MB',
+    // page proportions, so the image keeps its shape while loading
     width: 595,
     height: 842
   }

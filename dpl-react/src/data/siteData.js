@@ -9,21 +9,21 @@ export const PRODS = [
     coat: "AZ150 aluminium–zinc alloy",
     cap: "5,000 – 5,00,000 L",
     std: "IS 3396 / AWWA D103",
-    img: "/img/Zincalume Tanks.png",
+    img: "/img/Zincalume.png",
     imgAlt: "Zincalume Tanks"
   },
   {
     id: "gi",
     v: "gi",
-    name: "Colour Coated Tank",
+    name: "GI Tanks",
     tl: "A liner does the sealing, the panel does the holding",
     body: "Galvanised steel panels paired with a PVC or EPDM liner, so the structure and the watertightness are two separate, serviceable jobs.",
     mat: "Galvanised iron panel + liner",
     coat: "Hot-dip galvanised, 275 g/m²",
     cap: "5,000 – 4,00,000 L",
     std: "IS 3396",
-    img: "/img/Color Coded Tank.png",
-    imgAlt: "Color Coded Tank"
+    img: "/img/Product Creatives DPL website.jpg",
+    imgAlt: "GI Tanks"
   },
   {
     id: "fbe",
@@ -35,7 +35,7 @@ export const PRODS = [
     coat: "Fusion-bonded epoxy, 250 µm",
     cap: "10,000 – 10,00,000 L",
     std: "AWWA D103",
-    img: "/img/Fusion Bond Epoxy Tanks.png",
+    img: "/img/Fusion-Tank.png",
     imgAlt: "Fusion Bond Epoxy Tanks"
   },
   {
@@ -48,7 +48,7 @@ export const PRODS = [
     coat: "Dual-sided vitreous enamel",
     cap: "50,000 – 50,00,000 L",
     std: "EN ISO 28765",
-    img: "/img/home-product-creative.png",
+    img: "/img/Glass-Tank.png",
     imgAlt: "Glass Fused Steel Tanks"
   }
 ];

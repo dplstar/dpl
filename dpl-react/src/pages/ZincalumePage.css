@@ -26,6 +26,12 @@
     margin-bottom: 28px;
 }
 
+.za-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .za-hero__tank {
     width: min(100%, 440px);
     height: 440px;
@@ -33,10 +39,24 @@
     filter: drop-shadow(0 24px 28px rgba(0, 0, 0, .35));
 }
 
+.za-hero__tank img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
 .za-hero__tank canvas {
     display: block;
     width: 100%;
     height: 100%;
+}
+
+.za-hero__tank--image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .za-composition {

@@ -7,9 +7,11 @@ import ProductsPage from './pages/ProductsPage.jsx'
 import CataloguePage from './pages/CataloguePage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import ZincalumePage from './pages/ZincalumePage.jsx'
+import PipesPage from './pages/PipesPage.jsx'
 import GITanksPage from './pages/GITanksPage.jsx'
 import FusionBondEpoxyTanksPage from './pages/FusionBondEpoxyTanks.jsx'
 import GlassFusedSteelTanksPage from './pages/GlassFusedSteelTanks.jsx'
+import ChannelPartnerPage from './pages/ChannelPartnerPage.jsx'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx'
 import TermsOfUsePage from './pages/TermsOfUsePage.jsx'
 
@@ -23,9 +25,11 @@ function Pages() {
       <ProductsPage active={page === 'products'} />
       <CataloguePage active={page === 'catalogue'} />
       <ZincalumePage active={page === 'zincalume'} />
+      <PipesPage active={page === 'pipes'} />
       <GITanksPage active={page === 'gi'} />
       <FusionBondEpoxyTanksPage active={page === 'fusion-bond'} />
       <GlassFusedSteelTanksPage active={page === 'glass-fused'} />
+      <ChannelPartnerPage active={page === 'channel-partner'} />
       <ContactPage active={page === 'contact'} />
       <PrivacyPolicyPage active={page === 'privacy'} />
       <TermsOfUsePage active={page === 'terms-of-use'} />

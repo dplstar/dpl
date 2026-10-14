@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigation } from '../NavigationContext.jsx'
+import { PIPES_RANGE } from '../data/pipes.js'
 import './Nav.css'
 
 const LINKS = [
@@ -33,33 +34,23 @@ const CloseIcon = () => (
 export default function Nav() {
   const { page, goTo } = useNavigation()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [tanksOpen, setTanksOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  // which dropdown is open: 'tanks', 'pipes' or null
+  const [openMenu, setOpenMenu] = useState(null)
+  const tanksOpen = openMenu === 'tanks'
+  const pipesOpen = openMenu === 'pipes'
+  const toggleMenu = (name) => setOpenMenu((open) => (open === name ? null : name))
 
-  useEffect(() => {
-    const updateScrolled = () => setScrolled(window.scrollY > 24)
-    updateScrolled()
-    window.addEventListener('scroll', updateScrolled, { passive: true })
-    return () => window.removeEventListener('scroll', updateScrolled)
-  }, [])
-
-  function handleGo(id) {
+  function handleGo(id, anchor) {
     setMobileOpen(false)
-    setTanksOpen(false)
-    goTo(id)
+    setOpenMenu(null)
+    goTo(id, anchor)
   }
 
   return (
-    <nav className={`nav${scrolled ? ' is-scrolled' : ''}`}>
+    <nav className="nav">
       <div className="shell nav-row">
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('home') }}>
-          <img
-            src={scrolled ? '/img/DPL%20Star%20Private%20Limited.png' : '/img/DPL-Star-Logo.png'}
-            className="nav-logo"
-            width="100px"
-            height="50px"
-            alt="DPL Star"
-          />
+          <img src="/img/DPL-Star-Logo.png" className="colorLogo" width="100px" height="50px" alt="DPL Star" />
         </a>
         <div className="nav-links">
           {LINKS.map((l) => (
@@ -77,16 +68,34 @@ export default function Nav() {
               className={`nav-a nav-dropdown__toggle${['zincalume', 'gi', 'fusion-bond', 'glass-fused'].includes(page) ? ' on' : ''}`}
               aria-expanded={tanksOpen}
               aria-controls="storage-tanks-menu"
-              onClick={() => setTanksOpen((open) => !open)}
+              onClick={() => toggleMenu('tanks')}
             >
               Storage Tanks <span aria-hidden="true">⌄</span>
             </button>
             {tanksOpen && (
               <div className="nav-dropdown__menu" id="storage-tanks-menu">
                 <button onClick={() => handleGo('zincalume')}>Zincalume Tanks</button>
-                <button onClick={() => handleGo('gi')}>Colour Coated Tank</button>
+                <button onClick={() => handleGo('gi')}>GI Tanks</button>
                 <button onClick={() => handleGo('fusion-bond')}>Fusion Bond Epoxy Tanks</button>
                 <button onClick={() => handleGo('glass-fused')}>Glass Fused Steel Tanks</button>
+              </div>
+            )}
+          </div>
+          <div className="nav-dropdown">
+            <button
+              className={`nav-a nav-dropdown__toggle${page === 'pipes' ? ' on' : ''}`}
+              aria-expanded={pipesOpen}
+              aria-controls="pipes-menu"
+              onClick={() => toggleMenu('pipes')}
+            >
+              Pipes <span aria-hidden="true">⌄</span>
+            </button>
+            {pipesOpen && (
+              <div className="nav-dropdown__menu" id="pipes-menu">
+                <button onClick={() => handleGo('pipes')}>All pipes</button>
+                {PIPES_RANGE.map((p) => (
+                  <button key={p.id} onClick={() => handleGo('pipes', p.id)}>{p.code} · {p.title}</button>
+                ))}
               </div>
             )}
           </div>
@@ -104,6 +113,13 @@ export default function Nav() {
           >
             Catalogue
           </a>
+          <a
+            href="#"
+            className={`nav-a${page === 'channel-partner' ? ' on' : ''}`}
+            onClick={(e) => { e.preventDefault(); handleGo('channel-partner') }}
+          >
+            Channel Partner
+          </a>
           <button className="btn btn-p nav-cta" onClick={() => handleGo('contact')}>
             Get a quote <ArrowIcon />
           </button>
@@ -116,16 +132,26 @@ export default function Nav() {
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('home') }}>Home</a>
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('about') }}>About</a>
         <div className="mob-tanks">
-          <button onClick={() => setTanksOpen((open) => !open)} aria-expanded={tanksOpen}>Storage Tanks <span aria-hidden="true">⌄</span></button>
+          <button onClick={() => toggleMenu('tanks')} aria-expanded={tanksOpen}>Storage Tanks <span aria-hidden="true">⌄</span></button>
           {tanksOpen && <div className="mob-tanks__menu">
             <button onClick={() => handleGo('zincalume')}>Zincalume Tanks</button>
-            <button onClick={() => handleGo('gi')}>Colour Coated Tank</button>
+            <button onClick={() => handleGo('gi')}>GI Tanks</button>
             <button onClick={() => handleGo('fusion-bond')}>Fusion Bond Epoxy Tanks</button>
             <button onClick={() => handleGo('glass-fused')}>Glass Fused Steel Tanks</button>
           </div>}
         </div>
+        <div className="mob-tanks">
+          <button onClick={() => toggleMenu('pipes')} aria-expanded={pipesOpen}>Pipes <span aria-hidden="true">⌄</span></button>
+          {pipesOpen && <div className="mob-tanks__menu">
+            <button onClick={() => handleGo('pipes')}>All pipes</button>
+            {PIPES_RANGE.map((p) => (
+              <button key={p.id} onClick={() => handleGo('pipes', p.id)}>{p.code} · {p.title}</button>
+            ))}
+          </div>}
+        </div>
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('products') }}>Products</a>
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('catalogue') }}>Catalogue</a>
+        <a href="#" onClick={(e) => { e.preventDefault(); handleGo('channel-partner') }}>Channel Partner</a>
         <button onClick={() => handleGo('contact')}>Get a quote</button>
       </div>
     </nav>
