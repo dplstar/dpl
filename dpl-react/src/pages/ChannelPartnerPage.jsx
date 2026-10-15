@@ -106,7 +106,7 @@ function PartnerForm() {
         <label htmlFor="cp-message">Message</label>
         <textarea id="cp-message" name="message" rows="5" placeholder="Your region, the products you'd like to sell, your current business"></textarea>
       </div>
-      <p className="form-email-note">Or email us directly at <a href={`mailto:${PARTNER_EMAIL}`}>{PARTNER_EMAIL}</a>.</p>
+      <p className="form-email-note">Or email us directly at <a href={`mailto:${PARTNER_EMAIL}`}>{PARTNER_EMAIL}</a></p>
       <button className="btn btn-p" type="submit">Submit enquiry</button>
     </form>
   )
