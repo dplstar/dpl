@@ -23,6 +23,7 @@ export const MANUFACTURING_UNITS = [
     note: "Commissioned in 2006, it is the primary unit for manufacturing pipes.",
     map: 'https://share.google/VJUzBNW4WSbupIFkA'
   },
+  
   {
     id: 'dadu-unit-2',
     tag: 'Supportive Unit',

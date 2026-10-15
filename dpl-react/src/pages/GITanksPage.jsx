@@ -39,9 +39,9 @@ export default function GITanksPage({ active }) {
       <section className="za-hero">
         <div className="shell za-hero__grid">
           <div>
-            <div className="sec-tag">Storage tanks / GI</div>
-            <h1>GI Tanks</h1>
-            <p>Hot-dip galvanized tanks offer proven performance for general water storage applications. The metallurgically bonded zinc coating provides excellent corrosion protection at an economical cost.</p>
+            <div className="sec-tag">Storage tanks /  Colour-Coated</div>
+            <h1>Colour Coated Tanks</h1>
+            <p>At DPL Star, we combine heavy-duty industrial engineering with customizable visual appeal. Our Colour-Coated Zincalume Storage Tanks deliver the legendary durability of 55% Aluminum-Zinc alloy steel, enhanced with vibrant, factory-bonded exterior finishes.</p>
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
           <div className="za-hero__tank" aria-label="Interactive 3D GI storage tank">
@@ -53,8 +53,10 @@ export default function GITanksPage({ active }) {
       <section className="sec za-intro">
         <div className="shell za-copy">
           <div className="sec-tag">The material</div>
-          <h2>GI Tanks by DPL Star</h2>
-          <p>Hot-dip galvanized tanks offer proven performance for general water storage applications. The metallurgically bonded zinc coating provides excellent corrosion protection at an economical cost.</p>
+          <h2>Colour Coated Tanks by DPL Star</h2>
+          <p>At DPL Star, we combine heavy-duty industrial engineering with customizable visual appeal. Our Colour-Coated Zincalume Storage Tanks deliver the legendary durability of 55% Aluminum-Zinc alloy steel, enhanced with vibrant, factory-bonded exterior finishes.
+Whether you need to match your corporate brand identity, integrate seamlessly into an architectural layout, or functional Colour-code your plant’s water lines, DPL Star provides tailored storage solutions that elevate the visual standard of your facility.
+</p>
         </div>
       </section>
 
