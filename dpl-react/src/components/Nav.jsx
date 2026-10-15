@@ -75,7 +75,7 @@ export default function Nav() {
             {tanksOpen && (
               <div className="nav-dropdown__menu" id="storage-tanks-menu">
                 <button onClick={() => handleGo('zincalume')}>Zincalume Tanks</button>
-                <button onClick={() => handleGo('gi')}>GI Tanks</button>
+                <button onClick={() => handleGo('gi')}>Colour Bonded Tanks</button>
                 <button onClick={() => handleGo('fusion-bond')}>Fusion Bond Epoxy Tanks</button>
                 <button onClick={() => handleGo('glass-fused')}>Glass Fused Steel Tanks</button>
               </div>
@@ -135,7 +135,7 @@ export default function Nav() {
           <button onClick={() => toggleMenu('tanks')} aria-expanded={tanksOpen}>Storage Tanks <span aria-hidden="true">⌄</span></button>
           {tanksOpen && <div className="mob-tanks__menu">
             <button onClick={() => handleGo('zincalume')}>Zincalume Tanks</button>
-            <button onClick={() => handleGo('gi')}>GI Tanks</button>
+            <button onClick={() => handleGo('gi')}>Colour Bonded Tanks</button>
             <button onClick={() => handleGo('fusion-bond')}>Fusion Bond Epoxy Tanks</button>
             <button onClick={() => handleGo('glass-fused')}>Glass Fused Steel Tanks</button>
           </div>}

@@ -27,24 +27,27 @@ export default function HeroStory() {
           <div className="cap-in">
             <div className="cap-tag"></div>
             <h1>Built to hold.<br />Engineered to last.</h1>
-            <p>A bolted-panel steel tank, drawn, fabricated and installed by one team. Scroll to take it apart.</p>
+            <p>A bolted-panel Zincalume Tank, designed, fabricated and installed by DPL Star. Scroll to take it apart.</p>
           </div>
         </div>
 
         <div className="cap cap-l" data-s=".17" data-e=".36">
           <div className="cap-in">
             <div className="cap-tag"></div>
-            <h2>Forty-two ridges of coated steel.</h2>
-            <p>Every panel is corrugated for stiffness and coated in AZ150 aluminium-zinc alloy before it ever meets
-              water. The profile carries the hoop load; the coating carries the years.</p>
+            <h2>Corrosion Resistant Alloy Coating</h2>
+            <p>Advanced alloy coating provides superior protection against rust and corrosion, ensuring longer lifespan.</p>
             <dl className="cap-specs">
               <div>
-                <dt>AZ150</dt>
-                <dd>Alloy coating class</dd>
+                <dt>43.5%</dt>
+                <dd>ZINC</dd>
               </div>
               <div>
-                <dt>IS 3396</dt>
-                <dd>Design standard</dd>
+                <dt>55%</dt>
+                <dd>ALUMINIUM</dd>
+              </div>
+              <div>
+                <dt>1.5%</dt>
+                <dd>SILICON</dd>
               </div>
             </dl>
           </div>

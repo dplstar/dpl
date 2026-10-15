@@ -39,8 +39,8 @@ export default function GITanksPage({ active }) {
       <section className="za-hero">
         <div className="shell za-hero__grid">
           <div>
-            <div className="sec-tag">Storage tanks /  Colour-Coated</div>
-            <h1>Colour Coated Tanks</h1>
+            <div className="sec-tag">Storage tanks /  Colour-Bonded</div>
+            <h1>Colour Bonded Tanks</h1>
             <p>At DPL Star, we combine heavy-duty industrial engineering with customizable visual appeal. Our Colour-Coated Zincalume Storage Tanks deliver the legendary durability of 55% Aluminum-Zinc alloy steel, enhanced with vibrant, factory-bonded exterior finishes.</p>
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
