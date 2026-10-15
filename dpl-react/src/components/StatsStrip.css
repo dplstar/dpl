@@ -1,6 +1,7 @@
 .stats {
   background: var(--ink);
-  border-top: 1px solid var(--steel-line)
+  border-top: 1px solid var(--steel-line);
+  padding:10px;
 }
 
 .stats-row {
@@ -18,12 +19,14 @@
 
 .stat-n {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 21px;
+  /* font-size: 21px; */
+  font-size: 1.5rem;
   color: var(--zinc-bright)
 }
 
 .stat-l {
-  font-size: 12px;
+  /* font-size: 12px; */
+  font-size: 1rem;
   color: var(--muted-dark);
   margin-top: 3px
 }

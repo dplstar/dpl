@@ -112,9 +112,13 @@
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11.5px;
   letter-spacing: .05em;
-  margin-bottom: 14px
+  /* margin-bottom: 14px */
+  margin-bottom: 25px;
+  
 }
-
+.cap-p{
+    margin-top:20px !important;
+  }
 .cap-specs {
   display: flex;
   gap: 26px;

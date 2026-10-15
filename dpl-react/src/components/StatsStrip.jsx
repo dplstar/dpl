@@ -1,7 +1,7 @@
 import './StatsStrip.css'
 
 const STATS = [
-  { n: '500K+ L', l: 'Max single-tank capacity' },
+  { n: '5000KL', l: 'Max single-tank capacity' },
   { n: '28', l: 'States & UTs served' },
   { n: '4', l: 'Tank systems in range' },
   { n: '2008', l: 'Incorporated' }

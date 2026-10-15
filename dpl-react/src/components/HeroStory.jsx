@@ -27,7 +27,7 @@ export default function HeroStory() {
           <div className="cap-in">
             <div className="cap-tag"></div>
             <h1>Built to hold.<br />Engineered to last.</h1>
-            <p>A bolted-panel Zincalume Tank, designed, fabricated and installed by DPL Star. Scroll to take it apart.</p>
+            <p className="cap-p">A bolted-panel Zincalume Tank, designed, fabricated and installed by DPL Star. Scroll to take it apart.</p>
           </div>
         </div>
 
@@ -84,7 +84,7 @@ export default function HeroStory() {
         <div className="cap cap-end" data-s=".88" data-e="1.01">
           <div className="cap-in">
             <div className="cap-tag"></div>
-            <h2>From 5,000 to<br />5,00,000 litres.</h2>
+            <h2>From 5KL to<br />5000KL litres.</h2>
             <p>Sized to the site, not the catalogue.</p>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
               <button className="btn btn-p" onClick={() => goTo('products')}>

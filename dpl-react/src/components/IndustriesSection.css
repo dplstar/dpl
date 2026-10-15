@@ -37,11 +37,15 @@
 .ind-name {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 600;
-  font-size: 18px;
-  color: var(--zinc-bright)
+  /* font-size: 18px; */
+  font-size: 1.2rem;
+  /* color: var(--zinc-bright) */
+  color: var(--steel-line)
 }
 
 .ind-copy {
-  font-size: 13.5px;
-  color: var(--muted-dark)
+  /* font-size: 13.5px; */
+  font-size: 1rem;
+  /* color: var(--muted-dark) */
+  color: var(--steel-line)
 }

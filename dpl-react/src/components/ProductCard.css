@@ -17,12 +17,14 @@
 }
 
 .prod-card h3 {
-  font-size: 25px;
+  /* font-size: 25px; */
+  font-size: 2.2rem;
   margin: 16px 0 4px
 }
 
 .prod-tl {
-  font-size: 13.5px;
+  /* font-size: 13.5px; */
+  font-size: 1rem;
   color: var(--muted-light);
   margin-bottom: 14px
 }
@@ -44,7 +46,8 @@
 }
 
 .spec-l {
-  font-size: 10px;
+  /* font-size: 10px; */
+  font-size: .9rem;
   text-transform: uppercase;
   letter-spacing: .05em;
   color: #9a9384;
@@ -53,14 +56,16 @@
 
 .spec-v {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px
+  /* font-size: 12px */
+  font-size: 1rem;
 }
 
 .prod-link {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 13px;
+  /* font-size: 13px; */
+  font-size: 1.2rem;
   font-weight: 600;
   border-bottom: 1px solid var(--ink);
   padding-bottom: 2px

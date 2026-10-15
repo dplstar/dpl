@@ -28,7 +28,7 @@ export default function SignatureProducts({ homeImages = null }) {
           <div className="sec-tag">Storage systems</div>
           <h2 className="foure">Four constructions, one design team</h2>
         </div>
-        <p className="sec-note">Material and coating decide what the tank can hold and for how long — pick by the
+        <p className="sec-note">Material and coating decide what the tank can hold and for how long - pick by the
           liquid, not the price tag.</p>
       </div>
 
