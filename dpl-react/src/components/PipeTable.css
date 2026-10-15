@@ -6,7 +6,8 @@
 
 .ptable th {
   text-align: left;
-  font-size: 10.5px;
+  /* font-size: 10.5px; */
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: .05em;
   color: #9aa5b1;
@@ -18,12 +19,14 @@
 .ptable td {
   padding: 13px 0;
   border-bottom: 1px solid var(--steel-line);
-  font-size: 14px
+  /* font-size: 14px */
+  font-size: 1.2rem;
 }
 
 .ptable td:first-child {
   font-family: 'IBM Plex Mono', monospace;
-  color: var(--zinc-bright)
+  /* color: var(--zinc-bright) */
+  color: var(--steel-line);
 }
 
 .fit-tags {
@@ -36,7 +39,8 @@
 .fit-tag {
   border: 1px solid var(--steel-line);
   padding: 6px 12px;
-  font-size: 12px;
+  /* font-size: 12px; */
+  font-size: 1rem;
   font-family: 'IBM Plex Mono', monospace;
   color: var(--muted-dark)
 }

@@ -67,7 +67,8 @@
 .products-showcase__card .btn,
 .products-showcase__coming {
   padding: 9px 19px;
-  font-size: 12px;
+  /* font-size: 12px; */
+  font-size: 1rem;
 }
 
 .products-showcase__coming {
