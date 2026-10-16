@@ -99,9 +99,11 @@ export const STRS = [
 
 export const PIPES = [
   { code: "IS 1239", use: "Pipes for water and gas applications" },
-  { code: "IS 4270", use: "Water well and casing pipes" },
+  { code: "IS 1161", use: "Structural application pipes" },
   { code: "IS 2713", use: "Steel tubular poles" },
-  { code: "IS 4923", use: "Structural tubes for infrastructure" }
+  { code: "IS 4923", use: "Structural tubes for infrastructure" },
+  { code: "IS 3074", use: "Steel tubes for automotive applications" },
+  { code: "IS 18573", use: "Hollow steel sections" },
 ];
 
 export const FITS = [
