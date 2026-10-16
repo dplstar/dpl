@@ -27,5 +27,68 @@ export const CERTIFICATES = [
     // page proportions, so the image keeps its shape while loading
     width: 595,
     height: 842
-  }
+  },
+  {
+    id: 'iso-14001-2015',
+    title: 'ISO 14001:2015',
+    issuer: 'International Organization for Standardization',
+    summary:
+      'Our commitment to maintaining an effective environmental management system in accordance with ISO 14001:2015 standards.',
+    details: [
+      ['Scheme', 'ISO 14001:2015 Environmental Management System'],
+      ['Enterprise', 'DPL Global Private Limited'],
+      ['Udyam no.', 'UDYAM-UP-29-0001135'],
+      ['Reference', 'ISO_14001_2015_1039477'],
+      ['Pledged on', '27 September 2024']
+    ],
+    thumb: '/certificates/DPL - ISO 14001-2015.jpeg',
+    image: '/certificates/DPL - ISO 14001-2015.jpeg',
+    pdf: '/certificates/DPL - ISO 14001-2015.pdf',
+    pdfSize: '1 MB',
+    // page proportions, so the image keeps its shape while loading
+    width: 595,
+    height: 842
+  },
+  {
+    id: 'iso-45001-2018',
+    title: 'ISO 45001:2018',
+    issuer: 'International Organization for Standardization',
+    summary:
+      'Our commitment to maintaining an effective occupational health and safety management system in accordance with ISO 45001:2018 standards.',
+    details: [
+      ['Scheme', 'ISO 45001:2018 Occupational Health and Safety Management System'],
+      ['Enterprise', 'DPL Global Private Limited'],
+      ['Udyam no.', 'UDYAM-UP-29-0001135'],
+      ['Reference', 'ISO_45001_2018_1039477'],
+      ['Pledged on', '27 September 2024']
+    ],
+    thumb: '/certificates/DPL - ISO 45001-2018.jpeg',
+    image: '/certificates/DPL - ISO 45001-2018.jpeg',
+    pdf: '/certificates/DPL - ISO 45001-2018.pdf',
+    pdfSize: '0.5 MB',
+    // page proportions, so the image keeps its shape while loading
+    width: 595,
+    height: 842
+  },
+  {
+    id: 'iso-9001-2015',
+    title: 'Certificate of Registration',
+    issuer: 'International Organization for Standardization',
+    summary:
+      'Our commitment to maintaining an effective quality management system in accordance with ISO 9001:2015 standards.',
+    details: [
+      ['Scheme', 'ISO 9001:2015 Quality Management System'],
+      ['Enterprise', 'DPL Global Private Limited'],
+      ['Udyam no.', 'UDYAM-UP-29-0001135'],
+      ['Reference', 'ISO_9001_2015_1039477'],
+      ['Pledged on', '27 September 2024']
+    ],
+    thumb: '/certificates/DPL- ISO 9001-2015.jpeg',
+    image: '/certificates/DPL- ISO 9001-2015.jpeg',
+    pdf: '/certificates/DPL- ISO 9001-2015.pdf',
+    pdfSize: '0.5 MB',
+    // page proportions, so the image keeps its shape while loading
+    width: 595,
+    height: 842
+  },
 ]
