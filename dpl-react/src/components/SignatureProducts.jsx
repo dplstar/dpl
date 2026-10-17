@@ -25,11 +25,10 @@ export default function SignatureProducts({ homeImages = null }) {
     <section className="signature-products">
       <div className="sec-headd">
         <div>
-          <div className="sec-tag">Storage systems</div>
-          <h2 className="foure">Four constructions, one design team</h2>
+          <div className="sec-tag">Our Storage Solutions</div>
+          <h2 className="foure">From In-House Design to On-Site Assembly</h2>
         </div>
-        <p className="sec-note">Material and coating decide what the tank can hold and for how long - pick by the
-          liquid, not the price tag.</p>
+        <p className="sec-note">Explore our range of engineered tank solutions for diverse storage requirements.</p>
       </div>
 
       <div className="signature-container">
@@ -47,7 +46,7 @@ export default function SignatureProducts({ homeImages = null }) {
                     <div className="spec-v">{p.cap}</div>
                   </div>
                   <div>
-                    <div className="spec-l">Standard</div>
+                    <div className="spec-l">Standards</div>
                     <div className="spec-v">{p.std}</div>
                   </div>
                 </div>

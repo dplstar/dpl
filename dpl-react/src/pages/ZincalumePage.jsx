@@ -4,8 +4,8 @@ import './ZincalumePage.css'
 
 const BENEFITS = [
   ['Cost-effective', 'Low maintenance requirements and a long operational life reduce total cost of ownership.'],
-  ['Hygienic and easy to clean', 'A smooth surface helps prevent algae growth and biofilm formation, making maintenance simpler.'],
-  ['Ideal for bolted tanks', 'Designed for bolted tank construction, with straightforward assembly and dependable sealing.'],
+  ['Hygienic & Easy Maintainance', 'Smooth surface helps prevent algae growth and biofilm formation, making maintenance simpler.'],
+  ['Fast Installation', 'Designed for bolted tank construction, with straightforward assembly and dependable sealing.'],
   ['100% recyclable', 'A material-led storage solution that is fully recyclable at the end of its service life.'],
   ['Corrosion resistant', 'The Zn-Al-Si alloy coating protects against rust and corrosion for a longer service life.'],
   ['Durable and strong', 'Built to withstand harsh environmental conditions with a claimed life up to four times that of conventional galvanized steel.'],
@@ -18,9 +18,9 @@ const SPECIFICATIONS = [
   ['Diameter', '1.0 m to 25 m'],
   ['Height', 'Up to 10 m'],
   ['Material', 'Zincalume AZ150'],
-  ['Sheet thickness', '0.8 to 1.2 mm'],
-  ['Bolts', 'Hot dipped galvanized'],
-  ['Liner', 'PVC/HDPE (potable grade)'],
+  ['Sheet thickness', '(0.8 to 1.2 mm as per requirement)'],
+  ['Bolts', 'HDG (Hot Dipped Galvanized) '],
+  ['Liner', 'Food Grade'],
 ]
 
 const STANDARDS = [
@@ -82,11 +82,11 @@ export default function ZincalumePage({ active }) {
         <div className="shell za-details">
           <div>
             <div className="sec-tag">Technical details</div>
-            <h2>Configured for the site.</h2>
+            <h2>Configured for the site</h2>
             <ul className="za-config-list">
-              <li>Bolted panels with horizontal and vertical overlaps</li>
-              <li>Internal PVC or EPDM liner for leak-proof storage</li>
-              <li>Conical, dome or flat roof options</li>
+              <li>Bolted panels with horizontal overlaps</li>
+              <li>Algae resistant and leak proof liner</li>
+              <li>Flat roof design for cleaning</li>
               <li>RCC ring-beam foundation</li>
             </ul>
           </div>
