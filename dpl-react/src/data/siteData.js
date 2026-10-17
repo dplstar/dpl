@@ -13,8 +13,8 @@ export const PRODS = [
     imgAlt: "Zincalume Tanks"
   },
   {
-    id: "gi",
-    v: "gi",
+    id: "cb",
+    v: "cb",
     name: "Colour Bonded Tanks",
     tl: "A liner does the sealing, the panel does the holding",
     body: "Galvanised steel panels paired with a PVC or EPDM liner, so the structure and the watertightness are two separate, serviceable jobs.",

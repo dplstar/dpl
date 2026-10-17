@@ -193,6 +193,7 @@
 .za-benefit-grids h3 {
     font-size: 23px;
     margin: 34px 0 10px;
+    color: var(--zinc-bright);
 }
 
 .za-benefit-grids p {

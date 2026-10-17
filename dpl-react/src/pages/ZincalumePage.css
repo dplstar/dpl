@@ -136,6 +136,7 @@
 .za-benefit-grid h3 {
     font-size: 23px;
     margin: 34px 0 10px;
+    color: var(--zinc-bright);
 }
 
 .za-benefit-grid p {
@@ -167,6 +168,7 @@
 .za-benefit-grids h3 {
     font-size: 23px;
     margin: 34px 0 10px;
+    color: var(--zinc-bright);
 }
 
 .za-benefit-grids p {
@@ -217,7 +219,8 @@
     color: var(--muted-light);
     text-transform: uppercase;
     font-family: var(--font-body);
-    font-size: 11px;
+    /* font-size: 11px; */
+    font-size: .9rem;
     letter-spacing: .03em;
 }
 

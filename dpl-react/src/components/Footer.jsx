@@ -24,7 +24,8 @@ const MailIcon = () => (
 
 const PRODUCT_PAGE_MAP = {
   za: 'zincalume',
-  gi: 'gi',
+  // gi: 'gi',
+  cb: 'colour-bonded',
   fbe: 'fusion-bond',
   gfs: 'glass-fused'
 }

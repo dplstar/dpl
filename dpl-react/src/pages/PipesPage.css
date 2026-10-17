@@ -163,9 +163,9 @@
 .pipe-row__specs dd {
   margin: 0;
   /* font-size: 14px; */
-  font-size: 1rem;
+  font-size: .9rem;
   /* color: var(--zinc-bright); */
-  color: var(--muted-dark);
+  color: var(--steel-dark);
 }
 
 /* fittings cross-link */

@@ -1,7 +1,6 @@
 import { useNavigation } from '../NavigationContext.jsx'
 import GITank from '../components/GITank.jsx'
 import './ZincalumePage.css'
-
 const BENEFITS = [
   ['Cost-Effective', 'Economical solution for water storage without compromising on quality or durability.'],
   ['Fast Installation', 'Modular design allows for quick assembly and installation, saving time and labor costs.'],
@@ -31,11 +30,13 @@ const SPECIFICATIONS = [
   ['Material', 'Hot-dip galvanized steel'],
 ]
 
-export default function GITanksPage({ active }) {
+// export default function GITanksPage({ active }) {
+export default function ColourBondedPage({ active }) {
   const { goTo } = useNavigation()
 
   return (
-    <div className={`page${active ? ' active' : ''}`} data-page="gi">
+    // <div className={`page${active ? ' active' : ''}`} data-page="gi">
+    <div className={`page${active ? ' active' : ''}`} data-page="colour-bonded">
       <section className="za-hero">
         <div className="shell za-hero__grid">
           <div>
