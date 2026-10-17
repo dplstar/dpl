@@ -25,11 +25,11 @@ export default function HomePage({ active }) {
       <SignatureProducts homeImages={HOME_PRODUCT_IMAGES} />
       <StrengthsSection
         tag="Why DPL Star"
-        heading="Seven things we don't compromise on"
+        heading="Delivering Quality & Performance"
         items={STRS}
       />
       <ClientsMarquee />
-      <CtaBand heading="Tell us what you need to store." buttonLabel="Start a conversation" target="contact" />
+      <CtaBand heading="You Desire, We Build " buttonLabel="Start a conversation" target="contact" />
       <FactoryLocation />
     </div>
   )

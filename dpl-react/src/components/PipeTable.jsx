@@ -7,8 +7,8 @@ export default function PipeTable() {
       <div className="shell">
         <div className="sec-head">
           <div>
-            <div className="sec-tag">Pipes</div>
-            <h2>Complete piping and fitting solutions</h2>
+            <div className="sec-tag">Pipes for every type </div>
+            <h2>Piping Solutions</h2>
           </div>
         </div>
         <table className="ptable">

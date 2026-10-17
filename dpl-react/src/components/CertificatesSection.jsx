@@ -78,9 +78,9 @@ function CertificateViewer({ cert, onClose }) {
 }
 
 export default function CertificatesSection({
-  tag = 'Certificates',
-  heading = 'Certificates & registrations',
-  note = 'Documents issued to DPL Global Private Limited. Open any certificate to see it in full or download the original.',
+  tag = 'Credentials',
+  heading = 'Key Certifications',
+  note = 'Explore our key certifications, available to view and download.',
   items = CERTIFICATES
 }) {
   const [open, setOpen] = useState(null)

@@ -4,13 +4,13 @@ import './ZincalumePage.css'
 
 const BENEFITS = [
   ['Cost-effective', 'Low maintenance requirements and a long operational life reduce total cost of ownership.'],
-  ['Hygienic & Easy Maintainance', 'Smooth surface helps prevent algae growth and biofilm formation, making maintenance simpler.'],
+  ['Easy Maintainance', 'Smooth surface helps prevent algae growth and biofilm formation, making maintenance simpler.'],
   ['Fast Installation', 'Designed for bolted tank construction, with straightforward assembly and dependable sealing.'],
-  ['100% recyclable', 'A material-led storage solution that is fully recyclable at the end of its service life.'],
+  ['Easily Expandable', 'The pre-fabricated technology helps to easily expand and move the tanks.'],
   ['Corrosion resistant', 'The Zn-Al-Si alloy coating protects against rust and corrosion for a longer service life.'],
   ['Durable and strong', 'Built to withstand harsh environmental conditions with a claimed life up to four times that of conventional galvanized steel.'],
   ['Lightweight', 'Easier to transport and install than conventional steel tanks, reducing installation time and cost.'],
-  ['Heat reflective', 'The reflective surface helps keep stored water cooler in hot climates.'],
+  ['In-house Designed', 'Design and drawings are in-house and vetting can be done from institutions like IIT and BHU.'],
 ]
 
 const SPECIFICATIONS = [

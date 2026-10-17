@@ -170,3 +170,8 @@ img {
 .foure {
   font-size: 46px;
 }
+
+.trademark{
+  font-size: 0.9rem;
+  vertical-align: super;
+}

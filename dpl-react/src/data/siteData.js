@@ -7,7 +7,7 @@ export const PRODS = [
     body: "Bolted panels in aluminium-zinc alloy coated steel, built for sites that need capacity without a long lead time.",
     mat: "Corrugated Zincalume® steel panel",
     coat: "AZ150 aluminium–zinc alloy",
-    cap: "5KL – 5000KL",
+    cap: "5kL – 5000kL",
     std: "AS1397, IS 3370",
     img: "/img/Zincalume Tanks.png",
     imgAlt: "Zincalume Tanks"
@@ -16,11 +16,11 @@ export const PRODS = [
     id: "cb",
     v: "cb",
     name: "Colour Bonded Tanks",
-    tl: "A liner does the sealing, the panel does the holding",
+    tl: "Customized tank with colour options tailored to your requirements.",
     body: "Galvanised steel panels paired with a PVC or EPDM liner, so the structure and the watertightness are two separate, serviceable jobs.",
     mat: "Galvanised iron panel + liner",
     coat: "Hot-dip galvanised, 275 g/m²",
-    cap: "5KL – 5000KL",
+    cap: "5kL – 5000kL",
     std: "IS 3396",
     img: "/img/Color Coded Tank.png",
     imgAlt: "GI Tanks"
@@ -29,11 +29,11 @@ export const PRODS = [
     id: "fbe",
     v: "fbe",
     name: "Fusion Bond Epoxy Tanks",
-    tl: "A modular system for chemically demanding sites",
+    tl: "Modern modular water storage systems for industrial usage",
     body: "Steel panels coated in fusion-bonded epoxy before assembly, giving corrosion resistance that survives the bolting and handling.",
     mat: "FBE-coated steel panel",
     coat: "Fusion-bonded epoxy, 250 µm",
-    cap: "5KL – 5000KL",
+    cap: "5kL – 5000kL",
     std: "AWWA D103",
     img: "/img/Fusion Bond Epoxy Tanks.png",
     imgAlt: "Fusion Bond Epoxy Tanks"
@@ -42,11 +42,11 @@ export const PRODS = [
     id: "gfs",
     v: "gfs",
     name: "Glass Fused Steel Tanks",
-    tl: "Built for decades, not just a warranty period",
+    tl: "Strength of steel with the corrosion resistance of glass",
     body: "Vitreous enamel fused to steel at high temperature on both faces — the closest thing to a maintenance-free tank in the range.",
     mat: "Glass-fused-to-steel panel",
     coat: "Dual-sided vitreous enamel",
-    cap: "5KL – 5000KL",
+    cap: "5kL – 5000kL",
     std: "EN ISO 28765",
     img: "/img/home-product-creative.png",
     imgAlt: "Glass Fused Steel Tanks"
@@ -98,7 +98,11 @@ export const STRS = [
   {
     n: "ISO Certified Processes",
     c: "Management systems audited against recognised international benchmarks."
-  }
+  },
+  {
+    n: "Reliable Stock Availability",
+    c: "Ample inventory to support your requirements with timely dispatch and dependable supply."
+  },
 ];
 
 export const PIPES = [

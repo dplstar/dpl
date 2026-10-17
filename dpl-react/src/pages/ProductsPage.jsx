@@ -18,8 +18,8 @@ export default function ProductsPage({ active }) {
       <section className="products-showcase">
         <div className="shell">
           <div className="products-showcase__heading">
-            <div className="sec-tag">Product range</div>
-            <h1>Our Storage Tanks</h1>
+            <div className="sec-tag">Complete Product Range</div>
+            <h1>Storage Solutions</h1>
             <p>High-quality storage solutions for various industrial and commercial applications.</p>
           </div>
           <div className="products-showcase__grid">

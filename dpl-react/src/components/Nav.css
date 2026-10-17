@@ -180,7 +180,6 @@
   background: 0;
   text-align: left
 }
-
 .nav.is-scrolled #mob-nav a,
 .nav.is-scrolled #mob-nav button {
   color: var(--on-light);

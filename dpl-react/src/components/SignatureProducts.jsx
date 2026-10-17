@@ -13,7 +13,7 @@ const ArrowIcon = () => (
 
 const PRODUCT_PAGE_MAP = {
   za: 'zincalume',
-  gi: 'gi',
+  cb: 'colour-bonded',
   fbe: 'fusion-bond',
   gfs: 'glass-fused'
 }

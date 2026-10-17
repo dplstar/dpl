@@ -1,10 +1,10 @@
 import './AboutStats.css'
 
 const STATS = [
-  { n: '17+', l: 'Years incorporated' },
-  { n: '4', l: 'Tank systems manufactured' },
-  { n: '28', l: 'States & UTs served' },
-  { n: '20+', l: 'Marquee clients on record' }
+  { n: '18+', l: 'Years' },
+  { n: '4', l: 'Units' },
+  { n: '300+', l: 'Workforce' },
+  { n: '500+', l: 'Clients' }
 ]
 
 export default function AboutStats() {

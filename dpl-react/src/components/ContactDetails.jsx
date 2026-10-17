@@ -31,10 +31,15 @@ export default function ContactDetails() {
   return (
     <div>
       <div className="ct-block">
-        <h4>Registered office</h4>
+        <h4>Corporate Office</h4>
         <div className="foot-row">
           <PinIcon />
-          <span>DPL Global Private Limited, A-58, Industrial Area, Sikandrabad, Bulandshahar, Uttar Pradesh – 203205</span>
+          <span>Dadu Dayal House, C-101, RDC, Rajnagar, Ghaziabad - 201002, Uttar Pradesh, India</span>
+        </div>
+        <h4>Factory Address</h4>
+        <div className="foot-row">
+          <PinIcon />
+          <span>DA-58, Industrial Area Sikandrabad, Dist. Bulandshahar, Uttar Pradesh 203205</span>
         </div>
         <div className="foot-row"><PhoneIcon /><span>+91 92056 00125</span></div>
         <div className="foot-row"><MailIcon /><span>info@dplstar.com</span></div>
@@ -50,12 +55,12 @@ export default function ContactDetails() {
         ></iframe>
       </div>
 
-      <div className="ct-block">
+      {/* <div className="ct-block">
         <h4>What happens next</h4>
         <div className="foot-row"><CheckIcon /><span>Engineering reviews your capacity and site inputs</span></div>
         <div className="foot-row"><CheckIcon /><span>You get a tank type and rough spec within 2 working days</span></div>
         <div className="foot-row"><CheckIcon /><span>Site survey scheduled once the spec is confirmed</span></div>
-      </div>
+      </div> */}
     </div>
   )
 }

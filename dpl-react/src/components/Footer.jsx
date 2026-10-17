@@ -75,7 +75,7 @@ export default function Footer() {
 
         <div className="foot-bar">
           <span>&copy; 2026 DPL Star. Powered By <a href="https://gcaffe.org/" target="_blank" rel="noopener noreferrer">G Caffe</a>.</span>
-          <span>Incorporated 2008 · Manufacturing since 2019</span>
+          <span>An <a href="https://www.lbrgroup.co/" target="_blank" rel="noopener noreferrer">LBR Group</a> Company </span>
         </div>
       </div>
     </footer>

@@ -1,6 +1,6 @@
 import PageHero from '../components/PageHero.jsx'
 import AboutStats from '../components/AboutStats.jsx'
-import ProcessSection from '../components/ProcessSection.jsx'
+// import ProcessSection from '../components/ProcessSection.jsx'
 import StrengthsSection from '../components/StrengthsSection.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import CertificatesSection from '../components/CertificatesSection.jsx'
@@ -12,26 +12,33 @@ export default function AboutPage({ active }) {
     <div className={`page${active ? ' active' : ''}`} data-page="about">
       <PageHero
         tag="About DPL Star"
-        heading="A tank manufacturer that keeps its engineering in-house."
-        body="DPL Star is the brand name of DPL Global Private Limited, incorporated on 20 June 2008 and active in liquid storage manufacturing since 30 December 2019. We design, fabricate and install storage systems for clients who can't treat a tank as an afterthought."
+        heading="Engineered for Strength. Backed by Legacy."
+        body={<>
+          DPL Star is the storage solutions brand of DPL Global Private Limited and part of <a href="https://www.lbrgroup.co/"
+      target="_blank"
+      rel="noopener noreferrer">LBR Group</a>. We manufacture Zincalume Tanks, Colour Bonded Tanks, Fusion Bond Epoxy Tanks, and Glass Fused Steel Tanks, alongside ERW steel pipes and tube-well and pump fittings. With in-house engineering and manufacturing capabilities, we deliver dependable solutions for infrastructure, industry, and water storage.</>}
       >
         <AboutStats />
       </PageHero>
 
-      <ProcessSection />
+      {/* <ProcessSection /> */}
 
       <StrengthsSection
         tag="Standards & quality"
-        heading="ISO-certified processes, audited end to end"
-        note="Certification isn't a badge on the homepage — it's the management system that governs every batch that leaves the factory."
+        heading={
+          <>
+            The Strength You Can Trust<sup className="trademark">TM</sup>
+          </>
+        }
+        note="Our trademarked tagline 'The Strength You Can Trust' reflects our commitment to quality, reliability, and lasting performance."
         items={STRS.slice(0, 4)}
       />
 
       <CertificatesSection />
 
-      <CtaBand heading="Want the full capability deck?" buttonLabel="Request the brochure" target="contact" />
-
       <LeadershipSection />
+      <CtaBand heading="Build A Better Tomorrow, Today" buttonLabel="Explore Products" target="products" />
+
     </div>
   )
 }

@@ -12,9 +12,9 @@ export default function FactoryLocation() {
       <div className="shell">
         <div className="factory-location__layout">
           <div className="factory-location__content">
-            <div className="sec-tag">Our factories</div>
-            <h2 id="factory-location-title">Made in Sikandrabad, Uttar Pradesh.</h2>
-            <p>DPL Star is part of the Dadu Group. Our tanks, pipes and fittings come from {count} manufacturing units in the Sikandrabad Industrial Area, serving projects across India.</p>
+            <div className="sec-tag">Our Presence</div>
+            <h2 id="factory-location-title">Made in India. Delivered Pan India.</h2>
+            <p>Explore our footprints: Hover over the map to discover locations where DPL Star tanks have been successfully installed across India.</p>
           </div>
           <div className="factory-location__map">
             <IndiaMap
