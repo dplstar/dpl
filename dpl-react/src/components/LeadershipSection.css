@@ -24,7 +24,7 @@
 
 .leadership__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
   gap: 40px;
 }
 
@@ -33,6 +33,7 @@
   background: #fff;
   border: 1px solid var(--paper-line);
   border-radius: 9px;
+  display: flex;
 }
 
 .leader-card__portrait {
@@ -40,7 +41,7 @@
   min-width: 210px;
   height: 250px;
   object-fit: cover;
-  object-position: center 35%;
+  /* object-position: center 35%; */
   background: #e7e4dd;
 }
 
@@ -115,6 +116,13 @@
   .leadership__grid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+  .leader-card{
+    flex-direction: column;
+  }
+  .leader-card__portrait{
+    margin: 20px 0px 0px 20px;
+    border-radius: 10px;
   }
 }
 
