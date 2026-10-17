@@ -1,7 +1,9 @@
 /* ── Channel partner page ──
    Form uses the contact form field styles; the side panel lists the
    range a partner would sell plus the company's track record. */
-
+.form-email-note{
+  padding-bottom: 10px;
+}
 .cp-form h2 {
   font-size: clamp(26px, 3vw, 34px);
   margin-bottom: 8px;

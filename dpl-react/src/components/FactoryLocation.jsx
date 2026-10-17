@@ -3,6 +3,7 @@ import ManufacturingUnits from './ManufacturingUnits.jsx'
 import { MANUFACTURING_UNITS } from '../data/manufacturingUnits.js'
 import './FactoryLocation.css'
 
+
 export default function FactoryLocation() {
   const count = MANUFACTURING_UNITS.length
 
@@ -22,6 +23,7 @@ export default function FactoryLocation() {
               ariaLabel={`Map of India showing the group's ${count} manufacturing units in Sikandrabad, Uttar Pradesh`}
               tooltip={(state) => state.id === 'UP' ? <><strong>{count} manufacturing units</strong><span className="india-map__tooltip-meta">Sikandrabad, Uttar Pradesh</span></> : <><strong>{state.name}</strong><span className="india-map__tooltip-meta">{state.type}</span></>}
             />
+            
             <span className="factory-location__pin" aria-hidden="true">{count} manufacturing units</span>
           </div>
         </div>

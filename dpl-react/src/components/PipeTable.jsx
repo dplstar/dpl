@@ -27,11 +27,11 @@ export default function PipeTable() {
             ))}
           </tbody>
         </table>
-        <div className="fit-tags">
+        {/* <div className="fit-tags">
           {FITS.map((f) => (
             <span className="fit-tag" key={f}>{f}</span>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   )

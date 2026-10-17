@@ -7,15 +7,15 @@ import './ContactPage.css'
 import './ChannelPartnerPage.css'
 
 const RANGE = [
-  { title: 'Storage tanks', items: 'Zincalume, GI, Fusion Bond Epoxy and Glass Fused Steel', page: 'products' },
-  { title: 'Pipes', items: 'IS 1239, IS 4923, IS 4270 and IS 2713', page: 'pipes' },
-  { title: 'Fittings', items: 'Tube well and pump fittings', page: ['products', 'tube-well-fittings'] }
+  { title: 'Storage Solutions', items: 'Zincalume Tanks (ZA Tanks), Colour Bonded Tanks (CB Tanks), Fusion Bond Epoxy Tanks (FBE Tanks) and Glass Fused Steel Tanks (GFS Tanks)', page: 'products' },
+  { title: 'Piping Solutions', items: 'IS 2713, IS 1239, IS 1161, IS 4923, IS 18573 and IS 3074', page: 'pipes' },
+  { title: 'Other Solutions', items: 'Tube Well and Pump Fittings', page: ['products', 'tube-well-fittings'] }
 ]
 
 const PROOF = [
-  ['1000+', 'tank installations across India'],
-  ['Jal Jeevan Mission', 'tanks supplied for Har Ghar Jal projects'],
-  ['4 manufacturing units', 'in Sikandrabad, Uttar Pradesh']
+  ['1000+', 'Tanks installed pan India'],
+  ['Jal Jeevan Mission', 'Key supplier of tanks, pump and tube well fittings under JJM'],
+  ['Manufacturing Units', 'Four units in Sikandrabad, Uttar Pradesh']
 ]
 
 function PartnerForm() {
@@ -59,7 +59,7 @@ function PartnerForm() {
 
   return (
     <form className="cp-form" onSubmit={handleSubmit}>
-      <h2>Channel partner enquiry</h2>
+      <h2>Enquiry Form</h2>
       <p className="cp-form__intro">Fill in the details below and our team will get in touch with you. Fields marked * are required.</p>
 
       <div className="field">
@@ -107,7 +107,7 @@ function PartnerForm() {
         <textarea id="cp-message" name="message" rows="5" placeholder="Your region, the products you'd like to sell, your current business"></textarea>
       </div>
       <p className="form-email-note">Or email us directly at <a href={`mailto:${PARTNER_EMAIL}`}>{PARTNER_EMAIL}</a></p>
-      <button className="btn btn-p" type="submit">Submit enquiry</button>
+      <button className="btn btn-p" type="submit">Submit</button>
     </form>
   )
 }
@@ -118,9 +118,9 @@ export default function ChannelPartnerPage({ active }) {
   return (
     <div className={`page${active ? ' active' : ''}`} data-page="channel-partner">
       <PageHero
-        tag="Channel partners"
-        heading="Become our channel partner."
-        body="Partner with DPL Star and grow your business with our storage, piping and engineering solutions."
+        tag="Join the Network"
+        heading="Channel Partnership"
+        body="Become our channel partner and be part of a growing network delivering dependable industrial solutions."
       />
 
       <section className="sec">

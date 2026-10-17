@@ -3,11 +3,10 @@
 export const REGISTERING_FOR = ['Channel Partnership', 'Business Query', 'Any Other']
 
 export const HEARD_FROM = [
-  'Bharatiya Vyapar Mahotsav 2026',
   'Google Search',
-  'Referred by someone',
+  'Reference',
   'Advertisement',
-  'Other source'
+  'Other Sources'
 ]
 
 // Enquiries are sent by email (same approach as the contact form)

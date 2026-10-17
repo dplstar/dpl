@@ -122,7 +122,7 @@ export default function Nav() {
             Channel Partner
           </a>
           <button className="btn btn-p nav-cta" onClick={() => handleGo('contact')}>
-            Get a quote <ArrowIcon />
+            Get Quote <ArrowIcon />
           </button>
         </div>
         <button className="nav-burger" id="burger" aria-label="Menu" onClick={() => setMobileOpen((o) => !o)}>

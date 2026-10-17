@@ -31,9 +31,10 @@ export default function CataloguePage({ active }) {
         <div className="shell">
           <header className="cat__head">
             <div>
-              <div className="sec-tag">Resources / Catalogue</div>
-              <h1>{catalogue.title} catalogue</h1>
-              <p>{catalogue.summary} {catalogue.pages.length} pages.</p>
+              <div className="sec-tag">Comprehensive Catalogue</div>
+              <h1>{catalogue.title}</h1>
+              {/* <p>{catalogue.summary} {catalogue.pages.length} pages.</p> */}
+              <p>{catalogue.summary}</p>
             </div>
             <div className="cat__actions">
               <a className="btn btn-p" href={catalogue.pdf} download>

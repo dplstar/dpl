@@ -1,5 +1,4 @@
-// Auto-generated from Census-2011 district boundaries (dissolved to state level),
-// reprojected to Web Mercator and simplified for display. Not for survey use.
+
 
 export interface IndiaStateShape {
   /** Short code, e.g. "MH". Stable key for your own data. */

@@ -22,8 +22,8 @@ const page = (folder, n, alt) => {
 export const CATALOGUES = [
   {
     id: 'zincalume',
-    title: 'Zincalume Tanks',
-    summary: 'Specifications, accessories, installations and clients for DPL Star Zincalume tanks.',
+    title: 'Zincalume Tank',
+    summary: 'Explore our catalogue for detailed insights into specifications, accessories, installation, and project references.',
     pdf: '/catalogue/zincalume/DPL-Star-Zincalume-Tanks-Catalogue.pdf',
     pdfSize: '8.3 MB',
     // Page proportions of the source PDF (665 × 945 pt)

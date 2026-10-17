@@ -6,12 +6,11 @@ export default function IndustriesSection() {
     <section className="sec sec-d">
       <div className="shell">
         <div className="sec-head">
-          <div>
-            <div className="sec-tag">Where these tanks go</div>
-            <h2>Ten sectors, one storage problem</h2>
+          <div className="sec-div">
+            <div className="sec-tag">Serving Diverse Industries</div>
+            <h2>Reliable Water Storage Solutions</h2>
           </div>
-          <p className="sec-note">Every sector stores a different liquid under different rules. The tank changes to
-            match - the engineering discipline doesn't.</p>
+          <p className="sec-note">Offering durable, corrosion-resistant water storage solutions for diverse industries and applications.</p>
         </div>
         <div className="ind-grid">
           {INDS.map((i) => (

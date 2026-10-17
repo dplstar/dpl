@@ -54,16 +54,20 @@ export const PRODS = [
 ];
 
 export const INDS = [
-  { n: "Agriculture & Irrigation", c: "Water and fertiliser storage sized for field-level demand." },
-  { n: "Food Processing", c: "Hygienic tanks built to hold food-safety compliance." },
-  { n: "Oil & Gas", c: "Containment rated for petroleum products and process chemicals." },
-  { n: "Chemical & Pharma", c: "Corrosion-resistant linings for sensitive compounds." },
-  { n: "Municipal Water Storage", c: "City-scale supply reserves for utilities and boards." },
-  { n: "Fire Water Storage", c: "Standby capacity built for rapid draw-down when it matters." },
-  { n: "Grain Storage", c: "Sealed silos that keep out moisture, pests and spoilage." },
-  { n: "Waste Water Treatment", c: "Process and containment tanks for treatment trains." },
-  { n: "Industrial Utilities", c: "Compressed air, steam and process water vessels." },
-  { n: "Infrastructure & EPC", c: "Storage scoped into larger EPC and infrastructure builds." }
+  { n: "Food & Beverages", c: "Water storage tanks for food and beverage processing." },
+  { n: "Distilleries", c: "Industrial water storage tanks for distilleries." },
+  { n: "Agro Industries", c: "Water storage solutions for agro-based industries." },
+  { n: "Chemical Industries", c: "Industrial water storage tanks for chemical plants." },
+  { n: "Residential Societies", c: "Zincalume water tanks for residential complexes." },
+  { n: "Commercial Buildings", c: "Commercial water storage tanks for buildings." },
+  { n: "Educational Institutions", c: "Water storage tanks for schools and colleges." },
+  { n: "Mining Industries", c: " Industrial water storage tanks for mining operations." },
+  { n: "Power Plants & Energy", c: "Water storage solutions for power plants." },
+  { n: "Hospitality Industry", c: "Water storage tanks for hotels and resorts." },
+  { n: "Medical Institutions", c: "Water storage tanks for hospitals and healthcare facilities." },
+  { n: "Aquaculture & Fisheries", c: "Water storage solutions for aquaculture and fisheries." },
+  { n: "FMCG & Hygiene", c: "Water storage tanks for FMCG and hygiene industries." },
+  { n: "Textile Industry", c: "Industrial water storage tanks for textile processing." },
 ];
 
 export const STRS = [
