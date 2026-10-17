@@ -83,7 +83,7 @@ export default function ContactForm() {
       {error && (
         <p style={{ color: '#d32f2f', marginBottom: '12px' }}>{error}</p>
       )}
-      <p className="form-email-note">Or email us directly at <a href="mailto:info@dplstar.com">info@dplstar.com</a>.</p>
+      <p className="form-email-note">Or email us directly at <a href="mailto:info@dplstar.com">info@dplstar.com</a></p>
       <button className="btn btn-p" type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Sending...' : 'Submit enquiry'}
       </button>

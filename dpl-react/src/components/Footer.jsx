@@ -46,11 +46,13 @@ export default function Footer() {
           </div>
 
           <div className="foot-col">
-            <h5>Storage Tanks</h5>
+            <h5>Products</h5>
             {PRODS.map((p) => (
               <a href="#" key={p.id} onClick={(e) => { e.preventDefault(); goTo(PRODUCT_PAGE_MAP[p.id] || 'products') }}>{p.name}</a>
             ))}
+            <a href="/pipes" onClick={(e) => { e.preventDefault(); goTo('pipes') }}>Pipes</a>
             <a href="/catalogue" onClick={(e) => { e.preventDefault(); goTo('catalogue') }}>Catalogue</a>
+            
           </div>
 
           <div className="foot-col">
@@ -58,6 +60,7 @@ export default function Footer() {
             <a href="/home" onClick={(e) => { e.preventDefault(); goTo('home') }}>Home</a>
             <a href="/about" onClick={(e) => { e.preventDefault(); goTo('about') }}>About</a>
             <a href="/contact" onClick={(e) => { e.preventDefault(); goTo('contact') }}>Contact</a>
+            <a href="/channel-partner" onClick={(e) => { e.preventDefault(); goTo('channel-partner') }}>Channel Partner</a>
             <a href="/privacy" onClick={(e) => { e.preventDefault(); goTo('privacy') }}>Privacy Policy</a>
             <a href="/terms-of-use" onClick={(e) => { e.preventDefault(); goTo('terms-of-use') }}>Terms of Use</a>
           </div>
