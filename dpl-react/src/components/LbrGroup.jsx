@@ -14,7 +14,7 @@ export default function LBRGroup() {
           </>
         }
       </h2>
-      <p className="leadership__intro">
+      <p className="lbr-para">
         DPL Star is part of LBR Group, a diversified group of businesses rooted in a legacy of industrial manufacturing dating back to 1967. With expertise spanning steel and tubular products, storage systems, and emerging business verticals, the Group brings together generations of experience, engineering capabilities, and a shared commitment to quality and progress.
       </p>
           </div>

@@ -4,7 +4,9 @@
   border-top: 1px solid var(--paper-line);
   border-left: 1px solid var(--paper-line)
 }
-
+.lbr-para{
+  margin-top: 10px;
+}
 @media(max-width:760px) {
   .proc-row {
     grid-template-columns: 1fr 1fr
