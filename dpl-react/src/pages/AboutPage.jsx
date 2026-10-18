@@ -27,6 +27,7 @@ export default function AboutPage({ active }) {
         tag="Standards & quality"
         heading={
           <>
+          
             The Strength You Can Trust<sup className="trademark">TM</sup>
           </>
         }
