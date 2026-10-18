@@ -6,7 +6,7 @@ import CtaBand from '../components/CtaBand.jsx'
 import CertificatesSection from '../components/CertificatesSection.jsx'
 import LeadershipSection from '../components/LeadershipSection.jsx'
 import { STRS } from '../data/siteData.js'
-
+import LbrGroup from '../components/lbrGroup.jsx'
 export default function AboutPage({ active }) {
   return (
     <div className={`page${active ? ' active' : ''}`} data-page="about">
@@ -22,7 +22,7 @@ export default function AboutPage({ active }) {
       </PageHero>
 
       {/* <ProcessSection /> */}
-
+          <LbrGroup/>
       <StrengthsSection
         tag="Standards & quality"
         heading={

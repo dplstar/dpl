@@ -83,7 +83,7 @@ export default function HeroStory() {
           <div className="cap-in">
             <div className="cap-tag"></div>
             <h2>High Capacity <br/>Storage</h2>
-            <p>The water capacity ranges from 5 KL to 5,000 KL.</p>
+            <p>The water capacity ranges from 5 kL to 5,000 kL.</p>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
               <button className="btn btn-p" onClick={() => goTo('products')}>
                 Explore Storage Solutions <ArrowIcon />

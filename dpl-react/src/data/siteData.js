@@ -177,3 +177,25 @@ export const PROC = [
     c: "Certified crews assemble and commission the tank on your site."
   }
 ];
+export const LBR_GROUP = [
+  {
+    n: "Dadu Pipes",
+    c: "Steel pipes and tubular products for infrastructure and industry."
+  },
+  {
+    n: "Maniram Tubes",
+    c: "The legacy business at the origin of the Group's industrial journey."
+  },
+  {
+    n: "Indo Silos",
+    c: "Grain storage and silo systems."
+  },
+  {
+    n: "Dadu Realty",
+    c: "Real estate and development."
+  },
+  {
+    n: "Lark",
+    c: "Planned mobility and automotive innovation."
+  },
+];

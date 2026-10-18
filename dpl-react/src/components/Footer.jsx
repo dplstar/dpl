@@ -41,8 +41,7 @@ export default function Footer() {
             <a href="/home" onClick={(e) => { e.preventDefault(); goTo('home') }}>
               <img src="/img/DPL-Star-Logo.png" className="colorLogo" width="100px" height="50px" alt="DPL Star" />
             </a>
-            <p style={{ maxWidth: '30ch' }}>DPL Global Private Limited — liquid storage tanks, pipes and tube-well
-              fittings, manufactured in Sikandrabad, Uttar Pradesh.</p>
+            <p style={{ maxWidth: '30ch' }}>DPL Star is key manufacturer of Zincalume Tanks in India, offering long-lasting, corrosion-resistant liquid storage solutions for industrial and infrastructure projects</p>
           </div>
 
           <div className="foot-col">
