@@ -66,7 +66,7 @@ export default function Footer() {
 
           <div className="foot-col">
             <h5>Reach us</h5>
-            <div className="foot-row"><PinIcon /><span>A-58 Sikandrabad UP – 203205</span></div>
+            <div className="foot-row"><PinIcon /><span>A-58, Sikandrabad UP – 203205</span></div>
             <div className="foot-row"><PhoneIcon /><a href="tel:+919205600125">+91 92056 00125</a></div>
             <div className="foot-row"><MailIcon /><a href="mailto:info@dplstar.com">info@dplstar.com</a></div>
           </div>
