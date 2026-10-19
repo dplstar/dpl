@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './LeadershipSection.css'
-import maniramPortrait from '../../../img/Maniram Ji.webp'
-import rajeshPortrait from '../../../img/Rajesh Agarwal, Managing Director, DPL Star.webp'
-import satishPortrait from '../../../img/Satish Agarwal, Chief Executive Officer, DPL Star.webp'
+import maniramPortrait from '/img/Maniram Ji.webp'
+import rajeshPortrait from '/img/Rajesh Agarwal, Managing Director, DPL Star.webp'
+import satishPortrait from '/img/Satish Agarwal, Chief Executive Officer, DPL Star.webp'
 
 const LEADERS = [
   {
