@@ -1,10 +1,10 @@
 import './StatsStrip.css'
 
 const STATS = [
-  { n: '5kL', l: 'Min single tank capacity' },
-  { n: '5000kL', l: 'Max single tank capacity ' },
-  { n: '1000+', l: 'Installations pan-India' },
-  { n: '20,000+ kL ', l: 'liquid stored across nation' }
+  { n: '5kL', l: 'Min Single Tank Capacity' },
+  { n: '5000kL', l: 'Max Single Tank Capacity' },
+  { n: '1000+', l: 'Installations Pan-India' },
+  { n: '20,000+ kL ', l: 'Liquid Stored Across Nation' }
 ]
 
 export default function StatsStrip() {
