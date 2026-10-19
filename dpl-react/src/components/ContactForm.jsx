@@ -55,9 +55,14 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div id="ct-ok" style={{ display: 'block' }}>
-        <h3 style={{ marginBottom: '10px' }}>Message received.</h3>
-        <p style={{ color: 'var(--muted-light)' }}>Thank you. Your enquiry has been submitted successfully.</p>
+      <div id="ct-ok" role="status" aria-live="polite" style={{ display: 'block' }}>
+        <h3 style={{ marginBottom: '10px' }}>Thank you for contacting DPL Star.</h3>
+        <p style={{ color: 'var(--muted-light)' }}>We've received your inquiry and a member of our team will be in touch soon.</p>
+        <p style={{ color: 'var(--muted-light)' }}>
+          Best regards<br />
+          Team<br />
+          DPL Star
+        </p>
       </div>
     )
   }
