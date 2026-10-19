@@ -53,7 +53,7 @@ img {
 .shell {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0px 0px 0 !important
+  padding: 0px 32px 0 !important
 }
 
 @media(max-width:640px) {
