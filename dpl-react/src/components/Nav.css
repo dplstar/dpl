@@ -15,7 +15,16 @@
 }
 
 .nav-logo {
+  width: auto;
+  height: 50px;
+  max-width: 140px;
+  object-fit: contain;
   transition: filter .2s ease
+}
+
+.nav.is-scrolled .nav-logo {
+  height: 58px;
+  max-width: 160px
 }
 
 .nav-row {

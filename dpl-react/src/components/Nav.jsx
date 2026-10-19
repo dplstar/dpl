@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigation } from '../NavigationContext.jsx'
 import { PIPES_RANGE } from '../data/pipes.js'
 import './Nav.css'
@@ -33,12 +33,23 @@ const CloseIcon = () => (
 
 export default function Nav() {
   const { page, goTo } = useNavigation()
+  const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   // which dropdown is open: 'tanks', 'pipes' or null
   const [openMenu, setOpenMenu] = useState(null)
   const tanksOpen = openMenu === 'tanks'
   const pipesOpen = openMenu === 'pipes'
   const toggleMenu = (name) => setOpenMenu((open) => (open === name ? null : name))
+
+  useEffect(() => {
+    function updateScrollState() {
+      setIsScrolled(window.scrollY > 8)
+    }
+
+    updateScrollState()
+    window.addEventListener('scroll', updateScrollState, { passive: true })
+    return () => window.removeEventListener('scroll', updateScrollState)
+  }, [])
 
   function handleGo(id, anchor) {
     setMobileOpen(false)
@@ -47,10 +58,14 @@ export default function Nav() {
   }
 
   return (
-    <nav className="nav">
+    <nav className={`nav${isScrolled ? ' is-scrolled' : ''}`}>
       <div className="shell nav-row">
         <a href="#" onClick={(e) => { e.preventDefault(); handleGo('home') }}>
-          <img src="/img/DPL-Star-Logo.png" className="colorLogo" width="100px" height="50px" alt="DPL Star" />
+          <img
+            src={isScrolled ? '/img/DPL%20Star%20Private%20Limited.png' : '/img/DPL-Star-Logo.png'}
+            className="nav-logo"
+            alt="DPL Star Private Limited"
+          />
         </a>
         <div className="nav-links">
           {LINKS.map((l) => (
