@@ -1,7 +1,8 @@
 .story {
   position: relative;
   height: 580vh;
-  background: var(--ink)
+ /* background: var(--ink)*/
+ background: linear-gradient(225deg, #F5F6F4 0%, #DDE3E7 100%);
 }
 
 .story-pin {
@@ -35,7 +36,7 @@
   position: absolute;
   z-index: 2;
   opacity: 0;
-  color: var(--on-dark);
+  color: #0c1017;
   will-change: opacity;
   pointer-events: none
 }
@@ -97,12 +98,11 @@
 }
 
 .cap p {
-  color: #fff;
+  color: #0c1017;
   font-size: 15.5px;
   max-width: 38ch;
   margin: 0
-  text-align: left;
-
+      text-align: left !important;
 }
 
 .cap-end p {
@@ -132,12 +132,12 @@
 .cap-specs dt {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 17px;
-  color: var(--zinc-bright)
+  color: #0c1017;
 }
 
 .cap-specs dd {
   font-size: 14px;
-  color: #fff;
+  color: #0c1017;
   margin: 2px 0 0
 }
 
