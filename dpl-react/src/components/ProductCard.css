@@ -57,7 +57,7 @@
 .spec-v {
   font-family: 'IBM Plex Mono', monospace;
   /* font-size: 12px */
-  font-size: 1rem;
+  font-size: .8rem;
 }
 
 .prod-link {
