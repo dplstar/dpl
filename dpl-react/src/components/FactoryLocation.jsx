@@ -67,8 +67,8 @@ export default function FactoryLocation() {
             />
 
             <ul className="factory-location__legend">
-              <li><i className="is-factory" />Manufacturing units</li>
-              <li><i className="is-site" />Installation sites</li>
+              <li><i className="is-factory" />Manufacturing Units</li>
+              <li><i className="is-site" />Installation Sites</li>
             </ul>
           </div>
         </div>
