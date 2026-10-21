@@ -33,8 +33,8 @@ export default function PipesRange() {
     <section className="products-showcase pipes-index" id="pipes-range">
       <div className="shell">
         <div className="products-showcase__heading">
-          <div className="sec-tag">Product range</div>
-          <h2 className="pipes-range__title">Our Pipes</h2>
+          <div className="sec-tag">Pipes For Every Type</div>
+          <h2 className="pipes-range__title">Piping Solutions</h2>
           <p>Pipes for water, gas and structural applications.</p>
         </div>
 
