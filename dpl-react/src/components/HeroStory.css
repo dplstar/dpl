@@ -129,8 +129,12 @@
   gap: 26px;
   margin-top: 20px;
   padding-top: 14px;
-  border-top: 1px solid var(--steel-line)
-}
+  /* border-top: 1px solid var(--steel-line); */
+  background: var(--signal);
+  max-width: 37ch;
+  padding: 10px;
+  border-radius: 10px;
+ }
 
 .cap-specs dt {
   font-family: 'IBM Plex Mono', monospace;
