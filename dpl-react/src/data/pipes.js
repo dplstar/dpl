@@ -78,7 +78,7 @@ export const PIPES_RANGE = [
    {
     id: 'is-18573',
     code: 'IS 18573',
-    title: 'Hollow steel sections',
+    title: ' Hollow steel sections',
     standard: 'IS 18573: Hollow steel sections for structural use',
     summary:
       'High-strength steel tubes designed for use in automotive manufacturing and related industries.',
