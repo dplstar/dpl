@@ -73,6 +73,48 @@
   paint-order: stroke fill;
 }
 
+/* ---------- markers ---------- */
+
+.india-map__marker {
+  --marker-fill: var(--map-marker, #0c1017);
+  --marker-ring: var(--map-marker-ring, #ffffff);
+  --marker-r: 6px;
+  cursor: pointer;
+  outline: none;
+}
+
+.india-map__marker-hit {
+  fill: transparent;
+}
+
+.india-map__marker-dot {
+  r: var(--marker-r);
+  fill: var(--marker-fill);
+  stroke: var(--marker-ring);
+  stroke-width: 2.5px;
+  transition: r 140ms ease;
+}
+
+.india-map__marker:hover .india-map__marker-dot,
+.india-map__marker.is-active .india-map__marker-dot,
+.india-map__marker:focus-visible .india-map__marker-dot {
+  r: calc(var(--marker-r) * 1.5);
+}
+
+.india-map__marker:focus-visible .india-map__marker-dot {
+  stroke: var(--map-focus);
+}
+
+.india-map__marker-label {
+  fill: var(--map-label);
+  font-size: 16px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-anchor: middle;
+  dominant-baseline: auto;
+  pointer-events: none;
+}
+
 /* ---------- labels ---------- */
 
 .india-map__labels {
@@ -158,6 +200,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .india-map__marker-dot,
   .india-map__state {
     transition: none;
   }

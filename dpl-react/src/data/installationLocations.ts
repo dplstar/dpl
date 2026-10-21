@@ -37,8 +37,9 @@ export const INSTALLATION_LOCATIONS = [
   { name: 'Kinnaur Kailas', state: 'HP', lat: 31.60, lng: 78.35 },
   { name: 'Nagaland', state: 'NL', lat: 25.67, lng: 94.11 },
   { name: 'Dadra & Nagar Haveli', state: 'DH', lat: 20.27, lng: 73.02 },
-  // Outside India (no state shape on the map)
-  { name: 'Bhutan', state: null, lat: 27.47, lng: 89.64, outside: true },
+  // Outside India (no state shape on the map). Placed at the centre of the
+  // country, not Thimphu, so the pin sits in the gap between Sikkim and Arunachal.
+  { name: 'Bhutan', state: null, lat: 27.42, lng: 90.43, outside: true },
 ]
 
 // state id -> number of installation locations (use as `values` for shading)

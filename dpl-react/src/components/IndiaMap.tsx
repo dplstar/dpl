@@ -15,11 +15,25 @@ import {
   INDIA_VIEWBOX,
   type IndiaStateShape,
 } from '../data/indiaStates';
+import { project } from '../data/mapMarkers';
 import './IndiaMap.css';
 
 /* ------------------------------------------------------------------ *
  * Types
  * ------------------------------------------------------------------ */
+
+export interface IndiaMapMarker {
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  /** Second line of the default tooltip. */
+  meta?: string;
+  /** Styling hook: adds `india-map__marker--{variant}`. */
+  variant?: string;
+  /** Optional text drawn next to the pin (e.g. a place with no state shape). */
+  label?: string;
+}
 
 export interface IndiaMapProps {
   /**
@@ -43,6 +57,10 @@ export interface IndiaMapProps {
   tooltip?: (state: IndiaStateShape, value: number | undefined) => ReactNode;
   /** Number formatter used by the default tooltip and legend. */
   formatValue?: (value: number) => string;
+  /** Point markers placed by lat/lng. Later markers draw on top. */
+  markers?: IndiaMapMarker[];
+  /** Custom tooltip for a marker. */
+  markerTooltip?: (marker: IndiaMapMarker) => ReactNode;
   /** Show the colour legend (only meaningful with `values`). */
   legend?: boolean;
   /** Wheel-zoom and drag-to-pan. */
@@ -104,6 +122,8 @@ export default function IndiaMap({
   onHover,
   labels = 'none',
   tooltip,
+  markers,
+  markerTooltip,
   formatValue = (v) => new Intl.NumberFormat('en-IN').format(v),
   legend = false,
   zoomable = false,
@@ -113,6 +133,7 @@ export default function IndiaMap({
 }: IndiaMapProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<IndiaStateShape | null>(null);
+  const [hoveredMarker, setHoveredMarker] = useState<IndiaMapMarker | null>(null);
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const [innerSelected, setInnerSelected] = useState<string[]>([]);
   const [view, setView] = useState({ x: 0, y: 0, k: 1 });
@@ -305,8 +326,35 @@ export default function IndiaMap({
     INDIA_VIEWBOX.height / view.k
   }`;
 
+  /* ---- markers ---- */
+  const placedMarkers = useMemo(
+    () => (markers ?? []).map((m) => {
+      const [x, y] = project(m.lat, m.lng);
+      return { m, x, y };
+    }),
+    [markers],
+  );
+
+  // Keyboard focus has no pointer, so put the tooltip at the marker itself.
+  const focusMarker = useCallback(
+    (m: IndiaMapMarker, x: number, y: number) => {
+      const box = wrapRef.current?.getBoundingClientRect();
+      if (box) {
+        const sx = box.width / (INDIA_VIEWBOX.width / view.k);
+        const sy = box.height / (INDIA_VIEWBOX.height / view.k);
+        setPointer({ x: (x - view.x) * sx, y: (y - view.y) * sy });
+      }
+      setHoveredMarker(m);
+    },
+    [view],
+  );
+
   /* ---- tooltip content ---- */
-  const tipNode: ReactNode = hovered
+  const tipNode: ReactNode = hoveredMarker
+    ? markerTooltip
+      ? markerTooltip(hoveredMarker)
+      : <><strong>{hoveredMarker.name}</strong>{hoveredMarker.meta && <span className="india-map__tooltip-meta">{hoveredMarker.meta}</span>}</>
+    : hovered
     ? tooltip
       ? tooltip(hovered, valueOf(hovered))
       : defaultTooltip(hovered, valueOf(hovered), formatValue)
@@ -320,7 +368,7 @@ export default function IndiaMap({
         .join(' ')}
       style={style}
       onPointerMove={movePointer}
-      onPointerLeave={handleLeave}
+      onPointerLeave={() => { handleLeave(); setHoveredMarker(null); }}
     >
       <svg
         className="india-map__svg"
@@ -385,6 +433,35 @@ export default function IndiaMap({
               >
                 {labels === 'abbr' ? s.id : s.name}
               </text>
+            ))}
+          </g>
+        )}
+
+        {placedMarkers.length > 0 && (
+          <g className="india-map__markers">
+            {placedMarkers.map(({ m, x, y }) => (
+              <g
+                key={m.id}
+                className={[
+                  'india-map__marker',
+                  m.variant ? `india-map__marker--${m.variant}` : '',
+                  hoveredMarker?.id === m.id ? 'is-active' : '',
+                ].filter(Boolean).join(' ')}
+                transform={`translate(${x} ${y}) scale(${1 / view.k})`}
+                tabIndex={0}
+                role="img"
+                aria-label={m.meta ? `${m.name}, ${m.meta}` : m.name}
+                onPointerEnter={() => setHoveredMarker(m)}
+                onPointerLeave={() => setHoveredMarker(null)}
+                onFocus={() => focusMarker(m, x, y)}
+                onBlur={() => setHoveredMarker(null)}
+              >
+                <circle className="india-map__marker-hit" r={14} />
+                <circle className="india-map__marker-dot" />
+                {m.label && (
+                  <text className="india-map__marker-label" x={0} y={-16}>{m.label}</text>
+                )}
+              </g>
             ))}
           </g>
         )}

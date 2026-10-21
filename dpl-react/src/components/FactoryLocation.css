@@ -29,6 +29,7 @@
 }
 
 .factory-location__map {
+  --site-blue: #1d4ed8;
   --map-land: #d9d5c9;
   --map-stroke: var(--paper);
   --map-selected: var(--signal);
@@ -40,31 +41,74 @@
   width: 100%;
 }
 
-.factory-location__pin {
-  position: absolute;
-  left: 43%;
-  top: 35%;
-  transform: translate(-50%, -100%);
-  background: var(--ink);
-  color: var(--zinc-bright);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  line-height: 1;
-  padding: 8px 10px;
-  white-space: nowrap;
+.factory-location__map .india-map {
+  --map-marker: var(--ink);
+  --map-marker-ring: var(--paper);
+  --map-tooltip-bg: var(--ink);
+  --map-tooltip-fg: var(--zinc-bright);
 }
 
-.factory-location__pin::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -6px;
+.factory-location__map .india-map__marker--factory {
+  --map-marker: var(--signal);
+  --map-marker-ring: var(--ink);
+  --marker-r: 11px;
+}
+
+.factory-location__map .india-map__marker--factory .india-map__marker-dot {
+  fill: var(--signal);
+  stroke: var(--ink);
+}
+
+.factory-location__map .india-map__marker--site .india-map__marker-dot {
+  --marker-r: 7px;
+  fill: var(--site-blue);
+}
+
+.factory-location__map .india-map__marker-label {
+  font-family: 'IBM Plex Mono', monospace;
+  fill: var(--muted-light);
+}
+
+.factory-location__map .india-map__tooltip {
+  border-radius: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+}
+
+.factory-location__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted-light);
+}
+
+.factory-location__legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.factory-location__legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.factory-location__legend .is-factory {
   width: 12px;
   height: 12px;
   background: var(--signal);
   border: 2px solid var(--ink);
-  border-radius: 50%;
-  transform: translateX(-50%);
+}
+
+.factory-location__legend .is-site {
+  background: var(--site-blue);
+  box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--paper-line);
 }
 
 @media (max-width: 760px) {

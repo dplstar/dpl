@@ -46,7 +46,7 @@ export default function ColourBondedPage({ active }) {
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
           <div className="za-hero__tank" aria-label="Interactive 3D GI storage tank">
-            <GITank diameter={10} courses={6} />
+            <GITank diameter={10} courses={6} color="#a01d18" />
           </div>
         </div>
       </section>

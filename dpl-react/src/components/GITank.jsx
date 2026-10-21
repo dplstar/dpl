@@ -587,6 +587,7 @@ export default function GITank({
   autoRotate = true,
   rotateSpeed = 0.55,
   interactive = true,
+  color = null, // colour-bonded paint, e.g. "#b3261e"; null = bare galvanised
   className,
   style,
 }) {
@@ -677,7 +678,7 @@ export default function GITank({
       renderer.render(scene, camera);
     });
 
-    ctx.current = { renderer, scene, camera, controls, sun, M, tank: null, reduced, framed: false };
+    ctx.current = { renderer, scene, camera, controls, sun, M, tex, tank: null, reduced, framed: false };
 
     return () => {
       renderer.setAnimationLoop(null);
@@ -729,6 +730,42 @@ export default function GITank({
     c.sun.shadow.camera.updateProjectionMatrix();
     c.controls.update();
   }, [diameter, courses]);
+
+  // Colour-bonded finish: a smooth factory-applied coat replaces the spangle on
+  // the shell, roof and trim. Bolts, ladders, fittings and plinth stay as they are.
+  useEffect(() => {
+    const c = ctx.current;
+    if (!c) return;
+    const { M, tex } = c;
+    // panels from different coil batches differ by a hair in lightness
+    const shade = [0, -0.025, 0.02, -0.045];
+    M.panels.forEach((m, i) => {
+      if (color) {
+        m.map = null;
+        m.color.copy(lin(new THREE.Color(color).offsetHSL(0, 0, shade[i])));
+        m.metalness = 0.15;
+        m.roughness = 0.42 + i * 0.03;
+      } else {
+        m.map = tex[i];
+        m.color.setRGB(1, 1, 1);
+        m.metalness = [0.72, 0.68, 0.76, 0.55][i];
+        m.roughness = [0.42, 0.47, 0.37, 0.58][i];
+      }
+      m.needsUpdate = true;
+    });
+    if (color) {
+      M.trim.map = null;
+      M.trim.color.copy(lin(new THREE.Color(color).offsetHSL(0, 0, -0.08)));
+      M.trim.metalness = 0.2;
+      M.trim.roughness = 0.4;
+    } else {
+      M.trim.map = tex[1];
+      M.trim.color.copy(lin(new THREE.Color(0xaab0b5)));
+      M.trim.metalness = 0.75;
+      M.trim.roughness = 0.4;
+    }
+    M.trim.needsUpdate = true;
+  }, [color]);
 
   useEffect(() => {
     const c = ctx.current;
