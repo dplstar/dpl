@@ -101,9 +101,12 @@
   color: #0c1017;
   font-size: 15.5px;
   max-width: 38ch;
+  padding:10px;
+  border-radius:10px;
   margin: 0
       text-align: left !important;
-}
+      background-color: #e8a33d;
+    }
 
 .cap-end p {
   margin: 0 auto 28px
@@ -133,12 +136,14 @@
   font-family: 'IBM Plex Mono', monospace;
   font-size: 17px;
   color: #0c1017;
+  font-weight: 600;
 }
 
 .cap-specs dd {
   font-size: 14px;
   color: #0c1017;
   margin: 2px 0 0
+  
 }
 
 .scroll-cue {
