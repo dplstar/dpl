@@ -10,6 +10,8 @@
   .prod-grid {
     grid-template-columns: 1fr
   }
+  .spec-l {
+  font-size: .8rem;}
 }
 
 .prod-card {
@@ -47,7 +49,7 @@
 
 .spec-l {
   /* font-size: 10px; */
-  font-size: .9rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: .05em;
   color: #9a9384;
