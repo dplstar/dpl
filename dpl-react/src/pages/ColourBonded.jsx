@@ -11,23 +11,17 @@ const BENEFITS = [
 ]
 
 const APPLICATIONS = [
-  'General Water Storage',
-  'Raw Water Reserves',
-  'Fire Protection Systems',
-  'Agricultural Irrigation',
-  'Construction Site Supply',
-  'Industrial Process Water',
-  'Commercial Facilities',
-  'Residential Complexes',
+  'Manufacturing & Industrial Plants',
+  'Commercial Buildings & Malls',
+  'Firefighting & Safety Infrastructure',
+  'Municipal & JJM Water Supply',
 ]
 
 const SPECIFICATIONS = [
-  ['Capacity range', '10 - 2,000 KL'],
-  ['Diameter range', '2 - 30 m'],
-  ['Maximum height', 'Up to 9.76 m'],
-  ['Panel thickness', '1.2 - 3.0 mm'],
-  ['Zinc coating grade', 'Z275 / Z350'],
-  ['Material', 'Hot-dip galvanized steel'],
+  ['Capacity range', '5 kL - 5,000 kL'],
+  ['Zero-Leak ', 'Food-grade internal liners '],
+  ['Quick installation', 'Modular bolted construction'],
+  ['Material', '55% Aluminum-Zinc alloy steel'],
 ]
 
 // export default function GITanksPage({ active }) {
@@ -42,7 +36,7 @@ export default function ColourBondedPage({ active }) {
           <div>
             <div className="sec-tag">Storage tanks /  Colour-Bonded</div>
             <h1>Colour Bonded Tanks</h1>
-            <p>At DPL Star, we combine heavy-duty industrial engineering with customizable visual appeal. Our Colour-Coated Zincalume Storage Tanks deliver the legendary durability of 55% Aluminum-Zinc alloy steel, enhanced with vibrant, factory-bonded exterior finishes.</p>
+            <p>Whether you need to match your corporate brand identity, integrate seamlessly into an architectural layout, or functional color-code your plant’s water lines, DPL Star provides tailored storage solutions that elevate the visual standard of your facility.</p>
             <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
           </div>
           <div className="za-hero__tank" aria-label="Interactive 3D GI storage tank">
@@ -54,8 +48,8 @@ export default function ColourBondedPage({ active }) {
       <section className="sec za-intro">
         <div className="shell za-copy">
           <div className="sec-tag">The material</div>
-          <h2>Colour Coated Tanks by DPL Star</h2>
-          <p>At DPL Star, we combine heavy-duty industrial engineering with customizable visual appeal. Our Colour-Coated Zincalume Storage Tanks deliver the legendary durability of 55% Aluminum-Zinc alloy steel, enhanced with vibrant, factory-bonded exterior finishes.
+          <h2>Colour Bonded Tanks by DPL Star</h2>
+          <p>At DPL Star, we combine heavy-duty industrial engineering with customizable visual appeal. Our Colour-Bonded Zincalume Storage Tanks deliver the legendary durability of 55% Aluminum-Zinc alloy steel, enhanced with vibrant, factory-bonded exterior finishes.
 Whether you need to match your corporate brand identity, integrate seamlessly into an architectural layout, or functional Colour-code your plant’s water lines, DPL Star provides tailored storage solutions that elevate the visual standard of your facility.
 </p>
         </div>
@@ -96,17 +90,29 @@ Whether you need to match your corporate brand identity, integrate seamlessly in
 
       <section className="sec za-standards">
         <div className="shell">
-          <div className="sec-tag">Coating</div>
-          <h2>Hot-dip galvanized coating for superior corrosion resistance</h2>
-          <p className="sec-note">Zinc coating grade options are available to match the project environment and service life requirement.</p>
+          {/* <div className="sec-tag">Our Core Color Range</div> */}
+          <h2>Explore Our Core Color Range</h2>
+          <p className="sec-note">Choose from our signature high-durability palette, or request a completely custom shade tailored to your exact project specs.</p>
           <div className="za-standard-grid">
             <article>
-              <h3>Z275</h3>
-              <p>Suitable for standard water storage conditions with reliable corrosion protection.</p>
+              <h3>Classic Original Silver</h3>
+              <p><b>The Metallic Benchmark:</b> Natural, high-reflectivity Zincalume alloy finish.</p>
+              <p><b>Best For:</b> Standard industrial water storage, raw material processing, and outdoor utilities where a timeless industrial steel appearance is preferred.</p>
             </article>
             <article>
-              <h3>Z350</h3>
-              <p>Higher zinc mass for more demanding environments and extended service life.</p>
+              <h3>Fire Protection Red</h3>
+              <p><b>High Visibility Safety Standard:</b> Instantly recognized and compliant with emergency protocols.</p>
+              <p><b>Best For:</b> Dedicated firewater reservoirs, sprinkler feed systems, and commercial safety compliance setups.</p>
+            </article>
+            <article>
+              <h3>Ocean Blue</h3>
+              <p><b>Clean & Hygienic Identity:</b> Represents purity and clarity.</p>
+              <p><b>Best For:</b> Potable water storage, drinking water supply systems (JJM-compliant applications), and residential or municipal storage.</p>
+            </article>
+            <article>
+              <h3>Eco Green</h3>
+              <p><b>Blend with Nature:</b> Designed to integrate naturally into eco-parks, agricultural fields, and landscaped commercial facilities.</p>
+              <p><b>Best For:</b> Rainwater harvesting tanks, effluent treatment plant (ETP/STP) water storage, and agricultural irrigation.</p>
             </article>
           </div>
         </div>

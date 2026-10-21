@@ -5,7 +5,7 @@ import { PIPES_RANGE } from '../data/pipes.js'
 import './ZincalumePage.css'
 import './ProductsPage.css'
 import './PipesPage.css'
-
+import PipesRange from '../components/PipesRange.jsx'
 // Product photo with a graceful fallback if the file is missing
 function PipeImage({ pipe }) {
   const [failed, setFailed] = useState(false)
@@ -92,7 +92,7 @@ export default function PipesPage({ active }) {
         </div>
       </section>
 
-      <section className="products-showcase pipes-index" id="pipes-range">
+      {/* <section className="products-showcase pipes-index" id="pipes-range">
         <div className="shell">
           <div className="products-showcase__heading">
             <div className="sec-tag">Product range</div>
@@ -115,8 +115,8 @@ export default function PipesPage({ active }) {
             ))}
           </div>
         </div>
-      </section>
-
+      </section> */}
+  <PipesRange/>
       <section className="sec sec-d pipes-detail" aria-label="Pipe specifications">
         <div className="shell">
           <div className="sec-head">

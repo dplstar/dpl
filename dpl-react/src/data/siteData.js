@@ -7,8 +7,8 @@ export const PRODS = [
     body: "Bolted panels in aluminium-zinc alloy coated steel, built for sites that need capacity without a long lead time.",
     mat: "Corrugated Zincalume® steel panel",
     coat: "AZ150 aluminium–zinc alloy",
-    cap: "5kL – 5000kL",
-    std: "AS1397, IS 3370",
+    cap: "5 kL – 5000 kL",
+    std: "AS 1397, IS 3370",
     img: "/img/Zincalume Tanks.png",
     imgAlt: "Zincalume Tanks"
   },
@@ -20,8 +20,8 @@ export const PRODS = [
     body: "Galvanised steel panels paired with a PVC or EPDM liner, so the structure and the watertightness are two separate, serviceable jobs.",
     mat: "Galvanised iron panel + liner",
     coat: "Hot-dip galvanised, 275 g/m²",
-    cap: "5kL – 5000kL",
-    std: "IS 3396",
+    cap: "5 kL – 5000 kL",
+    std: "AS 1397, IS 3370",
     img: "/img/Color Coded Tank.png",
     imgAlt: "GI Tanks"
   },
@@ -33,8 +33,8 @@ export const PRODS = [
     body: "Steel panels coated in fusion-bonded epoxy before assembly, giving corrosion resistance that survives the bolting and handling.",
     mat: "FBE-coated steel panel",
     coat: "Fusion-bonded epoxy, 250 µm",
-    cap: "5kL – 5000kL",
-    std: "AWWA D103",
+    cap: "5 kL – 5000 kL",
+    std: "AS 1397, IS 3370",
     img: "/img/Fusion Bond Epoxy Tanks.png",
     imgAlt: "Fusion Bond Epoxy Tanks"
   },
@@ -46,8 +46,8 @@ export const PRODS = [
     body: "Vitreous enamel fused to steel at high temperature on both faces — the closest thing to a maintenance-free tank in the range.",
     mat: "Glass-fused-to-steel panel",
     coat: "Dual-sided vitreous enamel",
-    cap: "5kL – 5000kL",
-    std: "EN ISO 28765",
+    cap: "5 kL – 500 kL",
+    std: "AS 1397, IS 3370",
     img: "/img/home-product-creative.png",
     imgAlt: "Glass Fused Steel Tanks"
   }

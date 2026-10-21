@@ -1,7 +1,8 @@
-import PipeTable from '../components/PipeTable.jsx'
+// import PipeTable from '../components/PipeTable.jsx'
 import { useNavigation } from '../NavigationContext.jsx'
 import { PRODS } from '../data/siteData.js'
 import './ProductsPage.css'
+import PipesRange from '../components/PipesRange.jsx'
 
 const PRODUCT_PAGE_MAP = {
   za: 'zincalume',
@@ -38,7 +39,8 @@ export default function ProductsPage({ active }) {
         </div>
       </section>
 
-      <PipeTable />
+      {/* <PipeTable /> */}
+      <PipesRange/>
     </div>
   )
 }

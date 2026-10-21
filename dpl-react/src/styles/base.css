@@ -95,7 +95,8 @@ img {
 }
 
 .btn-g {
-  background: transparent;
+  /* background: transparent; */
+  background: var(--ink);
   color: var(--zinc-bright);
   border: 1px solid var(--steel-line)
 }

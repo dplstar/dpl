@@ -22,7 +22,9 @@ export default function AboutPage({ active }) {
       </PageHero>
 
       {/* <ProcessSection /> */}
+      <div id="lbr-group" className="about-anchor">
          <LbrGroup/> 
+      </div>
       <StrengthsSection
         tag="Standards & quality"
         heading={
@@ -34,10 +36,14 @@ export default function AboutPage({ active }) {
         note="Our trademarked tagline 'The Strength You Can Trust' reflects our commitment to quality, reliability, and lasting performance."
         items={STRS.slice(0, 4)}
       />
+      <div id="certifications" className="about-anchor">
 
       <CertificatesSection />
+      </div>
+        <div id="leadership" className="about-anchor">
 
       <LeadershipSection />
+        </div>
       <CtaBand heading="Build A Better Tomorrow, Today" buttonLabel="Explore Products" target="products" />
 
     </div>
