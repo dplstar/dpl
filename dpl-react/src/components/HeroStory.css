@@ -56,7 +56,9 @@
 .cap-hero h1 {
   font-size: clamp(54px, 9vw, 120px);
   line-height: .9;
-  letter-spacing: -.01em
+  letter-spacing: -.01em;
+  color: white;
+    -webkit-text-stroke: 1px #000000;
 }
 
 .cap-hero p {
@@ -90,7 +92,10 @@
 
 .cap h2 {
   font-size: clamp(36px, 5vw, 68px);
-  margin-bottom: 14px
+  margin-bottom: 14px;
+  color: white;
+    -webkit-text-stroke: 1px #000000;
+ 
 }
 
 .cap-end h2 {
@@ -103,7 +108,7 @@
   max-width: 38ch;
   padding:10px;
   border-radius:10px;
-  margin: 0
+  margin: 0;
       text-align: left !important;
       background-color: #e8a33d;
     }
@@ -129,7 +134,6 @@
   gap: 26px;
   margin-top: 20px;
   padding-top: 14px;
-  /* border-top: 1px solid var(--steel-line); */
   background: var(--signal);
   max-width: 37ch;
   padding: 10px;
