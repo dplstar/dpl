@@ -194,7 +194,7 @@ export const LBR_GROUP = [
   },
   {
     n: "Maniram Tubes",
-    c: "The legacy business at the origin of the Group's industrial journey.",
+    c: "Trusted name in steel tubes, tubular poles, and fire safety solutions. ",
     l:"https://maniramtubes.com/",
   },
   {
