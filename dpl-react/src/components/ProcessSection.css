@@ -35,3 +35,8 @@
   font-size: 13px;
   color: var(--muted-light)
 }
+.web-link{
+  font-size: 13px;
+  color: var(--steel-line);
+  text-decoration: none;
+}

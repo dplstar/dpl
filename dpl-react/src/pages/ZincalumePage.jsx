@@ -86,7 +86,7 @@ export default function ZincalumePage({ active }) {
             <ul className="za-config-list">
               <li>Bolted panels with horizontal overlaps</li>
               <li>Algae resistant and leak proof liner</li>
-              <li>Flat roof design for cleaning</li>
+              <li>Dome roof designing</li>
               <li>RCC ring-beam foundation</li>
             </ul>
           </div>

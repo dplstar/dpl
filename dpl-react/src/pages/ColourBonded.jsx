@@ -21,7 +21,7 @@ const SPECIFICATIONS = [
   ['Capacity range', '5 kL - 5,000 kL'],
   ['Zero-Leak ', 'Food-grade internal liners '],
   ['Quick installation', 'Modular bolted construction'],
-  ['Material', '55% Aluminum-Zinc alloy steel'],
+  ['Material', 'Zincalume AZ150'],
 ]
 
 // export default function GITanksPage({ active }) {

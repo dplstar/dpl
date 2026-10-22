@@ -152,10 +152,10 @@ export default function PipesPage({ active }) {
             </article>
           ))}
 
-          <div className="pipes-fittings">
+          {/* <div className="pipes-fittings">
             <p><strong>Need fittings as well?</strong> Tube well and pump fittings are on the Products page.</p>
             <button className="btn btn-g" onClick={() => goTo('products', 'tube-well-fittings')}>View fittings</button>
-          </div>
+          </div> */}
         </div>
       </section>
 

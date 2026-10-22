@@ -25,6 +25,9 @@ export default function LBRGroup() {
               <div className="proc-n">{String(i + 1).padStart(2, '0')}</div>
               <h4>{s.n}</h4>
               <p>{s.c}</p>
+              <a className="web-link" href={s.l} target="_blank" rel="noopener noreferrer">
+                {s.l?'Visit Website':'Coming Soon'}
+              </a>
             </div>
           ))}
         </div>

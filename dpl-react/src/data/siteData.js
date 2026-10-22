@@ -8,7 +8,7 @@ export const PRODS = [
     mat: "Corrugated Zincalume® steel panel",
     coat: "AZ150 aluminium–zinc alloy",
     cap: "5 kL – 5000 kL",
-    std: "AS 1397, IS 3370",
+    std: "AS 2304, IS 3370",
     img: "/img/Zincalume Tanks.png",
     imgAlt: "Zincalume Tanks"
   },
@@ -21,7 +21,7 @@ export const PRODS = [
     mat: "Galvanised iron panel + liner",
     coat: "Hot-dip galvanised, 275 g/m²",
     cap: "5 kL – 5000 kL",
-    std: "AS 1397, IS 3370",
+    std: "AS 2304, IS 3370",
     img: "/img/Color Coded Tank.png",
     imgAlt: "GI Tanks"
   },
@@ -34,7 +34,7 @@ export const PRODS = [
     mat: "FBE-coated steel panel",
     coat: "Fusion-bonded epoxy, 250 µm",
     cap: "5 kL – 5000 kL",
-    std: "AS 1397, IS 3370",
+    std: "AS 2304, IS 3370",
     img: "/img/Fusion Bond Epoxy Tanks.png",
     imgAlt: "Fusion Bond Epoxy Tanks"
   },
@@ -47,7 +47,7 @@ export const PRODS = [
     mat: "Glass-fused-to-steel panel",
     coat: "Dual-sided vitreous enamel",
     cap: "5 kL – 500 kL",
-    std: "AS 1397, IS 3370",
+    std: "AS 2304, IS 3370",
     img: "/img/home-product-creative.png",
     imgAlt: "Glass Fused Steel Tanks"
   }
@@ -156,7 +156,16 @@ export const CLIENTS = [
   { name: "Airports Authority of India", logo: "/clients/Airports-India.png" },
   { name: "Adani", logo: "/clients/Adani-Logo.png" },
   { name: "NKG Infrastructure", logo: "/clients/pic5-1.png" },
-  { name: "NCRTC", logo: "/clients/pic3-1.png" }
+  { name: "NCRTC", logo: "/clients/pic3-1.png" },
+  { name: "Bisleri", logo: "/clients/Bisleri.png" },
+  { name: "Campa Sure", logo: "/clients/Campa.png" },
+  { name: "Independence", logo: "/clients/Independence.png" },
+  { name: "Nexus", logo: "/clients/Nexus.png" },
+  { name: "ITC Limited", logo: "/clients/ITC Limited.png" },
+  { name: "Signature Global", logo: "/clients/Signature Global.png" },
+  { name: "Honda", logo: "/clients/Honda.png" },
+  { name: "Pidilite", logo: "/clients/Pidilite.png" },
+  { name: "Asian Paints", logo: "/clients/Asian Paints.png" },
 ];
 
 export const PROC = [
@@ -180,22 +189,27 @@ export const PROC = [
 export const LBR_GROUP = [
   {
     n: "Dadu Pipes",
-    c: "Steel pipes and tubular products for infrastructure and industry."
+    c: "Steel pipes and tubular products for infrastructure and industry.",
+    l:"https://www.dadupipes.com/",
   },
   {
     n: "Maniram Tubes",
-    c: "The legacy business at the origin of the Group's industrial journey."
+    c: "The legacy business at the origin of the Group's industrial journey.",
+    l:"https://maniramtubes.com/",
   },
   {
     n: "Indo Silos",
-    c: "Grain storage and silo systems."
+    c: "Grain storage and silo systems.",
+    l:"https://indosilos.com/",
   },
   {
     n: "Dadu Realty",
-    c: "Real estate and development."
+    c: "Real estate and development.",
+    l:"https://dadurealty.com/",
   },
   {
     n: "Lark",
-    c: "Planned mobility and automotive innovation."
+    c: "Planned mobility and automotive innovation.",
+    l:"",
   },
 ];
