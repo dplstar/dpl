@@ -242,6 +242,9 @@
   .scroll-cue {
     display: none
   }
+  h1,h2{
+    font-family: 'Helvetica', monospace !important;
+  }
 }
 
 @media(prefers-reduced-motion:reduce) {
