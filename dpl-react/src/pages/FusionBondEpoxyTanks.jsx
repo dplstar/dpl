@@ -94,7 +94,7 @@ export default function FusionBondEpoxyTanksPage({ active }) {
       <section className="sec za-standards">
         <div className="shell">
           <div className="sec-tag">Applications</div>
-          <h2>Applications</h2>
+          <h2>Diverse Applications</h2>
           <div className="za-standard-grid">
             {APPLICATIONS.map((item) => (
               <article key={item}>

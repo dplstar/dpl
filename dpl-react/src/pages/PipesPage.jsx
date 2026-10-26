@@ -83,7 +83,7 @@ export default function PipesPage({ active }) {
             </div>
             <div className="za-hero__actions">
               <button className="btn btn-p" onClick={() => goTo('contact')}>Request a quote</button>
-              <button className="btn btn-g" onClick={() => goTo('pipes', 'pipes-range')}>See the range</button>
+              {/* <button className="btn btn-g" onClick={() => goTo('pipes', 'pipes-range')}>See the range</button> */}
             </div>
           </div>
           <div className="pipes-hero__art">
