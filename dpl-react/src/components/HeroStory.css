@@ -59,7 +59,7 @@
   letter-spacing: -.01em;
   color: white;
     -webkit-text-stroke: 1px #000000;
-    font-family: 'Playfair Display', sans-serif;
+    font-family: 'Helvetica', monospace;
 }
 
 .cap-hero p {
@@ -96,7 +96,7 @@
   margin-bottom: 14px;
   color: white;
     -webkit-text-stroke: 1px #000000;
- font-family: 'Playfair Display', sans-serif;
+ font-family: 'Helvetica', monospace;
 }
 
 .cap-end h2 {
@@ -138,7 +138,7 @@
   background: var(--signal);
   max-width: 37ch;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 10px
  }
 
 .cap-specs dt {

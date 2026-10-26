@@ -27,7 +27,7 @@ export async function sendContactEmail({ name, email, phone, message }) {
   // 1. Send the enquiry notification to your team
   await transporter.sendMail({
     from,
-    to: process.env.SMTP_TO || 'gcaffe.ashish@gmail.com',
+    to: process.env.SMTP_TO || 'info@dplstar.com',
     cc: (process.env.SMTP_CC || 'gcaffe.shashank@gmail.com, gcaffe.abhishek@gmail.com')
       .split(',')
       .map((item) => item.trim())
