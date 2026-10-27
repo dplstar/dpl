@@ -27,7 +27,11 @@ export async function sendPartnerEmail({
     }
   })
 
-  const from = process.env.SMTP_FROM || process.env.SMTP_USER
+  // const from = process.env.SMTP_FROM || process.env.SMTP_USER
+  const from = {
+  name: 'DPL Star',
+  address: process.env.SMTP_USER
+}
   const teamEmail = process.env.SMTP_PARTNER_TO || 'info@dplstar.com'
 
   await transporter.verify()
@@ -36,7 +40,7 @@ export async function sendPartnerEmail({
   await transporter.sendMail({
     from,
     to: teamEmail,
-    cc: (process.env.SMTP_CC || '')
+    cc: (process.env.SMTP_CC || 'aakash@dplstar.com, gcaffe.abhishek@gmail.com')
       .split(',')
       .map((item) => item.trim())
       .filter(Boolean),

@@ -22,13 +22,17 @@ export async function sendContactEmail({ name, email, phone, message }) {
 
   await transporter.verify()
 
-  const from = process.env.SMTP_FROM || process.env.SMTP_USER
+  // const from = process.env.SMTP_FROM || process.env.SMTP_USER
+  const from = {
+  name: 'DPL Star',
+  address: process.env.SMTP_USER
+}
 
   // 1. Send the enquiry notification to your team
   await transporter.sendMail({
     from,
     to: process.env.SMTP_TO || 'info@dplstar.com',
-    cc: (process.env.SMTP_CC || 'gcaffe.shashank@gmail.com, gcaffe.abhishek@gmail.com')
+    cc: (process.env.SMTP_CC || 'aakash@dplstar.com, gcaffe.abhishek@gmail.com')
       .split(',')
       .map((item) => item.trim())
       .filter(Boolean),
