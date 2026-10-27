@@ -75,7 +75,18 @@ function PartnerForm() {
         body: JSON.stringify(payload)
       })
 
-      const result = await response.json()
+      // const result = await response.json()
+      const responseText = await response.text()
+
+let result
+
+try {
+  result = JSON.parse(responseText)
+} catch {
+  throw new Error(
+    `The server returned an invalid response (HTTP ${response.status}). Check your Vercel API deployment and function logs.`
+  )
+}
 
       if (!response.ok || !result.success) {
         throw new Error(
