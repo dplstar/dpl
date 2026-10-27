@@ -1,58 +1,125 @@
+
 import { useState } from 'react'
 import { useNavigation } from '../NavigationContext.jsx'
 import PageHero from '../components/PageHero.jsx'
-import { REGISTERING_FOR, HEARD_FROM, PARTNER_EMAIL } from '../data/channelPartner.js'
+import {
+  REGISTERING_FOR,
+  HEARD_FROM,
+  PARTNER_EMAIL
+} from '../data/channelPartner.js'
 import '../components/ContactForm.css'
 import './ContactPage.css'
 import './ChannelPartnerPage.css'
 
 const RANGE = [
-  { title: 'Storage Solutions', items: 'Zincalume Tanks (ZA Tanks), Colour Bonded Tanks (CB Tanks), Fusion Bond Epoxy Tanks (FBE Tanks) and Glass Fused Steel Tanks (GFS Tanks)', page: 'products' },
-  { title: 'Piping Solutions', items: 'IS 2713, IS 1239, IS 1161, IS 4923, IS 18573 and IS 3074', page: 'pipes' },
-  { title: 'Other Solutions', items: 'Tube Well and Pump Fittings', page: ['products', 'tube-well-fittings'] }
+  {
+    title: 'Storage Solutions',
+    items:
+      'Zincalume Tanks (ZA Tanks), Colour Bonded Tanks (CB Tanks), Fusion Bond Epoxy Tanks (FBE Tanks) and Glass Fused Steel Tanks (GFS Tanks)',
+    page: 'products'
+  },
+  {
+    title: 'Piping Solutions',
+    items: 'IS 2713, IS 1239, IS 1161, IS 4923, IS 18573 and IS 3074',
+    page: 'pipes'
+  },
+  {
+    title: 'Other Solutions',
+    items: 'Tube Well and Pump Fittings',
+    page: ['products', 'tube-well-fittings']
+  }
 ]
 
 const PROOF = [
   ['1000+', 'Tanks installed pan India'],
-  ['Jal Jeevan Mission', 'Key supplier of tanks, pump and tube well fittings under JJM'],
+  [
+    'Jal Jeevan Mission',
+    'Key supplier of tanks, pump and tube well fittings under JJM'
+  ],
   ['Manufacturing Units', 'Four units in Sikandrabad, Uttar Pradesh']
 ]
 
 function PartnerForm() {
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [confirmationSent, setConfirmationSent] = useState(false)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    const data = new FormData(e.currentTarget)
-    const get = (k) => (data.get(k) || '').toString().trim()
-    const name = get('name')
 
-    const subject = encodeURIComponent(`Channel partner enquiry from ${name}`)
-    const body = encodeURIComponent(
-      [
-        `Name: ${name}`,
-        `Phone: ${get('phone')}`,
-        `Email: ${get('email')}`,
-        `Organisation / company: ${get('company') || 'N/A'}`,
-        `Address / location: ${get('location') || 'N/A'}`,
-        `Registering for: ${get('registering') || 'N/A'}`,
-        `Heard about us via: ${get('source') || 'N/A'}`,
-        '',
-        'Message:',
-        get('message') || 'N/A'
-      ].join('\n')
-    )
+    setError('')
+    setIsSubmitting(true)
 
-    window.location.href = `mailto:${PARTNER_EMAIL}?subject=${subject}&body=${body}`
-    setSent(true)
+    const form = e.currentTarget
+    const data = new FormData(form)
+    const get = (key) => (data.get(key) || '').toString().trim()
+
+    const payload = {
+      name: get('name'),
+      phone: get('phone'),
+      email: get('email'),
+      company: get('company'),
+      location: get('location'),
+      registering: get('registering'),
+      source: get('source'),
+      message: get('message')
+    }
+
+    try {
+      const response = await fetch('/api/channel-partner', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+
+      const result = await response.json()
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || 'Unable to submit your enquiry. Please try again.'
+        )
+      }
+
+      setConfirmationSent(result.confirmationSent === true)
+      form.reset()
+      setSent(true)
+    } catch (submitError) {
+      setError(
+        submitError.message ||
+          'Something went wrong. Please try again or email us directly.'
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (sent) {
     return (
       <div className="cp-sent" role="status">
-        <h3>Thanks, your enquiry is ready to send.</h3>
-        <p>Your email app has opened with the details filled in. Send it and our team will get in touch with you.</p>
-        <button className="btn btn-dark" onClick={() => setSent(false)}>Start a new enquiry</button>
+        <h3>Thank you for your enquiry!</h3>
+
+        <p>
+          Your channel partner enquiry has been submitted successfully.
+          {confirmationSent
+            ? ' A confirmation email has been sent to your email address.'
+            : ' However, we could not send the confirmation email. Your enquiry has been received.'}
+          {' '}Our team will get in touch with you.
+        </p>
+
+        <button
+          type="button"
+          className="btn btn-dark"
+          onClick={() => {
+            setSent(false)
+            setError('')
+            setConfirmationSent(false)
+          }}
+        >
+          Start a new enquiry
+        </button>
       </div>
     )
   }
@@ -60,54 +127,144 @@ function PartnerForm() {
   return (
     <form className="cp-form" onSubmit={handleSubmit}>
       <h2>Enquiry Form</h2>
-      <p className="cp-form__intro">Fill in the details below and our team will get in touch with you. Fields marked * are required.</p>
+
+      <p className="cp-form__intro">
+        Fill in the details below and our team will get in touch with you.
+        Fields marked * are required.
+      </p>
 
       <div className="field">
         <label htmlFor="cp-name">Name *</label>
-        <input id="cp-name" type="text" name="name" required autoComplete="name" placeholder="Your full name" />
+        <input
+          id="cp-name"
+          type="text"
+          name="name"
+          required
+          autoComplete="name"
+          placeholder="Your full name"
+        />
       </div>
+
       <div className="cp-row">
         <div className="field">
           <label htmlFor="cp-phone">Phone *</label>
-          <input id="cp-phone" type="tel" name="phone" required autoComplete="tel" placeholder="+91" />
+          <input
+            id="cp-phone"
+            type="tel"
+            name="phone"
+            required
+            autoComplete="tel"
+            placeholder="+91"
+          />
         </div>
+
         <div className="field">
           <label htmlFor="cp-email">Email *</label>
-          <input id="cp-email" type="email" name="email" required autoComplete="email" placeholder="you@company.com" />
+          <input
+            id="cp-email"
+            type="email"
+            name="email"
+            required
+            autoComplete="email"
+            placeholder="you@company.com"
+          />
         </div>
       </div>
+
       <div className="cp-row">
         <div className="field">
           <label htmlFor="cp-company">Organisation / company</label>
-          <input id="cp-company" type="text" name="company" autoComplete="organization" />
+          <input
+            id="cp-company"
+            type="text"
+            name="company"
+            autoComplete="organization"
+          />
         </div>
+
         <div className="field">
           <label htmlFor="cp-location">Address / location</label>
-          <input id="cp-location" type="text" name="location" placeholder="City, state" />
+          <input
+            id="cp-location"
+            type="text"
+            name="location"
+            placeholder="City, state"
+            autoComplete="address-level2"
+          />
         </div>
       </div>
+
       <div className="cp-row">
         <div className="field">
           <label htmlFor="cp-registering">Registering for</label>
-          <select id="cp-registering" name="registering" defaultValue="">
-            <option value="" disabled>Select an option</option>
-            {REGISTERING_FOR.map((o) => <option key={o}>{o}</option>)}
+          <select
+            id="cp-registering"
+            name="registering"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select an option
+            </option>
+
+            {REGISTERING_FOR.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
+
         <div className="field">
           <label htmlFor="cp-source">How did you hear about us?</label>
-          <select id="cp-source" name="source" defaultValue="">
-            <option value="" disabled>Select an option</option>
-            {HEARD_FROM.map((o) => <option key={o}>{o}</option>)}
+          <select
+            id="cp-source"
+            name="source"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select an option
+            </option>
+
+            {HEARD_FROM.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
       </div>
+
       <div className="field">
         <label htmlFor="cp-message">Message</label>
-        <textarea id="cp-message" name="message" rows="5" placeholder="Your region, the products you'd like to sell, your current business"></textarea>
+        <textarea
+          id="cp-message"
+          name="message"
+          rows="5"
+          placeholder="Your region, the products you'd like to sell, your current business"
+        />
       </div>
-      <p className="form-email-note">Or email us directly at <a href={`mailto:${PARTNER_EMAIL}`}>{PARTNER_EMAIL}</a></p>
-      <button className="btn btn-p" type="submit">Submit</button>
+
+      {error && (
+        <p
+          role="alert"
+          style={{ color: '#d32f2f', marginBottom: '12px' }}
+        >
+          {error}
+        </p>
+      )}
+
+      <p className="form-email-note">
+        Or email us directly at{' '}
+        <a href={`mailto:${PARTNER_EMAIL}`}>{PARTNER_EMAIL}</a>
+      </p>
+
+      <button
+        className="btn btn-p"
+        type="submit"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? 'Submitting...' : 'Submit'}
+      </button>
     </form>
   )
 }
@@ -116,7 +273,10 @@ export default function ChannelPartnerPage({ active }) {
   const { goTo } = useNavigation()
 
   return (
-    <div className={`page${active ? ' active' : ''}`} data-page="channel-partner">
+    <div
+      className={`page${active ? ' active' : ''}`}
+      data-page="channel-partner"
+    >
       <PageHero
         tag="Join the Network"
         heading="Channel Partnership"
@@ -126,17 +286,30 @@ export default function ChannelPartnerPage({ active }) {
       <section className="sec">
         <div className="shell">
           <div className="ct-grid">
-            <div><PartnerForm /></div>
+            <div>
+              <PartnerForm />
+            </div>
 
-            <aside className="cp-side" aria-label="What you'd represent">
+            <aside
+              className="cp-side"
+              aria-label="What you'd represent"
+            >
               <div className="cp-side__block">
                 <div className="sec-tag">What you'd represent</div>
+
                 <ul className="cp-range">
-                  {RANGE.map((r) => (
-                    <li key={r.title}>
-                      <button onClick={() => (Array.isArray(r.page) ? goTo(...r.page) : goTo(r.page))}>
-                        <strong>{r.title}</strong>
-                        <span>{r.items}</span>
+                  {RANGE.map((item) => (
+                    <li key={item.title}>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          Array.isArray(item.page)
+                            ? goTo(...item.page)
+                            : goTo(item.page)
+                        }
+                      >
+                        <strong>{item.title}</strong>
+                        <span>{item.items}</span>
                       </button>
                     </li>
                   ))}
@@ -145,17 +318,29 @@ export default function ChannelPartnerPage({ active }) {
 
               <div className="cp-side__block">
                 <div className="sec-tag">Track record</div>
+
                 <dl className="cp-proof">
-                  {PROOF.map(([k, v]) => (
-                    <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
+                  {PROOF.map(([heading, description]) => (
+                    <div key={heading}>
+                      <dt>{heading}</dt>
+                      <dd>{description}</dd>
+                    </div>
                   ))}
                 </dl>
               </div>
 
               <div className="cp-side__block">
                 <div className="sec-tag">Prefer to talk?</div>
+
                 <p className="cp-direct">
-                  Call <a href="tel:+919205600125">+91 92056 00125</a> or email <a href={`mailto:${PARTNER_EMAIL}`}>{PARTNER_EMAIL}</a>.
+                  Call{' '}
+                  <a href="tel:+919205600125">
+                    +91 92056 00125
+                  </a>{' '}
+                  or email{' '}
+                  <a href={`mailto:${PARTNER_EMAIL}`}>
+                    {PARTNER_EMAIL}
+                  </a>.
                 </p>
               </div>
             </aside>
@@ -165,3 +350,180 @@ export default function ChannelPartnerPage({ active }) {
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
+// import { useState } from 'react'
+// import { useNavigation } from '../NavigationContext.jsx'
+// import PageHero from '../components/PageHero.jsx'
+// import { REGISTERING_FOR, HEARD_FROM, PARTNER_EMAIL } from '../data/channelPartner.js'
+// import '../components/ContactForm.css'
+// import './ContactPage.css'
+// import './ChannelPartnerPage.css'
+
+// const RANGE = [
+//   { title: 'Storage Solutions', items: 'Zincalume Tanks (ZA Tanks), Colour Bonded Tanks (CB Tanks), Fusion Bond Epoxy Tanks (FBE Tanks) and Glass Fused Steel Tanks (GFS Tanks)', page: 'products' },
+//   { title: 'Piping Solutions', items: 'IS 2713, IS 1239, IS 1161, IS 4923, IS 18573 and IS 3074', page: 'pipes' },
+//   { title: 'Other Solutions', items: 'Tube Well and Pump Fittings', page: ['products', 'tube-well-fittings'] }
+// ]
+
+// const PROOF = [
+//   ['1000+', 'Tanks installed pan India'],
+//   ['Jal Jeevan Mission', 'Key supplier of tanks, pump and tube well fittings under JJM'],
+//   ['Manufacturing Units', 'Four units in Sikandrabad, Uttar Pradesh']
+// ]
+
+// function PartnerForm() {
+//   const [sent, setSent] = useState(false)
+
+//   function handleSubmit(e) {
+//     e.preventDefault()
+//     const data = new FormData(e.currentTarget)
+//     const get = (k) => (data.get(k) || '').toString().trim()
+//     const name = get('name')
+
+//     const subject = encodeURIComponent(`Channel partner enquiry from ${name}`)
+//     const body = encodeURIComponent(
+//       [
+//         `Name: ${name}`,
+//         `Phone: ${get('phone')}`,
+//         `Email: ${get('email')}`,
+//         `Organisation / company: ${get('company') || 'N/A'}`,
+//         `Address / location: ${get('location') || 'N/A'}`,
+//         `Registering for: ${get('registering') || 'N/A'}`,
+//         `Heard about us via: ${get('source') || 'N/A'}`,
+//         '',
+//         'Message:',
+//         get('message') || 'N/A'
+//       ].join('\n')
+//     )
+
+//     window.location.href = `mailto:${PARTNER_EMAIL}?subject=${subject}&body=${body}`
+//     setSent(true)
+//   }
+
+//   if (sent) {
+//     return (
+//       <div className="cp-sent" role="status">
+//         <h3>Thanks, your enquiry is ready to send.</h3>
+//         <p>Your email app has opened with the details filled in. Send it and our team will get in touch with you.</p>
+//         <button className="btn btn-dark" onClick={() => setSent(false)}>Start a new enquiry</button>
+//       </div>
+//     )
+//   }
+
+//   return (
+//     <form className="cp-form" onSubmit={handleSubmit}>
+//       <h2>Enquiry Form</h2>
+//       <p className="cp-form__intro">Fill in the details below and our team will get in touch with you. Fields marked * are required.</p>
+
+//       <div className="field">
+//         <label htmlFor="cp-name">Name *</label>
+//         <input id="cp-name" type="text" name="name" required autoComplete="name" placeholder="Your full name" />
+//       </div>
+//       <div className="cp-row">
+//         <div className="field">
+//           <label htmlFor="cp-phone">Phone *</label>
+//           <input id="cp-phone" type="tel" name="phone" required autoComplete="tel" placeholder="+91" />
+//         </div>
+//         <div className="field">
+//           <label htmlFor="cp-email">Email *</label>
+//           <input id="cp-email" type="email" name="email" required autoComplete="email" placeholder="you@company.com" />
+//         </div>
+//       </div>
+//       <div className="cp-row">
+//         <div className="field">
+//           <label htmlFor="cp-company">Organisation / company</label>
+//           <input id="cp-company" type="text" name="company" autoComplete="organization" />
+//         </div>
+//         <div className="field">
+//           <label htmlFor="cp-location">Address / location</label>
+//           <input id="cp-location" type="text" name="location" placeholder="City, state" />
+//         </div>
+//       </div>
+//       <div className="cp-row">
+//         <div className="field">
+//           <label htmlFor="cp-registering">Registering for</label>
+//           <select id="cp-registering" name="registering" defaultValue="">
+//             <option value="" disabled>Select an option</option>
+//             {REGISTERING_FOR.map((o) => <option key={o}>{o}</option>)}
+//           </select>
+//         </div>
+//         <div className="field">
+//           <label htmlFor="cp-source">How did you hear about us?</label>
+//           <select id="cp-source" name="source" defaultValue="">
+//             <option value="" disabled>Select an option</option>
+//             {HEARD_FROM.map((o) => <option key={o}>{o}</option>)}
+//           </select>
+//         </div>
+//       </div>
+//       <div className="field">
+//         <label htmlFor="cp-message">Message</label>
+//         <textarea id="cp-message" name="message" rows="5" placeholder="Your region, the products you'd like to sell, your current business"></textarea>
+//       </div>
+//       <p className="form-email-note">Or email us directly at <a href={`mailto:${PARTNER_EMAIL}`}>{PARTNER_EMAIL}</a></p>
+//       <button className="btn btn-p" type="submit">Submit</button>
+//     </form>
+//   )
+// }
+
+// export default function ChannelPartnerPage({ active }) {
+//   const { goTo } = useNavigation()
+
+//   return (
+//     <div className={`page${active ? ' active' : ''}`} data-page="channel-partner">
+//       <PageHero
+//         tag="Join the Network"
+//         heading="Channel Partnership"
+//         body="Become our channel partner and be part of a growing network delivering dependable industrial solutions."
+//       />
+
+//       <section className="sec">
+//         <div className="shell">
+//           <div className="ct-grid">
+//             <div><PartnerForm /></div>
+
+//             <aside className="cp-side" aria-label="What you'd represent">
+//               <div className="cp-side__block">
+//                 <div className="sec-tag">What you'd represent</div>
+//                 <ul className="cp-range">
+//                   {RANGE.map((r) => (
+//                     <li key={r.title}>
+//                       <button onClick={() => (Array.isArray(r.page) ? goTo(...r.page) : goTo(r.page))}>
+//                         <strong>{r.title}</strong>
+//                         <span>{r.items}</span>
+//                       </button>
+//                     </li>
+//                   ))}
+//                 </ul>
+//               </div>
+
+//               <div className="cp-side__block">
+//                 <div className="sec-tag">Track record</div>
+//                 <dl className="cp-proof">
+//                   {PROOF.map(([k, v]) => (
+//                     <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
+//                   ))}
+//                 </dl>
+//               </div>
+
+//               <div className="cp-side__block">
+//                 <div className="sec-tag">Prefer to talk?</div>
+//                 <p className="cp-direct">
+//                   Call <a href="tel:+919205600125">+91 92056 00125</a> or email <a href={`mailto:${PARTNER_EMAIL}`}>{PARTNER_EMAIL}</a>.
+//                 </p>
+//               </div>
+//             </aside>
+//           </div>
+//         </div>
+//       </section>
+//     </div>
+//   )
+// }

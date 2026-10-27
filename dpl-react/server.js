@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
 import { sendContactEmail } from './contact-email.js'
-
+import { sendPartnerEmail } from './channel-partner-email.js'
 dotenv.config({
   path: ['.env.local', ...(existsSync('.env') ? ['.env'] : [])]
 })
@@ -49,6 +49,55 @@ app.post('/api/contact', async (req, res) => {
     return res.status(500).json({
       success: false,
       message: 'Unable to send the message right now. Please email info@dplstar.com directly.'
+    })
+  }
+})
+
+
+app.post('/api/channel-partner', async (req, res) => {
+  const {
+    name,
+    email,
+    phone,
+    company,
+    location,
+    registering,
+    source,
+    message
+  } = req.body || {}
+
+  if (!name || !email || !phone) {
+    return res.status(400).json({
+      success: false,
+      message: 'Name, email and phone are required.'
+    })
+  }
+
+  try {
+    const result = await sendPartnerEmail({
+      name: String(name).trim(),
+      email: String(email).trim(),
+      phone: String(phone).trim(),
+      company,
+      location,
+      registering,
+      source,
+      message
+    })
+
+    return res.json({
+      success: true,
+      confirmationSent: result.confirmationSent,
+      message: 'Channel partner enquiry submitted successfully.'
+    })
+  } catch (error) {
+    console.error('Channel partner email failed:', error)
+
+    return res.status(
+      error.code === 'EMAIL_NOT_CONFIGURED' ? 503 : 500
+    ).json({
+      success: false,
+      message: 'Unable to submit your enquiry. Please try again.'
     })
   }
 })
