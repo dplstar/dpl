@@ -58,7 +58,7 @@ Whether you need to match your corporate brand identity, integrate seamlessly in
       <section className="sec sec-d za-benefits">
         <div className="shell">
           <div className="sec-tag">Benefits</div>
-          <h2>Premium Features</h2>
+          <h2>Why choose Colour Bonded Tanks</h2>
           <div className="za-benefit-grids">
             {BENEFITS.map(([title, description], index) => (
               <article key={title}>
@@ -74,8 +74,8 @@ Whether you need to match your corporate brand identity, integrate seamlessly in
       <section className="sec">
         <div className="shell za-details">
           <div>
-            <div className="sec-tag">Applications</div>
-            <h2>Diverse Applications</h2>
+            <div className="sec-tag">Solutions</div>
+            <h2>Industry Applications</h2>
             <ul className="za-config-list">
               {APPLICATIONS.map((item) => (
                 <li key={item}>{item}</li>
@@ -91,7 +91,7 @@ Whether you need to match your corporate brand identity, integrate seamlessly in
       <section className="sec za-standards">
         <div className="shell">
           {/* <div className="sec-tag">Our Core Color Range</div> */}
-          <h2>Explore Our Core Color Range</h2>
+          <h2>Explore Our Core Colour Range</h2>
           <p className="sec-note">Choose from our signature high-durability palette, or request a completely custom shade tailored to your exact project specs.</p>
           <div className="za-standard-grid">
             <article>

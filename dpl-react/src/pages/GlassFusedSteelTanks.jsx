@@ -61,8 +61,8 @@ export default function GlassFusedSteelTanksPage({ active }) {
 
       <section className="sec sec-d za-benefits">
         <div className="shell">
-          <div className="sec-tag">Capabilities</div>
-          <h2>Key Features</h2>
+          <div className="sec-tag">Features</div>
+          <h2>Why Choose GFS Tanks</h2>
           <div className="za-benefit-grids">
             {BENEFITS.map(([title, description], index) => (
               <article key={title}>
@@ -78,8 +78,8 @@ export default function GlassFusedSteelTanksPage({ active }) {
       <section className="sec">
         <div className="shell za-details">
           <div>
-            <div className="sec-tag">Applications</div>
-            <h2>Diverse Applications</h2>
+            <div className="sec-tag">Solutions</div>
+            <h2>Industry Applications</h2>
             <ul className="za-config-list">
               {APPLICATIONS.map((item) => (
                 <li key={item}>{item}</li>

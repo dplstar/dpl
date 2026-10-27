@@ -65,7 +65,7 @@ export default function FusionBondEpoxyTanksPage({ active }) {
       <section className="sec sec-d za-benefits">
         <div className="shell">
           <div className="sec-tag">Features</div>
-          <h2>Premium Features</h2>
+          <h2>Why Choose FBE Tanks</h2>
           <div className="za-benefit-grids">
             {BENEFITS.map(([title, description], index) => (
               <article key={title}>
@@ -93,8 +93,8 @@ export default function FusionBondEpoxyTanksPage({ active }) {
 
       <section className="sec za-standards">
         <div className="shell">
-          <div className="sec-tag">Applications</div>
-          <h2>Diverse Applications</h2>
+          <div className="sec-tag">Solutions</div>
+          <h2>Industry Applications</h2>
           <div className="za-standard-grid">
             {APPLICATIONS.map((item) => (
               <article key={item}>
