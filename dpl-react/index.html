@@ -124,7 +124,7 @@
       window.addEventListener('dpl:scene-ready', function () {
         var fonts = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
         // don't wait on slow font networks for more than 1.2s
-        Promise.race([fonts, new Promise(function (r) { setTimeout(r, 1200); })]).then(function () {
+        Promise.race([fonts, new Promise(function (r) { setTimeout(r, 300); })]).then(function () {
           ready = true; check();
         });
       }, { once: true });
