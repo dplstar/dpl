@@ -99,8 +99,8 @@
 
       var seen = false;
       try { seen = sessionStorage.getItem('dpl-seen') === '1'; } catch (e) {}
-      var minShow = 2000;   // let the fill animation play at least this long
-      var maxWait = 10000;               // never trap the user behind the loader
+      var minShow = 500;   // let the fill animation play at least this long
+      var maxWait = 5000;               // never trap the user behind the loader
       var start = performance.now();
       var ready = false, finished = false;
 
@@ -124,7 +124,7 @@
       window.addEventListener('dpl:scene-ready', function () {
         var fonts = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
         // don't wait on slow font networks for more than 1.2s
-        Promise.race([fonts, new Promise(function (r) { setTimeout(r, 300); })]).then(function () {
+        Promise.race([fonts, new Promise(function (r) { setTimeout(r, 1200); })]).then(function () {
           ready = true; check();
         });
       }, { once: true });
