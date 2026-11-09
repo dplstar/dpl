@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigation } from '../NavigationContext.jsx'
 import PageHero from '../components/PageHero.jsx'
 import {
@@ -7,9 +7,12 @@ import {
   HEARD_FROM,
   PARTNER_EMAIL
 } from '../data/channelPartner.js'
+import { getCaptchaChallenge, validateCaptchaSubmission } from '../../captcha.js'
 import '../components/ContactForm.css'
 import './ContactPage.css'
 import './ChannelPartnerPage.css'
+
+const RECAPTCHA_SCRIPT_ID = 'google-recaptcha-v3-script'
 
 const RANGE = [
   {
@@ -44,6 +47,50 @@ function PartnerForm() {
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [confirmationSent, setConfirmationSent] = useState(false)
+  const [captchaChallenge, setCaptchaChallenge] = useState(() => getCaptchaChallenge())
+  const [recaptchaReady, setRecaptchaReady] = useState(false)
+  const recaptchaSiteKey = (() => {
+    const configuredKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY || ''
+    if (configuredKey) return configuredKey
+
+    if (typeof window !== 'undefined') {
+      return window.DPL_RECAPTCHA_SITE_KEY || ''
+    }
+
+    return ''
+  })()
+  const recaptchaEnabled = Boolean(
+    recaptchaSiteKey &&
+      recaptchaReady &&
+      typeof window !== 'undefined' &&
+      window.grecaptcha
+  )
+
+  useEffect(() => {
+    if (!recaptchaSiteKey || typeof document === 'undefined') {
+      return
+    }
+
+    const existingScript = document.getElementById(RECAPTCHA_SCRIPT_ID)
+    if (existingScript) {
+      if (window.grecaptcha) {
+        setRecaptchaReady(true)
+      }
+      return
+    }
+
+    const script = document.createElement('script')
+    script.id = RECAPTCHA_SCRIPT_ID
+    script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`
+    script.async = true
+    script.defer = true
+    script.onload = () => setRecaptchaReady(true)
+    document.body.appendChild(script)
+  }, [recaptchaSiteKey])
+
+  function refreshCaptcha() {
+    setCaptchaChallenge(getCaptchaChallenge())
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -54,6 +101,14 @@ function PartnerForm() {
     const form = e.currentTarget
     const data = new FormData(form)
     const get = (key) => (data.get(key) || '').toString().trim()
+    const captchaValue = get('captcha')
+
+    if (!recaptchaEnabled && !validateCaptchaSubmission(captchaValue, captchaChallenge.id)) {
+      setError('Captcha verification failed. Please answer the security question correctly.')
+      setCaptchaChallenge(getCaptchaChallenge())
+      setIsSubmitting(false)
+      return
+    }
 
     const payload = {
       name: get('name'),
@@ -64,6 +119,27 @@ function PartnerForm() {
       registering: get('registering'),
       source: get('source'),
       message: get('message')
+    }
+
+    if (recaptchaEnabled) {
+      try {
+        const token = await new Promise((resolve, reject) => {
+          window.grecaptcha.ready(() => {
+            window.grecaptcha
+              .execute(recaptchaSiteKey, { action: 'channel_partner' })
+              .then(resolve)
+              .catch(reject)
+          })
+        })
+        payload.recaptchaToken = token
+      } catch {
+        setError('Captcha verification failed. Please try again.')
+        setIsSubmitting(false)
+        return
+      }
+    } else {
+      payload.captcha = captchaValue
+      payload.captchaId = captchaChallenge.id
     }
 
     try {
@@ -96,6 +172,7 @@ try {
 
       setConfirmationSent(result.confirmationSent === true)
       form.reset()
+      setCaptchaChallenge(getCaptchaChallenge())
       setSent(true)
     } catch (submitError) {
       setError(
@@ -127,6 +204,7 @@ try {
             setSent(false)
             setError('')
             setConfirmationSent(false)
+            setCaptchaChallenge(getCaptchaChallenge())
           }}
         >
           Start a new enquiry
@@ -254,6 +332,32 @@ try {
           placeholder="Your region, the products you'd like to sell, your current business"
         />
       </div>
+
+      {!recaptchaEnabled && (
+        <div className="field captcha-field">
+          <label htmlFor="cp-captcha">Security check</label>
+          <div className="captcha-box">
+            <span className="captcha-question">{captchaChallenge.question}</span>
+            <button
+              type="button"
+              className="captcha-refresh"
+              onClick={refreshCaptcha}
+              aria-label="Refresh security question"
+            >
+              ↻
+            </button>
+          </div>
+          <input
+            id="cp-captcha"
+            type="number"
+            name="captcha"
+            required
+            inputMode="numeric"
+            min="0"
+            placeholder="Enter the answer"
+          />
+        </div>
+      )}
 
       {error && (
         <p

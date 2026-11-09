@@ -4,6 +4,7 @@ import express from 'express'
 import cors from 'cors'
 import { sendContactEmail } from './contact-email.js'
 import { sendPartnerEmail } from './channel-partner-email.js'
+import { validateCaptchaSubmission, verifyRecaptchaToken } from './captcha.js'
 dotenv.config({
   path: ['.env.local', ...(existsSync('.env') ? ['.env'] : [])]
 })
@@ -21,12 +22,34 @@ app.get('/api/health', (_req, res) => {
 })
 
 app.post('/api/contact', async (req, res) => {
-  const { name, email, phone, message } = req.body || {}
+  const {
+    name,
+    email,
+    phone,
+    message,
+    captcha,
+    captchaId,
+    recaptchaToken
+  } = req.body || {}
 
   if (!name || !email || !message) {
     return res.status(400).json({
       success: false,
       message: 'Name, email and message are required.'
+    })
+  }
+
+  const hasRecaptchaSecret = Boolean(process.env.RECAPTCHA_SECRET_KEY)
+  const isCaptchaValid = hasRecaptchaSecret
+    ? await verifyRecaptchaToken(recaptchaToken)
+    : validateCaptchaSubmission(captcha, captchaId)
+
+  if (!isCaptchaValid) {
+    return res.status(400).json({
+      success: false,
+      message: hasRecaptchaSecret
+        ? 'Captcha verification failed. Please try again.'
+        : 'Captcha verification failed. Please answer the security question correctly.'
     })
   }
 
@@ -63,13 +86,30 @@ app.post('/api/channel-partner', async (req, res) => {
     location,
     registering,
     source,
-    message
+    message,
+    captcha,
+    captchaId,
+    recaptchaToken
   } = req.body || {}
 
   if (!name || !email || !phone) {
     return res.status(400).json({
       success: false,
       message: 'Name, email and phone are required.'
+    })
+  }
+
+  const hasRecaptchaSecret = Boolean(process.env.RECAPTCHA_SECRET_KEY)
+  const isCaptchaValid = hasRecaptchaSecret
+    ? await verifyRecaptchaToken(recaptchaToken)
+    : validateCaptchaSubmission(captcha, captchaId)
+
+  if (!isCaptchaValid) {
+    return res.status(400).json({
+      success: false,
+      message: hasRecaptchaSecret
+        ? 'Captcha verification failed. Please try again.'
+        : 'Captcha verification failed. Please answer the security question correctly.'
     })
   }
 

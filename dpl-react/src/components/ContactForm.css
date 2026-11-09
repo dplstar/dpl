@@ -29,6 +29,40 @@
   border-color: var(--signal)
 }
 
+.captcha-field {
+  margin-top: 18px;
+}
+
+.captcha-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--paper-line);
+  border-radius: 8px;
+  background: rgba(18, 54, 90, 0.02);
+  margin-bottom: 8px;
+}
+
+.captcha-question {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--on-light);
+}
+
+.captcha-refresh {
+  border: 1px solid var(--paper-line);
+  background: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--on-light);
+}
+
 .form-note {
   font-size: 12px;
   color: var(--muted-light);

@@ -1,10 +1,54 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { getCaptchaChallenge, validateCaptchaSubmission } from '../../captcha.js'
 import './ContactForm.css'
+
+const RECAPTCHA_SCRIPT_ID = 'google-recaptcha-v3-script'
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [captchaChallenge, setCaptchaChallenge] = useState(() => getCaptchaChallenge())
+  const [recaptchaReady, setRecaptchaReady] = useState(false)
+  const recaptchaSiteKey = (() => {
+    const configuredKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY || ''
+    if (configuredKey) {
+      return configuredKey
+    }
+
+    if (typeof window !== 'undefined') {
+      return window.DPL_RECAPTCHA_SITE_KEY || ''
+    }
+
+    return ''
+  })()
+  const recaptchaEnabled = Boolean(recaptchaSiteKey && recaptchaReady && typeof window !== 'undefined' && window.grecaptcha)
+
+  useEffect(() => {
+    if (!recaptchaSiteKey || typeof document === 'undefined') {
+      return
+    }
+
+    const existingScript = document.getElementById(RECAPTCHA_SCRIPT_ID)
+    if (existingScript) {
+      if (window.grecaptcha) {
+        setRecaptchaReady(true)
+      }
+      return
+    }
+
+    const script = document.createElement('script')
+    script.id = RECAPTCHA_SCRIPT_ID
+    script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`
+    script.async = true
+    script.defer = true
+    script.onload = () => setRecaptchaReady(true)
+    document.body.appendChild(script)
+  }, [recaptchaSiteKey])
+
+  function refreshCaptcha() {
+    setCaptchaChallenge(getCaptchaChallenge())
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -13,12 +57,41 @@ export default function ContactForm() {
 
     const form = e.currentTarget
     const formData = new FormData(form)
+    const captchaValue = (formData.get('captcha') || '').toString().trim()
+
+    if (!recaptchaEnabled && !validateCaptchaSubmission(captchaValue, captchaChallenge.id)) {
+      setError('Captcha verification failed. Please answer the security question correctly.')
+      setCaptchaChallenge(getCaptchaChallenge())
+      setIsSubmitting(false)
+      return
+    }
 
     const payload = {
       name: (formData.get('name') || '').toString().trim(),
       email: (formData.get('email') || '').toString().trim(),
       phone: (formData.get('phone') || '').toString().trim(),
       message: (formData.get('message') || '').toString().trim()
+    }
+
+    if (recaptchaEnabled) {
+      try {
+        const token = await new Promise((resolve, reject) => {
+          window.grecaptcha.ready(() => {
+            window.grecaptcha
+              .execute(recaptchaSiteKey, { action: 'contact' })
+              .then(resolve)
+              .catch(reject)
+          })
+        })
+        payload.recaptchaToken = token
+      } catch (captchaError) {
+        setError('Captcha verification failed. Please try again.')
+        setIsSubmitting(false)
+        return
+      }
+    } else {
+      payload.captcha = captchaValue
+      payload.captchaId = captchaChallenge.id
     }
 
     try {
@@ -46,6 +119,7 @@ export default function ContactForm() {
       }
 
       form.reset()
+      setCaptchaChallenge(getCaptchaChallenge())
       setSubmitted(true)
     } catch (submitError) {
       setError(submitError.message || 'Something went wrong. Please try again.')
@@ -57,6 +131,7 @@ export default function ContactForm() {
   function startNewEnquiry() {
     setSubmitted(false)
     setError('')
+    setCaptchaChallenge(getCaptchaChallenge())
   }
 
   if (submitted) {
@@ -130,6 +205,32 @@ export default function ContactForm() {
           placeholder="e.g. 1,00,000 L raw water for a municipal project in Bihar"
         />
       </div>
+
+      {!recaptchaEnabled && (
+        <div className="field captcha-field">
+          <label htmlFor="contact-captcha">Security check</label>
+          <div className="captcha-box">
+            <span className="captcha-question">{captchaChallenge.question}</span>
+            <button
+              type="button"
+              className="captcha-refresh"
+              onClick={refreshCaptcha}
+              aria-label="Refresh security question"
+            >
+              ↻
+            </button>
+          </div>
+          <input
+            id="contact-captcha"
+            type="number"
+            name="captcha"
+            required
+            inputMode="numeric"
+            min="0"
+            placeholder="Enter the answer"
+          />
+        </div>
+      )}
 
       {error && (
         <p role="alert" style={{ color: '#d32f2f', marginBottom: '12px' }}>
