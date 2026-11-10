@@ -22,11 +22,11 @@ export function validateCaptchaSubmission(answer, challengeId) {
   return Number.isFinite(parsedAnswer) && parsedAnswer === challenge.answer
 }
 
-export async function verifyRecaptchaToken(token) {
+export async function verifyRecaptchaToken(token, expectedAction) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY
   const normalizedToken = String(token || '').trim()
 
-  if (!secretKey || !normalizedToken) {
+  if (!secretKey || !normalizedToken || !expectedAction) {
     return false
   }
 
@@ -42,10 +42,16 @@ export async function verifyRecaptchaToken(token) {
       }).toString()
     })
 
+    if (!response.ok) {
+      throw new Error(`Google reCAPTCHA verification returned HTTP ${response.status}.`)
+    }
+
     const payload = await response.json()
     const minimumScore = Number(process.env.RECAPTCHA_MIN_SCORE || '0.5')
 
-    return Boolean(payload.success) && Number(payload.score || 0) >= minimumScore
+    return Boolean(payload.success) &&
+      payload.action === expectedAction &&
+      Number(payload.score || 0) >= minimumScore
   } catch (error) {
     console.error('Recaptcha verification failed:', error)
     return false

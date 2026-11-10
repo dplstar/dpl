@@ -1,3 +1,4 @@
+import { validateCaptchaSubmission, verifyRecaptchaToken } from '../captcha.js'
 import { sendContactEmail } from '../contact-email.js'
 
 export default async function handler(req, res) {
@@ -9,12 +10,34 @@ export default async function handler(req, res) {
     })
   }
 
-  const { name, email, phone, message } = req.body || {}
+  const {
+    name,
+    email,
+    phone,
+    message,
+    captcha,
+    captchaId,
+    recaptchaToken
+  } = req.body || {}
 
   if (!name || !email || !message) {
     return res.status(400).json({
       success: false,
       message: 'Name, email and message are required.'
+    })
+  }
+
+  const hasRecaptchaSecret = Boolean(process.env.RECAPTCHA_SECRET_KEY)
+  const isCaptchaValid = hasRecaptchaSecret
+    ? await verifyRecaptchaToken(recaptchaToken, 'contact')
+    : validateCaptchaSubmission(captcha, captchaId)
+
+  if (!isCaptchaValid) {
+    return res.status(400).json({
+      success: false,
+      message: hasRecaptchaSecret
+        ? 'Captcha verification failed. Please try again.'
+        : 'Captcha verification failed. Please answer the security question correctly.'
     })
   }
 

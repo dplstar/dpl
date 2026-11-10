@@ -1,4 +1,5 @@
 
+import { validateCaptchaSubmission, verifyRecaptchaToken } from '../captcha.js'
 import {sendPartnerEmail} from '../channel-partner-email.js'
 
 export default async function handler(req, res) {
@@ -19,7 +20,10 @@ export default async function handler(req, res) {
       location,
       registering,
       source,
-      message
+      message,
+      captcha,
+      captchaId,
+      recaptchaToken
     } = req.body || {}
 
     if (
@@ -30,6 +34,20 @@ export default async function handler(req, res) {
       return res.status(400).json({
         success: false,
         message: 'Name, email and phone are required.'
+      })
+    }
+
+    const hasRecaptchaSecret = Boolean(process.env.RECAPTCHA_SECRET_KEY)
+    const isCaptchaValid = hasRecaptchaSecret
+      ? await verifyRecaptchaToken(recaptchaToken, 'channel_partner')
+      : validateCaptchaSubmission(captcha, captchaId)
+
+    if (!isCaptchaValid) {
+      return res.status(400).json({
+        success: false,
+        message: hasRecaptchaSecret
+          ? 'Captcha verification failed. Please try again.'
+          : 'Captcha verification failed. Please answer the security question correctly.'
       })
     }
 
