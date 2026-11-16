@@ -39,7 +39,7 @@ export default function ContactDetails() {
         <h4>Factory Address</h4>
         <div className="foot-row">
           <PinIcon />
-          <span>DA-58, Industrial Area Sikandrabad, Dist. Bulandshahar, Uttar Pradesh 203205</span>
+          <span>DA-58, Industrial Area Sikandrabad, Dist. Bulandshahr, Uttar Pradesh 203205</span>
         </div>
         <div className="foot-row"><PhoneIcon /><span>+91 92056 00125</span></div>
         <div className="foot-row"><MailIcon /><span>info@dplstar.com</span></div>

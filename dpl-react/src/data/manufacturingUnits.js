@@ -1,10 +1,10 @@
 /*
  * Manufacturing units of the group, from dplstar.com (A-58) and
  * dadupipes.com ("Our Manufacturing Backbone" and the milestones timeline).
- * All four are in the Sikandrabad Industrial Area, Bulandshahar, UP.
+ * All four are in the Sikandrabad Industrial Area, Bulandshahr, UP.
  */
 
-const AREA = ['Sikandrabad, Dist. Bulandshahar', 'Uttar Pradesh 203205']
+const AREA = ['Sikandrabad, Dist. Bulandshahr', 'Uttar Pradesh 203205']
 
 export const MANUFACTURING_UNITS = [
   {
@@ -38,6 +38,6 @@ export const MANUFACTURING_UNITS = [
     name: 'Unit 4',
     address: ['Khasra No. 414, Industrial Area', ...AREA],
     note: "Upcoming unit with modern machinery for manufacturing tanks & silos.",
-    map: 'https://google.com/maps/search/Khasra+No+414+Industrial+Area+Sikandrabad+Dist+Bulandshahar+Uttar+Pradesh+203205/@28.4421289,77.6959991,11z?entry=s&sa=X&ved=1t%3A199789'
+    map: 'https://google.com/maps/search/Khasra+No+414+Industrial+Area+Sikandrabad+Dist+Bulandshahr+Uttar+Pradesh+203205/@28.4421289,77.6959991,11z?entry=s&sa=X&ved=1t%3A199789'
   }
 ]
