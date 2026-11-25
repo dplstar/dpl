@@ -55,7 +55,7 @@ export default function ProductCategory({ category }) {
         {cta && (
           <div className="pcat__cta">
             <div>
-              <h3>{cta.title}</h3>
+              {cta.title && <h3>{cta.title}</h3>}
               <p>{cta.body}</p>
             </div>
             <div className="pcat__cta-actions">

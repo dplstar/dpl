@@ -1,8 +1,10 @@
-// import PipeTable from '../components/PipeTable.jsx'
+import PipeTable from '../components/PipeTable.jsx'
 import { useNavigation } from '../NavigationContext.jsx'
 import { PRODS } from '../data/siteData.js'
 import './ProductsPage.css'
 import PipesRange from '../components/PipesRange.jsx'
+import ProductCategory from '../components/ProductCategory.jsx'
+import { PRODUCT_CATEGORIES } from '../data/productCategories.js'
 
 const PRODUCT_PAGE_MAP = {
   za: 'zincalume',
@@ -39,8 +41,11 @@ export default function ProductsPage({ active }) {
         </div>
       </section>
 
-      {/* <PipeTable /> */}
+    
       <PipesRange/>
+      <ProductCategory category={PRODUCT_CATEGORIES.find((category) => category.id === 'tube-well-fittings')} />
+      <ProductCategory category={PRODUCT_CATEGORIES.find((category) => category.id === 'pump-fittings')} />
+      {/* <PipeTable/> */}
     </div>
   )
 }

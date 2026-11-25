@@ -18,27 +18,61 @@
 }
 
 .pcat--dark .pcat__card {
-  background: var(--steel);
-  border-color: var(--steel-line);
+  background: #e8e4da;
+  border-color: #e8e4da;
+}
+
+#tube-well-fittings,
+#pump-fittings {
+  background: var(--paper);
+}
+
+#tube-well-fittings .sec-head,
+#pump-fittings .sec-head {
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  max-width: 720px;
+  margin: 0 auto 44px;
+  text-align: center;
+}
+
+#tube-well-fittings .sec-tag,
+#pump-fittings .sec-tag {
+  margin-bottom: 14px;
+}
+
+#tube-well-fittings .sec-head h2,
+#pump-fittings .sec-head h2 {
+  font-size: clamp(42px, 5vw, 68px);
+  margin-bottom: 12px;
+}
+
+#tube-well-fittings .sec-note,
+#pump-fittings .sec-note {
+  max-width: none;
+  color: var(--muted-light);
+  font-size: 17px;
 }
 
 .pcat__img {
   display: grid;
   place-items: center;
-  aspect-ratio: 4 / 3;
+  /* aspect-ratio: 4 / 3; */
   overflow: hidden;
   background: var(--zinc-bright);
 }
 
 .pcat__img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .35s ease;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .pcat__card:hover .pcat__img img {
-  transform: scale(1.04);
+  transform: none;
 }
 
 /* shown only if an image is missing */
@@ -61,7 +95,7 @@
 }
 
 .pcat--dark .pcat__body h3 {
-  color: var(--zinc-bright);
+  color: #14181d;
 }
 
 .pcat__body h3.pcat__code {
@@ -69,12 +103,12 @@
 }
 
 .pcat__body p {
-  font-size: 13.5px;
-  color: var(--muted-light);
+  font-size: 14px;
+  color: #5b6570;
 }
 
 .pcat--dark .pcat__body p {
-  color: var(--muted-dark);
+  color: #5b6570;
 }
 
 /* catalogue + quote strip */
@@ -86,13 +120,13 @@
   gap: 20px 40px;
   margin-top: 40px;
   padding: 28px 32px;
-  background: #e8e4da;
+  background: #e8e4da !important;
   border: 1px solid var(--paper-line);
 }
 
 .pcat--dark .pcat__cta {
-  background: var(--steel);
-  border-color: var(--steel-line);
+  background: #f0ede5;
+  border-color: #f0ede5;
 }
 
 .pcat__cta h3 {
@@ -101,7 +135,7 @@
 }
 
 .pcat--dark .pcat__cta h3 {
-  color: var(--zinc-bright);
+  color: #14181d;
 }
 
 .pcat__cta p {
@@ -111,7 +145,7 @@
 }
 
 .pcat--dark .pcat__cta p {
-  color: var(--muted-dark);
+  color: #5b6570;
 }
 
 .pcat__cta-actions {

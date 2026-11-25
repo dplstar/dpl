@@ -9,7 +9,7 @@
  * Each section's primary button opens the Catalogue page.
  */
 
-const IMG = '/img/products/'
+const IMG = '/img/'
 
 export const PRODUCT_CATEGORIES = [
   {
@@ -47,12 +47,7 @@ export const PRODUCT_CATEGORIES = [
       { name: 'MS Clamp', desc: 'Secure connection', img: `${IMG}MS-Clamp-Tube-Well-Fittings.jpg` },
       { name: 'MS Reducer', desc: 'Diameter transition', img: `${IMG}MS-Reducer-Tube-Well-Fittings.jpg` }
     ],
-    cta: {
-      title: 'Complete tube well solutions',
-      body: 'Find technical specifications and details for our tube well fittings in the catalogue.',
-      primary: 'View catalogue',
-      secondary: 'Get a custom quote'
-    }
+   
   },
   {
     id: 'pump-fittings',
@@ -68,13 +63,12 @@ export const PRODUCT_CATEGORIES = [
       { name: 'HDG Fasteners', desc: 'Corrosion-resistant', img: `${IMG}HDG-Fastners-Pump-Fittings-by-DPL-Star.jpg` },
       { name: 'Rubber Gasket', desc: 'Leak-proof sealing', img: `${IMG}Rubber-Gasket-Pump-Fittings-by-DPL-Star.jpg` },
       { name: 'MS Clamp', desc: 'Secure pipe connection', img: `${IMG}Ms-Clamp-Pump-Fittings-by-DPL-Star.jpg` },
-      { name: 'MS Dum Dum', desc: 'Specialised fitting', img: `${IMG}Ms-Dum-Dum-Pump-Fittings-by-DPL-Star.jpg` }
+      { name: 'MS Dum Dum', desc: 'Specialised fitting', img: `${IMG}Ms-Dum-Dum-Pump-Fittings-by-DPL-Star.jpg` },
+      { name: 'MS Nipple', desc: 'Pipe connection fitting', img: `${IMG}MS-Nipple-from-Pump-Fittings-by-DPL-Star.jpg` },
+      { name: 'MS Enlarger', desc: 'Diameter enlargement fitting', img: `${IMG}Ms-Enlarger-Pump-Fittings-by-DPL-Star.jpg` },
+      { name: 'MS Reducer', desc: 'Diameter reduction fitting', img: `${IMG}Ms-Reducer-Pump-Fittings-by-DPL-Star.jpg` },
+      { name: 'MS Ringa', desc: 'Circular pipe fitting', img: `${IMG}Ms-Ringa-Pump-Fittings-by-DPL-Star.jpg` }
     ],
-    cta: {
-      title: 'Complete pump system solutions',
-      body: 'Explore our full range of pump fittings and accessories, with detailed specifications in the catalogue.',
-      primary: 'View catalogue',
-      secondary: 'Request pricing'
-    }
+   
   }
 ]
