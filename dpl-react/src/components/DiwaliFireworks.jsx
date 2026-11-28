@@ -19,8 +19,8 @@ export default function WinterAnimation() {
     let width = window.innerWidth
     let height = window.innerHeight
 
-    const SNOW_COUNT = 65
-    const SPARKLE_COUNT = 25
+    const SNOW_COUNT = 40
+    const SPARKLE_COUNT = 15
 
     function resize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
