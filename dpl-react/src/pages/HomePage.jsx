@@ -7,6 +7,7 @@ import ClientsMarquee from '../components/ClientsMarquee.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import FactoryLocation from '../components/FactoryLocation.jsx'
 import { STRS } from '../data/siteData.js'
+import DiwaliFireworks from '../components/DiwaliFireworks.jsx'
 
 const HOME_PRODUCT_IMAGES = {
   za: '/img/Zincalume%20Tanks.png',
@@ -31,6 +32,6 @@ export default function HomePage({ active }) {
       <ClientsMarquee />
       <CtaBand heading="You Desire, We Build " buttonLabel="Start a conversation" target="contact" />
       <FactoryLocation />
-    </div>
+      <DiwaliFireworks />   </div>
   )
 }

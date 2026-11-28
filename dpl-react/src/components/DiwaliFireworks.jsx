@@ -1,7 +1,7 @@
 
 import { useEffect, useRef } from 'react'
 
-export default function DiwaliFireworks({ duration = 12000 }) {
+export default function WinterAnimation() {
   const canvasRef = useRef(null)
 
   useEffect(() => {
@@ -14,167 +14,163 @@ export default function DiwaliFireworks({ duration = 12000 }) {
       return
     }
 
-    let rockets = []
-    let particles = []
-    let frameId
-    let lastLaunch = 0
+    let animationFrame
     let running = true
+    let width = window.innerWidth
+    let height = window.innerHeight
 
-    const startTime = performance.now()
-
-    const colors = [
-      '#FFD76A',
-      '#FFF4CE',
-      '#FFB347',
-      '#FF7043',
-      '#F8D477'
-    ]
+    const SNOW_COUNT = 65
+    const SPARKLE_COUNT = 25
 
     function resize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
-      canvas.width = window.innerWidth * dpr
-      canvas.height = window.innerHeight * dpr
-      canvas.style.width = `${window.innerWidth}px`
-      canvas.style.height = `${window.innerHeight}px`
+      width = window.innerWidth
+      height = window.innerHeight
+
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+
+      canvas.style.width = `${width}px`
+      canvas.style.height = `${height}px`
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
 
-    function launchRocket() {
-      const x = window.innerWidth * (0.1 + Math.random() * 0.8)
+    const snowflakes = Array.from({ length: SNOW_COUNT }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 3 + 1,
+      speed: 0.25 + Math.random() * 0.8,
+      drift: Math.random() * 0.3 - 0.15,
+      opacity: 0.2 + Math.random() * 0.5,
+      rotation: Math.random() * Math.PI * 2,
+      rotationSpeed: (Math.random() - 0.5) * 0.01
+    }))
 
-      rockets.push({
-        x,
-        y: window.innerHeight + 5,
-        oldX: x,
-        oldY: window.innerHeight,
-        vx: (Math.random() - 0.5) * 1.2,
-        vy: -(8 + Math.random() * 3),
-        targetY: window.innerHeight * (0.15 + Math.random() * 0.4),
-        color: colors[Math.floor(Math.random() * colors.length)]
-      })
-    }
+    const sparkles = Array.from({ length: SPARKLE_COUNT }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 1.5 + 0.5,
+      opacity: Math.random() * 0.5,
+      speed: Math.random() * 0.3 + 0.1
+    }))
 
-    function explode(x, y, color) {
-      const count = 100
+    function drawSnowflake(flake) {
+      ctx.save()
 
-      for (let i = 0; i < count; i++) {
-        const angle = Math.random() * Math.PI * 2
-        const speed = 1.5 + Math.random() * 4.5
+      ctx.translate(flake.x, flake.y)
+      ctx.rotate(flake.rotation)
 
-        particles.push({
-          x, y,
-          oldX: x,
-          oldY: y,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          gravity: 0.045,
-          drag: 0.982,
-          life: 1,
-          decay: 0.006 + Math.random() * 0.009,
-          color,
-          size: 0.8 + Math.random() * 1.5
-        })
+      ctx.strokeStyle = `rgba(255,255,255,${flake.opacity})`
+      ctx.lineWidth = 1
+      ctx.lineCap = 'round'
+
+      for (let i = 0; i < 6; i++) {
+        ctx.rotate(Math.PI / 3)
+
+        ctx.beginPath()
+        ctx.moveTo(0, 0)
+        ctx.lineTo(0, -flake.radius * 2.5)
+        ctx.stroke()
+
+        if (flake.radius > 1.8) {
+          ctx.beginPath()
+          ctx.moveTo(0, -flake.radius * 1.5)
+          ctx.lineTo(-flake.radius * 0.6, -flake.radius * 2)
+
+          ctx.moveTo(0, -flake.radius * 1.5)
+          ctx.lineTo(flake.radius * 0.6, -flake.radius * 2)
+
+          ctx.stroke()
+        }
       }
+
+      ctx.restore()
     }
 
-    function animate(now) {
+    function drawSparkle(sparkle, time) {
+      const pulse =
+        0.3 + Math.abs(Math.sin(time * 0.001 + sparkle.x)) * 0.5
+
+      ctx.beginPath()
+
+      ctx.arc(
+        sparkle.x,
+        sparkle.y,
+        sparkle.radius,
+        0,
+        Math.PI * 2
+      )
+
+      ctx.fillStyle = `rgba(255,255,255,${sparkle.opacity * pulse})`
+      ctx.fill()
+    }
+
+    function animate(time) {
       if (!running) return
 
-      // Fade old frames to create light trails
-      ctx.globalCompositeOperation = 'destination-out'
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.22)'
-      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
-      ctx.globalCompositeOperation = 'lighter'
+      ctx.clearRect(0, 0, width, height)
 
-      // Launch rockets for the configured duration
-      if (
-        now - lastLaunch > 600 + Math.random() * 400 &&
-        now - startTime < duration
-      ) {
-        launchRocket()
-        lastLaunch = now
-      }
+      const wind = Math.sin(time * 0.0003) * 0.25
 
-      rockets = rockets.filter(rocket => {
-        rocket.oldX = rocket.x
-        rocket.oldY = rocket.y
+      // Snowfall animation
+      snowflakes.forEach((flake) => {
+        flake.y += flake.speed
+        flake.x += flake.drift + wind
 
-        rocket.x += rocket.vx
-        rocket.y += rocket.vy
-        rocket.vy += 0.035
+        flake.rotation += flake.rotationSpeed
 
-        ctx.beginPath()
-        ctx.moveTo(rocket.oldX, rocket.oldY)
-        ctx.lineTo(rocket.x, rocket.y)
-        ctx.strokeStyle = rocket.color
-        ctx.lineWidth = 2
-        ctx.stroke()
-
-        if (rocket.y <= rocket.targetY || rocket.vy >= 0) {
-          explode(rocket.x, rocket.y, rocket.color)
-          return false
+        if (flake.y > height + 10) {
+          flake.y = -10
+          flake.x = Math.random() * width
         }
 
-        return true
+        if (flake.x > width + 10) {
+          flake.x = -10
+        }
+
+        if (flake.x < -10) {
+          flake.x = width + 10
+        }
+
+        drawSnowflake(flake)
       })
 
-      particles = particles.filter(p => {
-        p.oldX = p.x
-        p.oldY = p.y
+      // Glowing sparkle animation
+      sparkles.forEach((sparkle) => {
+        sparkle.y += sparkle.speed
 
-        p.x += p.vx
-        p.y += p.vy
-        p.vx *= p.drag
-        p.vy = p.vy * p.drag + p.gravity
-        p.life -= p.decay
+        if (sparkle.y > height) {
+          sparkle.y = 0
+          sparkle.x = Math.random() * width
+        }
 
-        if (p.life <= 0) return false
-
-        ctx.globalAlpha = p.life
-        ctx.strokeStyle = p.color
-        ctx.lineWidth = p.size * p.life
-        ctx.lineCap = 'round'
-
-        ctx.beginPath()
-        ctx.moveTo(p.oldX, p.oldY)
-        ctx.lineTo(p.x, p.y)
-        ctx.stroke()
-
-        return true
+        drawSparkle(sparkle, time)
       })
 
-      ctx.globalAlpha = 1
-      ctx.globalCompositeOperation = 'source-over'
-
-      if (
-        now - startTime >= duration &&
-        rockets.length === 0 &&
-        particles.length === 0
-      ) {
-        running = false
-        window.removeEventListener('resize', resize)
-        return
-      }
-
-      frameId = requestAnimationFrame(animate)
+      animationFrame = requestAnimationFrame(animate)
     }
 
     resize()
+
     window.addEventListener('resize', resize)
-    frameId = requestAnimationFrame(animate)
+
+    animationFrame = requestAnimationFrame(animate)
 
     return () => {
       running = false
-      cancelAnimationFrame(frameId)
+
+      cancelAnimationFrame(animationFrame)
+
       window.removeEventListener('resize', resize)
     }
-  }, [duration])
+  }, [])
 
   return (
     <canvas
       ref={canvasRef}
+      className="winter-animation"
       aria-hidden="true"
       style={{
         position: 'fixed',
